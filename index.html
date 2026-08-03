@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Memory — Settings (DA Projects)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Red+Rose:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  a { color: #303131; text-decoration: none; }
+  a:hover { color: #5B9C6E; }
+
+  /* Center the fixed 1440x1024 canvas and let it scale down on smaller screens */
+  .stage { display: flex; justify-content: center; align-items: flex-start; }
+  .canvas { transform-origin: top center; }
+</style>
+</head>
+<body>
+<div class="stage">
+<div class="canvas" style="position: relative; width: 1440px; height: 1024px; background: #FFFFFF; overflow: hidden; font-family: 'Almarai', sans-serif;">
+
+  <!-- Title: Settings -->
+  <div style="position: absolute; left: 173px; top: 114px; width: 251px; display: flex; flex-direction: column; align-items: center; padding: 0;">
+    <div style="width: 251px; height: 67px; font-family: 'Red Rose', sans-serif; font-weight: 700; font-size: 54px; line-height: 67px; text-align: center; color: #303131;">Settings</div>
+    <div style="position: relative; width: 251px; height: 8px; background: #F0EA6E;">
+      <div style="position: absolute; left: -7px; top: -3px; width: 14px; height: 14px; background: #F0EA6E; transform: rotate(45deg);"></div>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 170px; top: 243px; width: 1103px; height: 539px;">
+
+    <div style="position: absolute; left: 0; top: 0; width: 1103px; height: 412px; display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start; padding: 0;">
+
+      <!-- Game themes -->
+      <div style="display: flex; flex-direction: column; align-items: flex-start; padding: 0; gap: 16px; width: 255px;">
+        <div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 8px; width: 244px; height: 32px;">
+          <svg width="32" height="32" viewBox="170 243 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M186 272.333C184.178 272.333 182.455 271.983 180.833 271.283C179.211 270.583 177.794 269.628 176.583 268.417C175.372 267.206 174.417 265.789 173.717 264.167C173.017 262.544 172.667 260.822 172.667 259C172.667 257.156 173.028 255.422 173.75 253.8C174.472 252.178 175.45 250.767 176.683 249.567C177.917 248.367 179.355 247.417 181 246.717C182.644 246.017 184.4 245.667 186.267 245.667C188.044 245.667 189.722 245.972 191.3 246.583C192.878 247.194 194.261 248.039 195.45 249.117C196.639 250.194 197.583 251.472 198.283 252.95C198.983 254.428 199.333 256.022 199.333 257.733C199.333 260.289 198.555 262.25 197 263.617C195.444 264.983 193.555 265.667 191.333 265.667H188.867C188.667 265.667 188.528 265.722 188.45 265.833C188.372 265.944 188.333 266.067 188.333 266.2C188.333 266.467 188.5 266.85 188.833 267.35C189.167 267.85 189.333 268.422 189.333 269.067C189.333 270.178 189.028 271 188.417 271.533C187.805 272.067 187 272.333 186 272.333ZM178.667 260.333C179.244 260.333 179.722 260.144 180.1 259.767C180.478 259.389 180.667 258.911 180.667 258.333C180.667 257.756 180.478 257.278 180.1 256.9C179.722 256.522 179.244 256.333 178.667 256.333C178.089 256.333 177.611 256.522 177.233 256.9C176.855 257.278 176.667 257.756 176.667 258.333C176.667 258.911 176.855 259.389 177.233 259.767C177.611 260.144 178.089 260.333 178.667 260.333ZM182.667 255C183.244 255 183.722 254.811 184.1 254.433C184.478 254.056 184.667 253.578 184.667 253C184.667 252.422 184.478 251.944 184.1 251.567C183.722 251.189 183.244 251 182.667 251C182.089 251 181.611 251.189 181.233 251.567C180.855 251.944 180.667 252.422 180.667 253C180.667 253.578 180.855 254.056 181.233 254.433C181.611 254.811 182.089 255 182.667 255ZM189.333 255C189.911 255 190.389 254.811 190.767 254.433C191.144 254.056 191.333 253.578 191.333 253C191.333 252.422 191.144 251.944 190.767 251.567C190.389 251.189 189.911 251 189.333 251C188.755 251 188.278 251.189 187.9 251.567C187.522 251.944 187.333 252.422 187.333 253C187.333 253.578 187.522 254.056 187.9 254.433C188.278 254.811 188.755 255 189.333 255ZM193.333 260.333C193.911 260.333 194.389 260.144 194.767 259.767C195.144 259.389 195.333 258.911 195.333 258.333C195.333 257.756 195.144 257.278 194.767 256.9C194.389 256.522 193.911 256.333 193.333 256.333C192.755 256.333 192.278 256.522 191.9 256.9C191.522 257.278 191.333 257.756 191.333 258.333C191.333 258.911 191.522 259.389 191.9 259.767C192.278 260.144 192.755 260.333 193.333 260.333ZM186 269.667C186.2 269.667 186.361 269.611 186.483 269.5C186.605 269.389 186.667 269.244 186.667 269.067C186.667 268.756 186.5 268.389 186.167 267.967C185.833 267.544 185.667 266.911 185.667 266.067C185.667 265.133 185.989 264.389 186.633 263.833C187.278 263.278 188.067 263 189 263H191.333C192.8 263 194.055 262.572 195.1 261.717C196.144 260.861 196.667 259.533 196.667 257.733C196.667 255.044 195.639 252.806 193.583 251.017C191.528 249.228 189.089 248.333 186.267 248.333C183.244 248.333 180.667 249.367 178.533 251.433C176.4 253.5 175.333 256.022 175.333 259C175.333 261.956 176.372 264.472 178.45 266.55C180.528 268.628 183.044 269.667 186 269.667Z" fill="#DA1EBA"></path></svg>
+          <div style="font-family: 'Almarai', sans-serif; font-weight: 700; font-size: 24px; line-height: 27px; color: #303131;">Game themes</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; padding: 0 0 0 44px; gap: 12px; width: 255px; box-sizing: border-box;">
+          <a href="Memory%20Settings%20Code%20Vibes.html" style="display: block; text-decoration: none;"><div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Code vibes theme</span>
+          </div></a>
+          <a href="Memory%20Settings%20Gaming.html" style="display: block; text-decoration: none;"><div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Gaming theme</span>
+          </div></a>
+          <div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path><circle cx="226" cy="536" r="5" fill="#303131"></circle></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 700; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">DA Projects theme</span>
+            <svg width="50" height="18" viewBox="395 330 50 18" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M444.66 339L436 330.34L427.34 339L436 347.66L444.66 339ZM395 339V340.5H436V339V337.5H395V339Z" fill="#F0EA6E"></path></svg>
+          </div>
+          <a href="Memory%20Settings%20Foods.html" style="display: block; text-decoration: none;"><div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Foods theme</span>
+          </div></a>
+        </div>
+      </div>
+
+      <!-- Preview card (blue panel) -->
+      <div style="display: flex; flex-direction: column; align-items: center; padding: 17px 7px; gap: 10px; width: 460px; height: 412px; box-sizing: border-box; background: #BFE5F2; border-radius: 16px;">
+        <div style="display: flex; flex-direction: column; align-items: center; padding: 0; gap: 53px; width: 430px;">
+
+          <!-- HUD bar -->
+          <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 8px 20px; width: 430px; height: 37px; box-sizing: border-box; background: #FFFFFF; box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); border-radius: 10px;">
+            <div style="display: flex; flex-direction: row; align-items: center; padding: 4px 8px; gap: 16px; background: #FFFFFF; border-radius: 4px;">
+              <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 0; gap: 4px;">
+                <svg width="10" height="12" viewBox="856 272.5 10 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M857.25 284.5C856.906 284.5 856.612 284.383 856.367 284.148C856.122 283.913 856 283.63 856 283.3V282.115C856 281.915 856.047 281.73 856.141 281.56C856.234 281.39 856.359 281.245 856.516 281.125C857.234 280.565 857.773 280 858.133 279.43C858.492 278.86 858.745 278.35 858.891 277.9H857.875C857.698 277.9 857.549 277.843 857.43 277.728C857.31 277.613 857.25 277.47 857.25 277.3C857.25 277.13 857.31 276.988 857.43 276.872C857.549 276.758 857.698 276.7 857.875 276.7H858.656C858.51 276.48 858.396 276.245 858.312 275.995C858.229 275.745 858.188 275.48 858.188 275.2C858.188 274.45 858.461 273.812 859.008 273.288C859.555 272.763 860.219 272.5 861 272.5C861.781 272.5 862.445 272.763 862.992 273.288C863.539 273.812 863.812 274.45 863.812 275.2C863.812 275.48 863.771 275.745 863.688 275.995C863.604 276.245 863.49 276.48 863.344 276.7H864.125C864.302 276.7 864.451 276.758 864.57 276.872C864.69 276.988 864.75 277.13 864.75 277.3C864.75 277.47 864.69 277.613 864.57 277.728C864.451 277.843 864.302 277.9 864.125 277.9H863.109C863.255 278.35 863.508 278.86 863.867 279.43C864.227 280 864.766 280.565 865.484 281.125C865.641 281.245 865.766 281.39 865.859 281.56C865.953 281.73 866 281.915 866 282.115V283.3C866 283.63 865.878 283.913 865.633 284.148C865.388 284.383 865.094 284.5 864.75 284.5H857.25ZM857.25 283.3H864.75V282.1C863.792 281.38 863.099 280.638 862.672 279.873C862.245 279.108 861.958 278.45 861.812 277.9H860.188C860.042 278.45 859.755 279.108 859.328 279.873C858.901 280.638 858.208 281.38 857.25 282.1V283.3ZM861 276.7C861.438 276.7 861.807 276.555 862.109 276.265C862.411 275.975 862.562 275.62 862.562 275.2C862.562 274.78 862.411 274.425 862.109 274.135C861.807 273.845 861.438 273.7 861 273.7C860.562 273.7 860.193 273.845 859.891 274.135C859.589 274.425 859.438 274.78 859.438 275.2C859.438 275.62 859.589 275.975 859.891 276.265C860.193 276.555 860.562 276.7 861 276.7Z" fill="#EA6900"></path></svg>
+                <span style="font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 10px; line-height: 13px; text-align: right; color: #EA6900;">6</span>
+              </div>
+              <div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 4px;">
+                <svg width="10" height="12" viewBox="895 272.5 10 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M896.25 284.5C895.906 284.5 895.612 284.383 895.367 284.148C895.122 283.913 895 283.63 895 283.3V282.115C895 281.915 895.047 281.73 895.141 281.56C895.234 281.39 895.359 281.245 895.516 281.125C896.234 280.565 896.773 280 897.133 279.43C897.492 278.86 897.745 278.35 897.891 277.9H896.875C896.698 277.9 896.549 277.843 896.43 277.728C896.31 277.613 896.25 277.47 896.25 277.3C896.25 277.13 896.31 276.988 896.43 276.872C896.549 276.758 896.698 276.7 896.875 276.7H897.656C897.51 276.48 897.396 276.245 897.312 275.995C897.229 275.745 897.188 275.48 897.188 275.2C897.188 274.45 897.461 273.812 898.008 273.288C898.555 272.763 899.219 272.5 900 272.5C900.781 272.5 901.445 272.763 901.992 273.288C902.539 273.812 902.812 274.45 902.812 275.2C902.812 275.48 902.771 275.745 902.688 275.995C902.604 276.245 902.49 276.48 902.344 276.7H903.125C903.302 276.7 903.451 276.758 903.57 276.872C903.69 276.988 903.75 277.13 903.75 277.3C903.75 277.47 903.69 277.613 903.57 277.728C903.451 277.843 903.302 277.9 903.125 277.9H902.109C902.255 278.35 902.508 278.86 902.867 279.43C903.227 280 903.766 280.565 904.484 281.125C904.641 281.245 904.766 281.39 904.859 281.56C904.953 281.73 905 281.915 905 282.115V283.3C905 283.63 904.878 283.913 904.633 284.148C904.388 284.383 904.094 284.5 903.75 284.5H896.25ZM896.25 283.3H903.75V282.1C902.792 281.38 902.099 280.638 901.672 279.873C901.245 279.108 900.958 278.45 900.812 277.9H899.188C899.042 278.45 898.755 279.108 898.328 279.873C897.901 280.638 897.208 281.38 896.25 282.1V283.3ZM900 276.7C900.438 276.7 900.807 276.555 901.109 276.265C901.411 275.975 901.562 275.62 901.562 275.2C901.562 274.78 901.411 274.425 901.109 274.135C900.807 273.845 900.438 273.7 900 273.7C899.562 273.7 899.193 273.845 898.891 274.135C898.589 274.425 898.438 274.78 898.438 275.2C898.438 275.62 898.589 275.975 898.891 276.265C899.193 276.555 899.562 276.7 900 276.7Z" fill="#097FC5"></path></svg>
+                <span style="font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 10px; line-height: 13px; text-align: right; color: #097FC5;">2</span>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 0; gap: 4px;">
+              <span style="font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 8px; line-height: 10px; letter-spacing: 0.07em; color: #1E7594;">Current player:</span>
+              <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; width: 16px; height: 16px; background: #097FC5; border-radius: 4px;">
+                <svg width="11" height="13" viewBox="895 272.5 10 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M896.25 284.5C895.906 284.5 895.612 284.383 895.367 284.148C895.122 283.913 895 283.63 895 283.3V282.115C895 281.915 895.047 281.73 895.141 281.56C895.234 281.39 895.359 281.245 895.516 281.125C896.234 280.565 896.773 280 897.133 279.43C897.492 278.86 897.745 278.35 897.891 277.9H896.875C896.698 277.9 896.549 277.843 896.43 277.728C896.31 277.613 896.25 277.47 896.25 277.3C896.25 277.13 896.31 276.988 896.43 276.872C896.549 276.758 896.698 276.7 896.875 276.7H897.656C897.51 276.48 897.396 276.245 897.312 275.995C897.229 275.745 897.188 275.48 897.188 275.2C897.188 274.45 897.461 273.812 898.008 273.288C898.555 272.763 899.219 272.5 900 272.5C900.781 272.5 901.445 272.763 901.992 273.288C902.539 273.812 902.812 274.45 902.812 275.2C902.812 275.48 902.771 275.745 902.688 275.995C902.604 276.245 902.49 276.48 902.344 276.7H903.125C903.302 276.7 903.451 276.758 903.57 276.872C903.69 276.988 903.75 277.13 903.75 277.3C903.75 277.47 903.69 277.613 903.57 277.728C903.451 277.843 903.302 277.9 903.125 277.9H902.109C902.255 278.35 902.508 278.86 902.867 279.43C903.227 280 903.766 280.565 904.484 281.125C904.641 281.245 904.766 281.39 904.859 281.56C904.953 281.73 905 281.915 905 282.115V283.3C905 283.63 904.878 283.913 904.633 284.148C904.388 284.383 904.094 284.5 903.75 284.5H896.25ZM896.25 283.3H903.75V282.1C902.792 281.38 902.099 280.638 901.672 279.873C901.245 279.108 900.958 278.45 900.812 277.9H899.188C899.042 278.45 898.755 279.108 898.328 279.873C897.901 280.638 897.208 281.38 896.25 282.1V283.3ZM900 276.7C900.438 276.7 900.807 276.555 901.109 276.265C901.411 275.975 901.562 275.62 901.562 275.2C901.562 274.78 901.411 274.425 901.109 274.135C900.807 273.845 900.438 273.7 900 273.7C899.562 273.7 899.193 273.845 898.891 274.135C898.589 274.425 898.438 274.78 898.438 275.2C898.438 275.62 898.589 275.975 898.891 276.265C899.193 276.555 899.562 276.7 900 276.7Z" fill="#FFFFFF"></path></svg>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 4px 8px; gap: 10px; width: 88px; height: 20px; box-sizing: border-box; background: #BFE5F2; border-radius: 5px;">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M1.5 3.6C1.5 2.71634 2.21634 2 3.1 2H6.2M10.5 8.4C10.5 9.28366 9.78366 10 8.9 10H5.8" stroke="#1E7594" stroke-width="1.2"></path><path d="M7.6 0.6L9.9 2.9L7.6 5.2M4.4 6.8L2.1 9.1L4.4 11.4" stroke="#1E7594" stroke-width="1.2" stroke-linejoin="round"></path></svg>
+              <span style="font-family: 'Red Rose', sans-serif; font-weight: 700; font-size: 10px; line-height: 12px; color: #1E7594; white-space: nowrap;">Exit game</span>
+            </div>
+          </div>
+
+          <!-- Two preview cards (DA Projects theme: raincloud + code monitor) -->
+          <div style="position: relative; width: 347.02px; height: 256.08px;">
+            <div style="position: absolute; left: 167.5px; top: 53px; width: 180px; height: 150px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #F0F4F5; box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.25); border-radius: 13px;">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true">
+                <path d="M80 30.9926V70.4444H0V30.9926C4.88296 30.9926 7.43778 33.5852 9.3037 35.477C10.9007 37.097 11.6178 37.7541 13.3333 37.7541C15.0489 37.7541 15.7652 37.097 17.3622 35.477C19.2281 33.5844 21.783 30.9926 26.6659 30.9926C31.5489 30.9926 34.1044 33.5852 35.9704 35.477C37.5674 37.097 38.2837 37.7541 39.9993 37.7541C41.7148 37.7541 42.4311 37.097 44.0281 35.477C45.8941 33.5844 48.4496 30.9926 53.3333 30.9926C58.217 30.9926 60.7719 33.5852 62.637 35.4763C64.2348 37.097 64.9511 37.7541 66.6667 37.7541C68.3822 37.7541 69.0993 37.097 70.6963 35.4763C72.5615 33.5844 75.117 30.9926 80 30.9926Z" fill="#3CC2D8"></path>
+                <path d="M11.7036 60.3704C15.5555 51.5556 18.8399 42.5052 17.2451 33.3333C16.5081 29.0993 15.697 24.9333 14.8088 21.0489L21.4392 14.803L20.7725 14.7096L12.8985 13.6008C11.2859 8.06297 9.47327 3.66742 7.46216 1.34964C7.46216 1.34964 20.0029 -2.00962 34.2429 1.87186C35.118 2.10989 35.9999 2.37729 36.8888 2.67408C48.1192 6.4252 59.9748 14.9741 67.3251 33.3407C69.297 38.2637 72.5185 48.7407 72.5185 58.1482" fill="#57AEC3"></path>
+                <path opacity="0.07" d="M72.5184 58.1481H60.4443C60.4443 48.7407 57.2229 38.2637 55.251 33.3385C47.9006 14.9741 36.0451 6.42518 24.8147 2.67407C23.9298 2.37777 23.0478 2.11037 22.1688 1.87185C19.4087 1.12435 16.5926 0.6019 13.748 0.309626C18.7532 -0.203708 26.2288 -0.312596 34.2429 1.87185C35.1179 2.10987 35.9999 2.37728 36.8888 2.67407C48.1192 6.42518 59.9747 14.9741 67.3251 33.3407C69.2969 38.2637 72.5184 48.7407 72.5184 58.1481Z" fill="black"></path>
+                <path d="M80 43.9556V75.1111H0V43.9556C4.88296 43.9556 7.43778 46.5482 9.3037 48.44C10.9007 50.06 11.6178 50.717 13.3333 50.717C15.0489 50.717 15.7652 50.06 17.3622 48.44C19.2281 46.5474 21.783 43.9556 26.6659 43.9556C31.5489 43.9556 34.1044 46.5482 35.9704 48.44C37.5674 50.06 38.2837 50.717 39.9993 50.717C41.7148 50.717 42.4311 50.06 44.0281 48.44C45.8941 46.5474 48.4496 43.9556 53.3333 43.9556C58.217 43.9556 60.7719 46.5482 62.637 48.4393C64.2348 50.06 64.9511 50.717 66.6667 50.717C68.3822 50.717 69.0993 50.06 70.6963 48.4393C72.5615 46.5474 75.117 43.9556 80 43.9556Z" fill="#315FAD"></path>
+                <path d="M80 61.7333V74.0741C80 75.6457 79.3757 77.153 78.2643 78.2643C77.153 79.3757 75.6457 80 74.0741 80H5.92593C4.35427 80 2.84699 79.3757 1.73566 78.2643C0.624337 77.153 0 75.6457 0 74.0741L0 61.7333C4.88296 61.7333 7.43778 64.3259 9.3037 66.2178C10.9007 67.8378 11.6178 68.4948 13.3333 68.4948C15.0489 68.4948 15.7652 67.8378 17.3622 66.2178C19.2281 64.3252 21.783 61.7333 26.6659 61.7333C31.5489 61.7333 34.1044 64.3259 35.9704 66.2178C37.5674 67.8378 38.2837 68.4948 39.9993 68.4948C41.7148 68.4948 42.4311 67.8378 44.0281 66.2178C45.8941 64.3252 48.4496 61.7333 53.3333 61.7333C58.217 61.7333 60.7719 64.3259 62.637 66.217C64.2348 67.8378 64.9511 68.4948 66.6667 68.4948C68.3822 68.4948 69.0993 67.8378 70.6963 66.217C72.5615 64.3252 75.117 61.7333 80 61.7333Z" fill="#2F318D"></path>
+              </svg>
+            </div>
+            <div style="position: absolute; left: 9.51px; top: 19px; width: 180px; height: 150px; display: flex; flex-direction: row; justify-content: center; align-items: center; background: #1E7594; box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.25); border-radius: 13px;">
+              <svg width="73" height="60" viewBox="0 0 73 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><rect x="7" y="5" width="59" height="40" rx="4" stroke="rgba(255,255,255,0.35)" stroke-width="3"></rect><path d="M29 18L23 25L29 32M44 18L50 25L44 32" stroke="rgba(255,255,255,0.35)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17 54H56" stroke="rgba(255,255,255,0.35)" stroke-width="3" stroke-linecap="round"></path></svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Left column: Choose player + Board size -->
+    <div style="position: absolute; left: 0; top: 233px; width: 244px; display: flex; flex-direction: column; align-items: flex-start; padding: 0; gap: 54px;">
+
+      <!-- Choose player -->
+      <div style="display: flex; flex-direction: column; align-items: flex-start; padding: 0; gap: 16px; width: 244px;">
+        <div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 8px; width: 244px; height: 32px;">
+          <svg width="32" height="32" viewBox="170 476 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M178 505.333C177.267 505.333 176.639 505.072 176.117 504.55C175.595 504.028 175.333 503.4 175.333 502.667V500.033C175.333 499.589 175.433 499.178 175.633 498.8C175.833 498.422 176.1 498.1 176.433 497.833C177.967 496.589 179.117 495.333 179.883 494.067C180.65 492.8 181.189 491.667 181.5 490.667H179.333C178.956 490.667 178.639 490.539 178.383 490.283C178.128 490.028 178 489.711 178 489.333C178 488.956 178.128 488.639 178.383 488.383C178.639 488.128 178.956 488 179.333 488H181C180.689 487.511 180.445 486.989 180.267 486.433C180.089 485.878 180 485.289 180 484.667C180 483 180.583 481.583 181.75 480.417C182.917 479.25 184.333 478.667 186 478.667C187.667 478.667 189.083 479.25 190.25 480.417C191.417 481.583 192 483 192 484.667C192 485.289 191.911 485.878 191.733 486.433C191.556 486.989 191.311 487.511 191 488H192.667C193.045 488 193.361 488.128 193.617 488.383C193.872 488.639 194 488.956 194 489.333C194 489.711 193.872 490.028 193.617 490.283C193.361 490.539 193.045 490.667 192.667 490.667H190.5C190.811 491.667 191.35 492.8 192.117 494.067C192.883 495.333 194.033 496.589 195.567 497.833C195.9 498.1 196.167 498.422 196.367 498.8C196.567 499.178 196.667 499.589 196.667 500.033V502.667C196.667 503.4 196.406 504.028 195.883 504.55C195.361 505.072 194.733 505.333 194 505.333H178ZM178 502.667H194V500C191.956 498.4 190.478 496.75 189.567 495.05C188.656 493.35 188.045 491.889 187.733 490.667H184.267C183.956 491.889 183.345 493.35 182.433 495.05C181.522 496.75 180.045 498.4 178 500V502.667ZM186 488C186.933 488 187.722 487.678 188.367 487.033C189.011 486.389 189.333 485.6 189.333 484.667C189.333 483.733 189.011 482.944 188.367 482.3C187.722 481.656 186.933 481.333 186 481.333C185.067 481.333 184.278 481.656 183.633 482.3C182.989 482.944 182.667 483.733 182.667 484.667C182.667 485.6 182.989 486.389 183.633 487.033C184.278 487.678 185.067 488 186 488Z" fill="#1AE5BE"></path></svg>
+          <div style="font-family: 'Almarai', sans-serif; font-weight: 700; font-size: 24px; line-height: 27px; color: #303131;">Choose player</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; padding: 0 0 0 44px; gap: 12px;">
+          <div data-pick="player" data-value="0" style="cursor: pointer; display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path><circle class="dot" cx="226" cy="536" r="5" fill="transparent"></circle></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Blue</span>
+          </div>
+          <div data-pick="player" data-value="1" style="cursor: pointer; display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path><circle class="dot" cx="226" cy="536" r="5" fill="transparent"></circle></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Orange</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Board size -->
+      <div style="display: flex; flex-direction: column; align-items: flex-start; padding: 0; gap: 16px; width: 244px;">
+        <div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 8px; width: 244px; height: 32px;">
+          <svg width="32" height="32" viewBox="170 638 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M175.3 664.4L174.167 663.933C173.478 663.644 173.017 663.144 172.783 662.433C172.55 661.722 172.589 661.022 172.9 660.333L175.3 655.133V664.4ZM180.633 667.333C179.9 667.333 179.272 667.072 178.75 666.55C178.228 666.028 177.967 665.4 177.967 664.667V656.667L181.5 666.467C181.567 666.622 181.633 666.772 181.7 666.917C181.767 667.061 181.856 667.2 181.967 667.333H180.633ZM187.5 667.2C186.789 667.467 186.1 667.433 185.433 667.1C184.767 666.767 184.3 666.244 184.033 665.533L178.1 649.267C177.833 648.556 177.856 647.861 178.167 647.183C178.478 646.506 178.989 646.044 179.7 645.8L189.767 642.133C190.478 641.867 191.167 641.9 191.833 642.233C192.5 642.567 192.967 643.089 193.233 643.8L199.167 660.067C199.433 660.778 199.411 661.472 199.1 662.15C198.789 662.828 198.278 663.289 197.567 663.533L187.5 667.2ZM184.633 651.333C185.011 651.333 185.328 651.206 185.583 650.95C185.839 650.694 185.967 650.378 185.967 650C185.967 649.622 185.839 649.306 185.583 649.05C185.328 648.794 185.011 648.667 184.633 648.667C184.256 648.667 183.939 648.794 183.683 649.05C183.428 649.306 183.3 649.622 183.3 650C183.3 650.378 183.428 650.694 183.683 650.95C183.939 651.206 184.256 651.333 184.633 651.333ZM186.567 664.667L196.633 661L190.7 644.667L180.633 648.333L186.567 664.667Z" fill="#0635C9"></path></svg>
+          <div style="font-family: 'Almarai', sans-serif; font-weight: 700; font-size: 24px; line-height: 27px; color: #303131;">Board size</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; padding: 0 0 0 44px; gap: 12px;">
+          <div data-pick="size" data-value="0" style="cursor: pointer; display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path><circle class="dot" cx="226" cy="536" r="5" fill="transparent"></circle></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">16 cards</span>
+          </div>
+          <div data-pick="size" data-value="1" style="cursor: pointer; display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path><circle class="dot" cx="226" cy="536" r="5" fill="transparent"></circle></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">24 cards</span>
+          </div>
+          <div data-pick="size" data-value="2" style="cursor: pointer; display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path><circle class="dot" cx="226" cy="536" r="5" fill="transparent"></circle></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">36 cards</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary bar + Start button -->
+    <div style="position: absolute; left: 539px; top: 458px; width: 564px; display: flex; flex-direction: column; align-items: flex-end; padding: 0; gap: 42px;">
+      <div style="display: flex; flex-direction: row; align-items: center; padding: 14px 20px; gap: 16px; width: 546.08px; height: 81px; box-sizing: border-box; background: #F6F6F6;">
+        <span style="flex: none; font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Game theme</span>
+        <div style="flex: none; width: 18px; height: 56px; display: flex; align-items: center; justify-content: center;">
+          <div style="width: 56px; height: 0; border-top: 8px solid #F0EA6E; transform: rotate(109.33deg);"></div>
+        </div>
+        <span style="flex: none; font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Player</span>
+        <div style="flex: none; width: 18px; height: 56px; display: flex; align-items: center; justify-content: center;">
+          <div style="width: 56px; height: 0; border-top: 8px solid #F0EA6E; transform: rotate(109.33deg);"></div>
+        </div>
+        <span style="flex: none; font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Board size</span>
+        <a id="startBtn" href="#" style="flex: none; display: flex; flex-direction: row; align-items: center; padding: 14px 20px; gap: 8px; width: 126px; height: 53px; box-sizing: border-box; background: #D9D9D9; text-decoration: none; cursor: not-allowed; transition: transform 0.25s ease, background 0.2s ease; transform: scale(1);">
+          <svg id="startIcon" width="24" height="24" viewBox="1147 729.5 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block; transition: transform 0.25s ease; transform: rotate(0deg);" aria-hidden="true"><path id="startIconPath" d="M1157.28 745.5L1162.85 741.925C1163 741.825 1163.07 741.683 1163.07 741.5C1163.07 741.317 1163 741.175 1162.85 741.075L1157.28 737.5C1157.11 737.383 1156.94 737.375 1156.76 737.475C1156.59 737.575 1156.5 737.725 1156.5 737.925V745.075C1156.5 745.275 1156.59 745.425 1156.76 745.525C1156.94 745.625 1157.11 745.617 1157.28 745.5ZM1151 749.5C1150.45 749.5 1149.98 749.304 1149.59 748.913C1149.2 748.521 1149 748.05 1149 747.5V735.5C1149 734.95 1149.2 734.479 1149.59 734.088C1149.98 733.696 1150.45 733.5 1151 733.5H1167C1167.55 733.5 1168.02 733.696 1168.41 734.088C1168.8 734.479 1169 734.95 1169 735.5V747.5C1169 748.05 1168.8 748.521 1168.41 748.913C1168.02 749.304 1167.55 749.5 1167 749.5H1151ZM1151 747.5H1167V735.5H1151V747.5Z" fill="#AFAFAF"></path></svg>
+          <span id="startLabel" style="font-family: 'Red Rose', sans-serif; font-weight: 700; font-size: 20px; line-height: 25px; color: #AFAFAF;">Start</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var state = { player: null, size: null };
+  var boards = [
+    "Memory Board DA Projects 16.html",
+    "Memory Board DA Projects 24.html",
+    "Memory Board DA Projects 36.html"
+  ];
+
+  var playerColors = { "0": "#097FC5", "1": "#EA6900" };
+
+  var startBtn = document.getElementById("startBtn");
+  var startIcon = document.getElementById("startIcon");
+  var startIconPath = document.getElementById("startIconPath");
+  var startLabel = document.getElementById("startLabel");
+
+  function render() {
+    // Player + size selection dots
+    document.querySelectorAll('[data-pick]').forEach(function (row) {
+      var kind = row.getAttribute("data-pick");
+      var value = row.getAttribute("data-value");
+      var dot = row.querySelector(".dot");
+      var selected = String(state[kind]) === value;
+      if (kind === "player") {
+        dot.setAttribute("fill", selected ? playerColors[value] : "transparent");
+      } else {
+        dot.setAttribute("fill", selected ? "#303131" : "transparent");
+      }
+    });
+
+    // Start button state
+    var ready = state.player !== null && state.size !== null;
+    startBtn.style.background = ready ? "#F0EA6E" : "#D9D9D9";
+    startBtn.style.cursor = ready ? "pointer" : "not-allowed";
+    var fg = ready ? "#303131" : "#AFAFAF";
+    startIconPath.setAttribute("fill", fg);
+    startLabel.style.color = fg;
+    startBtn.setAttribute("href", ready ? encodeURI(boards[state.size]) : "#");
+    startBtn.dataset.ready = ready ? "1" : "0";
+  }
+
+  // Selection handlers
+  document.querySelectorAll('[data-pick]').forEach(function (row) {
+    row.addEventListener("click", function () {
+      var kind = row.getAttribute("data-pick");
+      state[kind] = parseInt(row.getAttribute("data-value"), 10);
+      render();
+    });
+  });
+
+  // Start button: hover + guard when not ready
+  startBtn.addEventListener("mouseenter", function () {
+    if (startBtn.dataset.ready === "1") {
+      startBtn.style.transform = "scale(1.06)";
+      startIcon.style.transform = "rotate(-10deg)";
+    }
+  });
+  startBtn.addEventListener("mouseleave", function () {
+    startBtn.style.transform = "scale(1)";
+    startIcon.style.transform = "rotate(0deg)";
+  });
+  startBtn.addEventListener("click", function (e) {
+    if (startBtn.dataset.ready !== "1") { e.preventDefault(); }
+  });
+
+  // Scale the fixed 1440x1024 canvas down on narrow viewports
+  var canvas = document.querySelector(".canvas");
+  function fit() {
+    var scale = Math.min(1, window.innerWidth / 1440);
+    canvas.style.transform = "scale(" + scale + ")";
+    document.querySelector(".stage").style.height = (1024 * scale) + "px";
+  }
+  window.addEventListener("resize", fit);
+
+  fit();
+  render();
+})();
+</script>
+</body>
+</html>
