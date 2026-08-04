@@ -69,5 +69,6 @@ function createConfetti(piece) {
   image.style.left = piece.x + 'px';
   image.style.top = piece.y + 'px';
   image.style.transform = piece.t;
+  image.addEventListener('error', () => image.remove());
   return image;
 }
