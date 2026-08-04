@@ -1,43 +1,33 @@
-# Memory
+# Memory – Settings (Code vibes)
 
-Ein spielbares **Memory-Kartenspiel** für zwei Spieler – umgesetzt aus dem Figma-Design „Memory (Kopie)". Vanilla HTML/CSS/JS, kein Framework, kein Build.
+1:1-Umsetzung des Claude-Design-Screens **`Memory Settings Code Vibes.dc.html`**
+als eigenstaendige HTML-Seite.
 
-**▶︎ Spielen:** `index.html` im Browser öffnen.
-
-## Features
-
-- **2‑Spieler-Modus** mit Zugwechsel: Treffer = Punkt + nochmal ziehen, Fehlversuch = Gegner ist dran.
-- **4 Themes** – jeweils mit eigener Schrift, Farbwelt, Kartenrückseite und Dialog-Stil (pixelgenau aus Figma):
-  - Code vibes (dunkel, Teal-Verlauf, *Red Rose*)
-  - Gaming (dunkel, Magenta-Verlauf, *Orbitron*)
-  - DA Projects (hell, Teal, *Figtree*)
-  - Foods (hell, Orange, *Delius Unicase / Klee One*)
-- **3 Boardgrößen:** 16 · 24 · 36 Karten.
-- **Screens:** Home → Settings (Live-Vorschau) → Board → Winner / Draw – inkl. Punktestand, Pokal & Konfetti.
-- **Quit-Dialog**, Tastatur-/Screenreader-freundlich, vollständig **responsiv** (skaliert von Desktop bis Mobile).
-
-## Projektstruktur
+## Inhalt
 
 ```
-index.html        – alle Screens (Home, Settings, Game, End) + Quit-Dialog
-css/style.css     – Basis + Theme-Tokens (per [data-theme]) + Layout
-js/app.js         – Spielstand, Board-Generierung, Flip-/Match-Logik, End-Screens
-assets/<theme>/   – Kartenmotive (PNG) – siehe Hinweis unten
+index.html                 Der Screen (Canvas 1440 × 1024, Inline-Styles wie im Design)
+js/settings.js             Zustandslogik: Spieler-/Board-Auswahl + Start-Button-Zustaende
+assets/card-code-git.png   Karten-Motiv aus dem Design-Projekt (unveraendert)
 ```
 
-## Kartenmotive
+## Interaktion
 
-Die Themen-Farben, Rückseiten, HUD, Dialoge und End-Screens sind **1:1 aus Figma**
-übernommen. Die **Kartenvorderseiten** nutzen aktuell ein konsistentes, themenpassendes
-Icon-Set. Die 72 Original-Motive aus Figma lassen sich per Flag einschalten:
+| Element | Verhalten |
+|---|---|
+| Choose player – Blue / Orange | Radio-Punkt faerbt sich `#097FC5` bzw. `#EA6900` |
+| Board size – 16 / 24 / 36 cards | Radio-Punkt faerbt sich `#303131` |
+| Start | Inaktiv (`#D9D9D9` / `#AFAFAF`, `not-allowed`), bis Spieler **und** Groesse gewaehlt sind. Danach `#F0EA6E` / `#303131`, beim Hover `scale(1.06)` und Icon-Rotation `-10deg` |
 
-- in `js/app.js`: `USE_IMAGE_FRONTS = true`
-- Bilder unter `assets/<theme>/front-1.png … front-18.png`
+## Design-Referenz
 
-*(Grund: Die Figma-MCP-Schnittstelle hat auf dem Starter-Plan ein Tool-Call-Limit;
-bislang sind Code vibes 1–6 und Gaming 1–6 exportiert. Sobald das Kontingent
-zurückgesetzt ist, werden die restlichen Motive ergänzt und das Flag aktiviert.)*
+- Fonts: Almarai (400/700), Red Rose (400/700) via Google Fonts
+- Farben: `#303131`, `#F0EA6E`, `#DA1EBA`, `#1AE5BE`, `#0635C9`, Karten-Verlauf `#4DD5BC → #286F62`
+- Board-Preview: Gradient-Rueckseite (`-6deg`) + Git-Karte (`9deg`)
 
-## Fonts
+Die Links zu den anderen Themes und zu den Board-Screens sind inert (`href="#"`),
+da nur dieser eine Screen zum Repo gehoert.
 
-Almarai · Red Rose · Orbitron · Figtree · Delius Unicase · Klee One (Google Fonts).
+## Lokal oeffnen
+
+`index.html` im Browser oeffnen – keine Build-Schritte, keine Abhaengigkeiten.

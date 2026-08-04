@@ -1,147 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Memory — Card Matching Game</title>
-<meta name="description" content="A two-player Memory card-matching game with four themes and three board sizes." />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memory – Settings (Code vibes)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Red+Rose:wght@400;700&family=Orbitron:wght@700&family=Figtree:wght@400;500;700;800&family=Delius+Unicase:wght@400;700&family=Klee+One:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Red+Rose:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  a { color: #303131; text-decoration: none; }
+  a:hover { color: #5B9C6E; }
+</style>
 </head>
 <body>
-<div id="app" data-theme="daprojects">
+<div style="position: relative; width: 1440px; height: 1024px; background: #FFFFFF; overflow: hidden; font-family: 'Almarai', sans-serif;">
 
-  <!-- ============ HOME ============ -->
-  <section class="screen screen--home is-active" id="screen-home">
-    <div class="home__wm" aria-hidden="true"><svg viewBox="0 0 363 410" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.05" d="M-32.8453 227.361C-47.8534 215.879 -56.5724 200.711 -59.0024 181.859C-61.4323 163.007 -57.0806 145.786 -45.9472 130.197C-44.2308 127.954 -42.3893 125.806 -40.4227 123.754C-38.4561 121.702 -36.3645 119.745 -34.1478 117.884L93.4899 16.3584C107.29 5.57635 122.763 0.124242 139.908 0.0021104C157.053 -0.120019 172.504 5.08154 186.261 15.6068L332.59 127.557C346.347 138.082 355.41 151.635 359.776 168.215C364.143 184.794 362.928 201.154 356.132 217.295L291.528 367.045C290.312 369.672 288.985 372.312 287.549 374.968C286.112 377.623 284.536 380.072 282.819 382.316C271.186 397.522 255.876 406.26 236.889 408.53C217.903 410.8 200.781 406.098 185.523 394.425C175.017 386.387 167.359 376.182 162.55 363.809C157.741 351.435 156.709 338.79 159.454 325.872L165.54 296.147C166.197 292.698 165.751 289.393 164.203 286.233C162.656 283.073 160.506 280.44 157.755 278.335L86.4661 223.795C83.7146 221.69 80.6114 220.304 77.1565 219.637C73.7016 218.969 70.3952 219.404 67.2374 220.94L40.1395 234.59C28.3898 240.618 15.9147 242.929 2.71413 241.524C-10.4865 240.119 -22.3396 235.398 -32.8453 227.361ZM201.837 193.504C206.089 196.757 210.751 198.05 215.82 197.384C220.89 196.718 225.046 194.266 228.288 190.029C231.53 185.791 232.81 181.138 232.126 176.071C231.443 171.003 228.975 166.843 224.723 163.59C220.471 160.336 215.81 159.043 210.74 159.709C205.67 160.375 201.514 162.827 198.272 167.065C195.03 171.302 193.75 175.955 194.434 181.022C195.117 186.09 197.585 190.25 201.837 193.504Z" fill="#F0EA6E"/></svg></div>
-    <div class="home__inner">
-      <p class="home__kicker">It's play time.</p>
-      <h1 class="home__title">Ready to play?</h1>
-    </div>
-    <button class="home__play" id="btn-play" type="button">
-      <svg viewBox="0 0 44 32" width="44" height="32" aria-hidden="true"><g transform="translate(-619,-686)" fill="currentColor"><path d="M626.375 718C624.368 718 622.654 717.283 621.233 715.85C619.811 714.417 619.067 712.683 619 710.65C619 710.35 619.017 710.05 619.05 709.75C619.084 709.45 619.134 709.15 619.201 708.85L623.415 692.05C623.883 690.25 624.837 688.792 626.275 687.675C627.713 686.558 629.352 686 631.192 686H650.758C652.598 686 654.237 686.558 655.675 687.675C657.113 688.792 658.067 690.25 658.535 692.05L662.749 708.85C662.816 709.15 662.875 709.458 662.925 709.775C662.975 710.092 663 710.4 663 710.7C663 712.733 662.273 714.458 660.818 715.875C659.363 717.292 657.615 718 655.575 718C654.17 718 652.865 717.633 651.661 716.9C650.457 716.167 649.554 715.167 648.952 713.9L647.547 711C647.38 710.667 647.129 710.417 646.795 710.25C646.46 710.083 646.109 710 645.741 710H636.209C635.841 710 635.49 710.083 635.155 710.25C634.821 710.417 634.57 710.667 634.403 711L632.998 713.9C632.396 715.167 631.493 716.167 630.288 716.9C629.084 717.633 627.78 718 626.375 718ZM626.526 714C627.161 714 627.738 713.833 628.257 713.5C628.775 713.167 629.168 712.717 629.436 712.15L630.84 709.3C631.342 708.267 632.078 707.458 633.048 706.875C634.018 706.292 635.071 706 636.209 706H645.741C646.878 706 647.932 706.3 648.902 706.9C649.872 707.5 650.624 708.3 651.16 709.3L652.564 712.15C652.832 712.717 653.225 713.167 653.743 713.5C654.262 713.833 654.839 714 655.474 714C656.411 714 657.214 713.692 657.883 713.075C658.552 712.458 658.903 711.683 658.936 710.75C658.936 710.783 658.903 710.467 658.836 709.8L654.621 693.05C654.387 692.15 653.919 691.417 653.217 690.85C652.514 690.283 651.695 690 650.758 690H631.192C630.255 690 629.427 690.283 628.708 690.85C627.989 691.417 627.529 692.15 627.328 693.05L623.114 709.8C623.047 710 623.014 710.3 623.014 710.7C623.014 711.633 623.357 712.417 624.042 713.05C624.728 713.683 625.556 714 626.526 714ZM643.985 700C644.554 700 645.03 699.808 645.415 699.425C645.8 699.042 645.992 698.567 645.992 698C645.992 697.433 645.8 696.958 645.415 696.575C645.03 696.192 644.554 696 643.985 696C643.417 696 642.94 696.192 642.555 696.575C642.171 696.958 641.978 697.433 641.978 698C641.978 698.567 642.171 699.042 642.555 699.425C642.94 699.808 643.417 700 643.985 700ZM647.999 696C648.567 696 649.044 695.808 649.429 695.425C649.813 695.042 650.006 694.567 650.006 694C650.006 693.433 649.813 692.958 649.429 692.575C649.044 692.192 648.567 692 647.999 692C647.43 692 646.954 692.192 646.569 692.575C646.184 692.958 645.992 693.433 645.992 694C645.992 694.567 646.184 695.042 646.569 695.425C646.954 695.808 647.43 696 647.999 696ZM647.999 704C648.567 704 649.044 703.808 649.429 703.425C649.813 703.042 650.006 702.567 650.006 702C650.006 701.433 649.813 700.958 649.429 700.575C649.044 700.192 648.567 700 647.999 700C647.43 700 646.954 700.192 646.569 700.575C646.184 700.958 645.992 701.433 645.992 702C645.992 702.567 646.184 703.042 646.569 703.425C646.954 703.808 647.43 704 647.999 704ZM652.013 700C652.581 700 653.058 699.808 653.442 699.425C653.827 699.042 654.019 698.567 654.019 698C654.019 697.433 653.827 696.958 653.442 696.575C653.058 696.192 652.581 696 652.013 696C651.444 696 650.967 696.192 650.583 696.575C650.198 696.958 650.006 697.433 650.006 698C650.006 698.567 650.198 699.042 650.583 699.425C650.967 699.808 651.444 700 652.013 700ZM633.951 703C634.386 703 634.745 702.858 635.03 702.575C635.314 702.292 635.456 701.933 635.456 701.5V699.5H637.463C637.898 699.5 638.257 699.358 638.542 699.075C638.826 698.792 638.968 698.433 638.968 698C638.968 697.567 638.826 697.208 638.542 696.925C638.257 696.642 637.898 696.5 637.463 696.5H635.456V694.5C635.456 694.067 635.314 693.708 635.03 693.425C634.745 693.142 634.386 693 633.951 693C633.516 693 633.157 693.142 632.872 693.425C632.588 693.708 632.446 694.067 632.446 694.5V696.5H630.439C630.004 696.5 629.645 696.642 629.36 696.925C629.076 697.208 628.934 697.567 628.934 698C628.934 698.433 629.076 698.792 629.36 699.075C629.645 699.358 630.004 699.5 630.439 699.5H632.446V701.5C632.446 701.933 632.588 702.292 632.872 702.575C633.157 702.858 633.516 703 633.951 703Z"></path></g></svg>
-      <span>Play</span>
-      <svg viewBox="0 0 33 12" width="33" height="12" aria-hidden="true"><path d="M0 6H31.5M26 1L31.8 6L26 11" stroke="currentColor" stroke-width="2" fill="none"></path></svg>
-    </button>
-  </section>
-
-  <!-- ============ SETTINGS ============ -->
-  <section class="screen screen--settings" id="screen-settings">
-    <div class="settings">
-      <header class="settings__title">
-        <h2>Settings</h2>
-        <span class="settings__underline"><i></i></span>
-      </header>
-
-      <div class="settings__grid">
-        <!-- Column 1: choices -->
-        <div class="settings__col">
-          <div class="opt-group">
-            <div class="opt-group__head"><span class="opt-ico opt-ico--theme"></span><h3>Game themes</h3></div>
-            <ul class="opt-list" id="opt-theme" role="listbox" aria-label="Game theme">
-              <li class="opt" data-value="codevibes" role="option"><span class="radio"></span><span class="opt__label">Code vibes theme</span></li>
-              <li class="opt" data-value="gaming" role="option"><span class="radio"></span><span class="opt__label">Gaming theme</span></li>
-              <li class="opt" data-value="daprojects" role="option"><span class="radio"></span><span class="opt__label">DA Projects theme</span></li>
-              <li class="opt" data-value="foods" role="option"><span class="radio"></span><span class="opt__label">Foods theme</span></li>
-            </ul>
-          </div>
-
-          <div class="opt-group">
-            <div class="opt-group__head"><span class="opt-ico opt-ico--player"></span><h3>Choose player</h3></div>
-            <ul class="opt-list" id="opt-player" role="listbox" aria-label="Starting player">
-              <li class="opt" data-value="0" role="option"><span class="radio radio--blue"></span><span class="opt__label">Blue</span></li>
-              <li class="opt" data-value="1" role="option"><span class="radio radio--orange"></span><span class="opt__label">Orange</span></li>
-            </ul>
-          </div>
-
-          <div class="opt-group">
-            <div class="opt-group__head"><span class="opt-ico opt-ico--board"></span><h3>Board size</h3></div>
-            <ul class="opt-list" id="opt-size" role="listbox" aria-label="Board size">
-              <li class="opt" data-value="16" role="option"><span class="radio"></span><span class="opt__label">16 cards</span></li>
-              <li class="opt" data-value="24" role="option"><span class="radio"></span><span class="opt__label">24 cards</span></li>
-              <li class="opt" data-value="36" role="option"><span class="radio"></span><span class="opt__label">36 cards</span></li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Column 2: live preview -->
-        <div class="settings__preview" id="settings-preview">
-          <div class="preview-card">
-            <div class="preview-hud">
-              <div class="preview-hud__scores">
-                <span class="chip chip--orange">6</span>
-                <span class="chip chip--blue">2</span>
-              </div>
-              <div class="preview-hud__cur">Current player</div>
-              <div class="preview-hud__exit">Exit game</div>
-            </div>
-            <div class="preview-cards">
-              <div class="preview-back preview-back--front" id="preview-front"></div>
-              <div class="preview-back" id="preview-back"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Summary + start -->
-      <div class="settings__foot">
-        <div class="settings__summary">
-          <span class="sum" data-slot="theme">Game theme</span>
-          <span class="sum__arrow"></span>
-          <span class="sum" data-slot="player">Player</span>
-          <span class="sum__arrow"></span>
-          <span class="sum" data-slot="size">Board size</span>
-        </div>
-        <button class="btn-start is-disabled" id="btn-start" type="button" disabled>
-          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M10.28 16L15.85 12.425C16 12.325 16.07 12.183 16.07 12C16.07 11.817 16 11.675 15.85 11.575L10.28 8C10.11 7.883 9.94 7.875 9.76 7.975C9.59 8.075 9.5 8.225 9.5 8.425V15.575C9.5 15.775 9.59 15.925 9.76 16.025C9.94 16.125 10.11 16.117 10.28 16ZM4 20C3.45 20 2.98 19.804 2.59 19.413C2.2 19.021 2 18.55 2 18V6C2 5.45 2.2 4.979 2.59 4.588C2.98 4.196 3.45 4 4 4H20C20.55 4 21.02 4.196 21.41 4.588C21.8 4.979 22 5.45 22 6V18C22 18.55 21.8 19.021 21.41 19.413C21.02 19.804 20.55 20 20 20H4ZM4 18H20V6H4V18Z" fill="currentColor"></path></svg>
-        <span>Start</span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ GAME ============ -->
-  <section class="screen screen--game" id="screen-game">
-    <div class="game">
-      <div class="hud">
-        <div class="hud__scores">
-          <span class="score score--orange" id="score-orange"><b>0</b></span>
-          <span class="score score--blue" id="score-blue"><b>0</b></span>
-        </div>
-        <div class="hud__current">
-          <span>Current player:</span>
-          <span class="hud__token" id="hud-token"></span>
-        </div>
-        <button class="hud__exit" id="btn-exit" type="button">
-          <svg viewBox="0 0 30 30" width="26" height="26" aria-hidden="true"><path d="M25.19 16.25H11.25C10.9 16.25 10.6 16.13 10.36 15.891C10.12 15.651 10 15.354 10 15C10 14.646 10.12 14.349 10.36 14.109C10.6 13.87 10.9 13.75 11.25 13.75H25.19L24.13 12.688C23.88 12.438 23.76 12.146 23.77 11.813C23.78 11.479 23.9 11.188 24.13 10.938C24.38 10.688 24.67 10.557 25.02 10.547C25.36 10.537 25.66 10.656 25.91 10.906L29.13 14.125C29.38 14.375 29.5 14.667 29.5 15C29.5 15.333 29.38 15.625 29.13 15.875L25.91 19.094C25.66 19.344 25.36 19.464 25.02 19.453C24.67 19.443 24.38 19.313 24.13 19.063C23.9 18.813 23.78 18.521 23.77 18.188C23.76 17.854 23.88 17.563 24.13 17.313L25.19 16.25ZM18.75 10V6.25H6.25V23.75H18.75V20C18.75 19.646 18.87 19.349 19.11 19.109C19.35 18.87 19.65 18.75 20 18.75C20.35 18.75 20.65 18.87 20.89 19.109C21.13 19.349 21.25 19.646 21.25 20V23.75C21.25 24.438 21.01 25.026 20.52 25.516C20.03 26.005 19.44 26.25 18.75 26.25H6.25C5.56 26.25 4.97 26.005 4.48 25.516C3.99 25.026 3.75 24.438 3.75 23.75V6.25C3.75 5.563 3.99 4.974 4.48 4.484C4.97 3.995 5.56 3.75 6.25 3.75H18.75C19.44 3.75 20.03 3.995 20.52 4.484C21.01 4.974 21.25 5.563 21.25 6.25V10C21.25 10.354 21.13 10.651 20.89 10.891C20.65 11.13 20.35 11.25 20 11.25C19.65 11.25 19.35 11.13 19.11 10.891C18.87 10.651 18.75 10.354 18.75 10Z" fill="currentColor"></path></svg>
-          <span>Exit game</span>
-        </button>
-      </div>
-      <div class="board" id="board"></div>
-    </div>
-  </section>
-
-  <!-- ============ END (winner / draw / game over) ============ -->
-  <section class="screen screen--end" id="screen-end">
-    <div class="end" id="end-inner"></div>
-  </section>
-
-  <!-- ============ QUIT DIALOG ============ -->
-  <div class="overlay" id="overlay" hidden>
-    <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
-      <p class="dialog__text" id="dialog-title">Are you sure you want to quit the game?</p>
-      <div class="dialog__actions">
-        <button class="dialog__stay" id="btn-stay" type="button">No, back to game</button>
-        <button class="dialog__quit" id="btn-quit" type="button">Yes, quit game</button>
-      </div>
+  <div style="position: absolute; left: 173px; top: 114px; width: 251px; display: flex; flex-direction: column; align-items: center; padding: 0;">
+    <div style="width: 251px; height: 67px; font-family: 'Red Rose', sans-serif; font-weight: 700; font-size: 54px; line-height: 67px; text-align: center; color: #303131;">Settings</div>
+    <div style="position: relative; width: 251px; height: 8px; background: #F0EA6E;">
+      <div style="position: absolute; left: -7px; top: -3px; width: 14px; height: 14px; background: #F0EA6E; transform: rotate(45deg);"></div>
     </div>
   </div>
 
-  <div class="confetti" id="confetti" aria-hidden="true"></div>
-</div>
+  <div style="position: absolute; left: 170px; top: 243px; width: 1103px; height: 539px;">
 
-<script src="js/app.js"></script>
+    <div style="position: absolute; left: 0; top: 0; width: 1103px; height: 412px; display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start; padding: 0;">
+
+      <div style="display: flex; flex-direction: column; align-items: flex-start; padding: 0; gap: 16px; width: 255px;">
+        <div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 8px; width: 244px; height: 32px;">
+          <svg width="32" height="32" viewBox="170 243 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M186 272.333C184.178 272.333 182.455 271.983 180.833 271.283C179.211 270.583 177.794 269.628 176.583 268.417C175.372 267.206 174.417 265.789 173.717 264.167C173.017 262.544 172.667 260.822 172.667 259C172.667 257.156 173.028 255.422 173.75 253.8C174.472 252.178 175.45 250.767 176.683 249.567C177.917 248.367 179.355 247.417 181 246.717C182.644 246.017 184.4 245.667 186.267 245.667C188.044 245.667 189.722 245.972 191.3 246.583C192.878 247.194 194.261 248.039 195.45 249.117C196.639 250.194 197.583 251.472 198.283 252.95C198.983 254.428 199.333 256.022 199.333 257.733C199.333 260.289 198.555 262.25 197 263.617C195.444 264.983 193.555 265.667 191.333 265.667H188.867C188.667 265.667 188.528 265.722 188.45 265.833C188.372 265.944 188.333 266.067 188.333 266.2C188.333 266.467 188.5 266.85 188.833 267.35C189.167 267.85 189.333 268.422 189.333 269.067C189.333 270.178 189.028 271 188.417 271.533C187.805 272.067 187 272.333 186 272.333ZM178.667 260.333C179.244 260.333 179.722 260.144 180.1 259.767C180.478 259.389 180.667 258.911 180.667 258.333C180.667 257.756 180.478 257.278 180.1 256.9C179.722 256.522 179.244 256.333 178.667 256.333C178.089 256.333 177.611 256.522 177.233 256.9C176.855 257.278 176.667 257.756 176.667 258.333C176.667 258.911 176.855 259.389 177.233 259.767C177.611 260.144 178.089 260.333 178.667 260.333ZM182.667 255C183.244 255 183.722 254.811 184.1 254.433C184.478 254.056 184.667 253.578 184.667 253C184.667 252.422 184.478 251.944 184.1 251.567C183.722 251.189 183.244 251 182.667 251C182.089 251 181.611 251.189 181.233 251.567C180.855 251.944 180.667 252.422 180.667 253C180.667 253.578 180.855 254.056 181.233 254.433C181.611 254.811 182.089 255 182.667 255ZM189.333 255C189.911 255 190.389 254.811 190.767 254.433C191.144 254.056 191.333 253.578 191.333 253C191.333 252.422 191.144 251.944 190.767 251.567C190.389 251.189 189.911 251 189.333 251C188.755 251 188.278 251.189 187.9 251.567C187.522 251.944 187.333 252.422 187.333 253C187.333 253.578 187.522 254.056 187.9 254.433C188.278 254.811 188.755 255 189.333 255ZM193.333 260.333C193.911 260.333 194.389 260.144 194.767 259.767C195.144 259.389 195.333 258.911 195.333 258.333C195.333 257.756 195.144 257.278 194.767 256.9C194.389 256.522 193.911 256.333 193.333 256.333C192.755 256.333 192.278 256.522 191.9 256.9C191.522 257.278 191.333 257.756 191.333 258.333C191.333 258.911 191.522 259.389 191.9 259.767C192.278 260.144 192.755 260.333 193.333 260.333ZM186 269.667C186.2 269.667 186.361 269.611 186.483 269.5C186.605 269.389 186.667 269.244 186.667 269.067C186.667 268.756 186.5 268.389 186.167 267.967C185.833 267.544 185.667 266.911 185.667 266.067C185.667 265.133 185.989 264.389 186.633 263.833C187.278 263.278 188.067 263 189 263H191.333C192.8 263 194.055 262.572 195.1 261.717C196.144 260.861 196.667 259.533 196.667 257.733C196.667 255.044 195.639 252.806 193.583 251.017C191.528 249.228 189.089 248.333 186.267 248.333C183.244 248.333 180.667 249.367 178.533 251.433C176.4 253.5 175.333 256.022 175.333 259C175.333 261.956 176.372 264.472 178.45 266.55C180.528 268.628 183.044 269.667 186 269.667Z" fill="#DA1EBA"></path></svg>
+          <div style="font-family: 'Almarai', sans-serif; font-weight: 700; font-size: 24px; line-height: 27px; color: #303131;">Game themes</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; padding: 0 0 0 44px; gap: 12px; width: 255px; box-sizing: border-box;">
+          <div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path><circle cx="226" cy="536" r="5" fill="#303131"></circle></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 700; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Code vibes theme</span>
+            <svg width="50" height="18" viewBox="395 330 50 18" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M444.66 339L436 330.34L427.34 339L436 347.66L444.66 339ZM395 339V340.5H436V339V337.5H395V339Z" fill="#F0EA6E"></path></svg>
+          </div>
+          <a href="#" style="display: block; text-decoration: none;"><div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Gaming theme</span>
+          </div></a>
+          <a href="#" style="display: block; text-decoration: none;"><div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">DA Projects theme</span>
+          </div></a>
+          <a href="#" style="display: block; text-decoration: none;"><div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Foods theme</span>
+          </div></a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; padding: 17px 7px; gap: 10px; width: 460px; height: 412px; box-sizing: border-box; background: linear-gradient(223.71deg, #303131 43.86%, #6D6D6D 122.2%); border-radius: 16px;">
+        <div style="display: flex; flex-direction: column; align-items: center; padding: 0; gap: 53px; width: 430px;">
+
+          <div style="position: relative; display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 14px; width: 430px; height: 44px; box-sizing: border-box; background: rgba(134, 233, 214, 0.16); box-shadow: 3px 2px 10.1px rgba(0, 0, 0, 0.2); border-radius: 10px;">
+            <div style="display: flex; flex-direction: row; align-items: center; padding: 5px 10px; gap: 10px; background: rgba(134, 233, 214, 0.22); border-radius: 5px;">
+              <div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 5px;">
+                <svg width="13" height="11" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M2.46 20C1.79 20 1.21 19.755 0.72 19.266C0.24 18.776 0 18.188 0 17.5V2.5C0 1.813 0.24 1.224 0.72 0.734C1.21 0.245 1.79 0 2.46 0H16C16.39 0 16.76 0.089 17.11 0.266C17.46 0.443 17.74 0.688 17.97 1L23.51 8.5C23.84 8.938 24 9.438 24 10C24 10.563 23.84 11.063 23.51 11.5L17.97 19C17.74 19.313 17.46 19.557 17.11 19.734C16.76 19.912 16.39 20 16 20H2.46Z" fill="#2BB1FF"></path></svg>
+                <span style="font-family: 'Red Rose', sans-serif; font-weight: 700; font-size: 10px; line-height: 13px; color: #2BB1FF; white-space: nowrap;">Blue</span>
+                <span style="font-family: 'Red Rose', sans-serif; font-weight: 700; font-size: 12px; line-height: 15px; color: #2BB1FF;">0</span>
+              </div>
+              <div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 5px;">
+                <svg width="13" height="11" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M2.46 20C1.79 20 1.21 19.755 0.72 19.266C0.24 18.776 0 18.188 0 17.5V2.5C0 1.813 0.24 1.224 0.72 0.734C1.21 0.245 1.79 0 2.46 0H16C16.39 0 16.76 0.089 17.11 0.266C17.46 0.443 17.74 0.688 17.97 1L23.51 8.5C23.84 8.938 24 9.438 24 10C24 10.563 23.84 11.063 23.51 11.5L17.97 19C17.74 19.313 17.46 19.557 17.11 19.734C16.76 19.912 16.39 20 16 20H2.46Z" fill="#F58E39"></path></svg>
+                <span style="font-family: 'Red Rose', sans-serif; font-weight: 700; font-size: 10px; line-height: 13px; color: #F58E39; white-space: nowrap;">Orange</span>
+                <span style="font-family: 'Red Rose', sans-serif; font-weight: 700; font-size: 12px; line-height: 15px; color: #F58E39;">6</span>
+              </div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 0; gap: 6px;">
+              <span style="font-family: 'Red Rose', sans-serif; font-weight: 400; font-size: 11px; line-height: 14px; color: rgba(255, 255, 255, 0.85);">Current player:</span>
+              <svg width="15" height="13" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M2.46 20C1.79 20 1.21 19.755 0.72 19.266C0.24 18.776 0 18.188 0 17.5V2.5C0 1.813 0.24 1.224 0.72 0.734C1.21 0.245 1.79 0 2.46 0H16C16.39 0 16.76 0.089 17.11 0.266C17.46 0.443 17.74 0.688 17.97 1L23.51 8.5C23.84 8.938 24 9.438 24 10C24 10.563 23.84 11.063 23.51 11.5L17.97 19C17.74 19.313 17.46 19.557 17.11 19.734C16.76 19.912 16.39 20 16 20H2.46Z" fill="#2BB1FF"></path></svg>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 5px 11px; gap: 6px; height: 26px; box-sizing: border-box; background: transparent; border: 1.5px solid #4DD5BC; border-radius: 6px;">
+              <svg width="13" height="13" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M25.19 16.25H11.25C10.9 16.25 10.6 16.13 10.36 15.891C10.12 15.651 10 15.354 10 15C10 14.646 10.12 14.349 10.36 14.109C10.6 13.87 10.9 13.75 11.25 13.75H25.19L24.13 12.688C23.88 12.438 23.76 12.146 23.77 11.813C23.78 11.479 23.9 11.188 24.13 10.938C24.38 10.688 24.67 10.557 25.02 10.547C25.36 10.537 25.66 10.656 25.91 10.906L29.13 14.125C29.38 14.375 29.5 14.667 29.5 15C29.5 15.333 29.38 15.625 29.13 15.875L25.91 19.094C25.66 19.344 25.36 19.464 25.02 19.453C24.67 19.443 24.38 19.313 24.13 19.063C23.9 18.813 23.78 18.521 23.77 18.188C23.76 17.854 23.88 17.563 24.13 17.313L25.19 16.25ZM18.75 10V6.25H6.25V23.75H18.75V20C18.75 19.646 18.87 19.349 19.11 19.109C19.35 18.87 19.65 18.75 20 18.75C20.35 18.75 20.65 18.87 20.89 19.109C21.13 19.349 21.25 19.646 21.25 20V23.75C21.25 24.438 21.01 25.026 20.52 25.516C20.03 26.005 19.44 26.25 18.75 26.25H6.25C5.56 26.25 4.97 26.005 4.48 25.516C3.99 25.026 3.75 24.438 3.75 23.75V6.25C3.75 5.563 3.99 4.974 4.48 4.484C4.97 3.995 5.56 3.75 6.25 3.75H18.75C19.44 3.75 20.03 3.995 20.52 4.484C21.01 4.974 21.25 5.563 21.25 6.25V10C21.25 10.354 21.13 10.651 20.89 10.891C20.65 11.13 20.35 11.25 20 11.25C19.65 11.25 19.35 11.13 19.11 10.891C18.87 10.651 18.75 10.354 18.75 10Z" fill="#FFFFFF"></path></svg>
+              <span style="font-family: 'Red Rose', sans-serif; font-weight: 700; font-size: 10px; line-height: 12px; color: #FFFFFF; white-space: nowrap;">Exit game</span>
+            </div>
+          </div>
+
+          <div style="position: relative; width: 337.41px; height: 250px;">
+            <div style="position: absolute; left: 140px; top: 20px; width: 196px; height: 196px; display: flex; justify-content: center; align-items: center; overflow: hidden; background: #E8F3F0; box-shadow: 6px 8px 18px rgba(0, 0, 0, 0.28); transform: rotate(9deg);">
+              <img src="./assets/card-code-git.png" alt="" style="width: 100%; height: 100%; object-fit: contain; display: block;" />
+            </div>
+            <div style="position: absolute; left: -8px; top: 8px; width: 196px; height: 196px; display: flex; justify-content: center; align-items: center; background: linear-gradient(212.26deg, #4DD5BC 29.42%, #286F62 123.94%); box-shadow: 6px 8px 18px rgba(0, 0, 0, 0.28); transform: rotate(-6deg);">
+              <svg width="88" height="70" viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><rect x="6" y="4" width="48" height="32" rx="3" stroke="rgba(255,255,255,0.5)" stroke-width="3"></rect><path d="M24 15L19 20L24 25M36 15L41 20L36 25" stroke="rgba(255,255,255,0.5)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 43H46" stroke="rgba(255,255,255,0.5)" stroke-width="3" stroke-linecap="round"></path></svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div style="position: absolute; left: 0; top: 233px; width: 244px; display: flex; flex-direction: column; align-items: flex-start; padding: 0; gap: 54px;">
+
+      <div style="display: flex; flex-direction: column; align-items: flex-start; padding: 0; gap: 16px; width: 244px;">
+        <div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 8px; width: 244px; height: 32px;">
+          <svg width="32" height="32" viewBox="170 476 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M178 505.333C177.267 505.333 176.639 505.072 176.117 504.55C175.595 504.028 175.333 503.4 175.333 502.667V500.033C175.333 499.589 175.433 499.178 175.633 498.8C175.833 498.422 176.1 498.1 176.433 497.833C177.967 496.589 179.117 495.333 179.883 494.067C180.65 492.8 181.189 491.667 181.5 490.667H179.333C178.956 490.667 178.639 490.539 178.383 490.283C178.128 490.028 178 489.711 178 489.333C178 488.956 178.128 488.639 178.383 488.383C178.639 488.128 178.956 488 179.333 488H181C180.689 487.511 180.445 486.989 180.267 486.433C180.089 485.878 180 485.289 180 484.667C180 483 180.583 481.583 181.75 480.417C182.917 479.25 184.333 478.667 186 478.667C187.667 478.667 189.083 479.25 190.25 480.417C191.417 481.583 192 483 192 484.667C192 485.289 191.911 485.878 191.733 486.433C191.556 486.989 191.311 487.511 191 488H192.667C193.045 488 193.361 488.128 193.617 488.383C193.872 488.639 194 488.956 194 489.333C194 489.711 193.872 490.028 193.617 490.283C193.361 490.539 193.045 490.667 192.667 490.667H190.5C190.811 491.667 191.35 492.8 192.117 494.067C192.883 495.333 194.033 496.589 195.567 497.833C195.9 498.1 196.167 498.422 196.367 498.8C196.567 499.178 196.667 499.589 196.667 500.033V502.667C196.667 503.4 196.406 504.028 195.883 504.55C195.361 505.072 194.733 505.333 194 505.333H178ZM178 502.667H194V500C191.956 498.4 190.478 496.75 189.567 495.05C188.656 493.35 188.045 491.889 187.733 490.667H184.267C183.956 491.889 183.345 493.35 182.433 495.05C181.522 496.75 180.045 498.4 178 500V502.667ZM186 488C186.933 488 187.722 487.678 188.367 487.033C189.011 486.389 189.333 485.6 189.333 484.667C189.333 483.733 189.011 482.944 188.367 482.3C187.722 481.656 186.933 481.333 186 481.333C185.067 481.333 184.278 481.656 183.633 482.3C182.989 482.944 182.667 483.733 182.667 484.667C182.667 485.6 182.989 486.389 183.633 487.033C184.278 487.678 185.067 488 186 488Z" fill="#1AE5BE"></path></svg>
+          <div style="font-family: 'Almarai', sans-serif; font-weight: 700; font-size: 24px; line-height: 27px; color: #303131;">Choose player</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; padding: 0 0 0 44px; gap: 12px;">
+          <div id="pick-blue" style="cursor: pointer; display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path><circle id="dot-blue" cx="226" cy="536" r="5" fill="transparent"></circle></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Blue</span>
+          </div>
+          <div id="pick-orange" style="cursor: pointer; display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path><circle id="dot-orange" cx="226" cy="536" r="5" fill="transparent"></circle></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Orange</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: flex-start; padding: 0; gap: 16px; width: 244px;">
+        <div style="display: flex; flex-direction: row; align-items: center; padding: 0; gap: 8px; width: 244px; height: 32px;">
+          <svg width="32" height="32" viewBox="170 638 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M175.3 664.4L174.167 663.933C173.478 663.644 173.017 663.144 172.783 662.433C172.55 661.722 172.589 661.022 172.9 660.333L175.3 655.133V664.4ZM180.633 667.333C179.9 667.333 179.272 667.072 178.75 666.55C178.228 666.028 177.967 665.4 177.967 664.667V656.667L181.5 666.467C181.567 666.622 181.633 666.772 181.7 666.917C181.767 667.061 181.856 667.2 181.967 667.333H180.633ZM187.5 667.2C186.789 667.467 186.1 667.433 185.433 667.1C184.767 666.767 184.3 666.244 184.033 665.533L178.1 649.267C177.833 648.556 177.856 647.861 178.167 647.183C178.478 646.506 178.989 646.044 179.7 645.8L189.767 642.133C190.478 641.867 191.167 641.9 191.833 642.233C192.5 642.567 192.967 643.089 193.233 643.8L199.167 660.067C199.433 660.778 199.411 661.472 199.1 662.15C198.789 662.828 198.278 663.289 197.567 663.533L187.5 667.2ZM184.633 651.333C185.011 651.333 185.328 651.206 185.583 650.95C185.839 650.694 185.967 650.378 185.967 650C185.967 649.622 185.839 649.306 185.583 649.05C185.328 648.794 185.011 648.667 184.633 648.667C184.256 648.667 183.939 648.794 183.683 649.05C183.428 649.306 183.3 649.622 183.3 650C183.3 650.378 183.428 650.694 183.683 650.95C183.939 651.206 184.256 651.333 184.633 651.333ZM186.567 664.667L196.633 661L190.7 644.667L180.633 648.333L186.567 664.667Z" fill="#0635C9"></path></svg>
+          <div style="font-family: 'Almarai', sans-serif; font-weight: 700; font-size: 24px; line-height: 27px; color: #303131;">Board size</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; padding: 0 0 0 44px; gap: 12px;">
+          <div id="pick-16" style="cursor: pointer; display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path><circle id="dot-16" cx="226" cy="536" r="5" fill="transparent"></circle></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">16 cards</span>
+          </div>
+          <div id="pick-24" style="cursor: pointer; display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path><circle id="dot-24" cx="226" cy="536" r="5" fill="transparent"></circle></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">24 cards</span>
+          </div>
+          <div id="pick-36" style="cursor: pointer; display: flex; flex-direction: row; align-items: center; padding: 0; gap: 10px; height: 24px;">
+            <svg width="24" height="24" viewBox="214 524 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block;" aria-hidden="true"><path d="M226 546C223.238 546 220.881 545.024 218.929 543.071C216.976 541.119 216 538.762 216 536C216 533.238 216.976 530.881 218.929 528.929C220.881 526.976 223.238 526 226 526C228.762 526 231.119 526.976 233.071 528.929C235.024 530.881 236 533.238 236 536C236 538.762 235.024 541.119 233.071 543.071C231.119 545.024 228.762 546 226 546ZM226 543.143C227.976 543.143 229.661 542.446 231.054 541.054C232.446 539.661 233.143 537.976 233.143 536C233.143 534.024 232.446 532.339 231.054 530.946C229.661 529.554 227.976 528.857 226 528.857C224.024 528.857 222.339 529.554 220.946 530.946C219.554 532.339 218.857 534.024 218.857 536C218.857 537.976 219.554 539.661 220.946 541.054C222.339 542.446 224.024 543.143 226 543.143Z" fill="#303131"></path><circle id="dot-36" cx="226" cy="536" r="5" fill="transparent"></circle></svg>
+            <span style="font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">36 cards</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="position: absolute; left: 539px; top: 458px; width: 564px; display: flex; flex-direction: column; align-items: flex-end; padding: 0; gap: 42px;">
+      <div style="display: flex; flex-direction: row; align-items: center; padding: 14px 20px; gap: 20px; width: 546.08px; height: 81px; box-sizing: border-box; background: #F6F6F6;">
+        <span style="flex: none; font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Game theme</span>
+        <div style="flex: none; width: 9px; height: 52px; background: #F0EA6E; border-radius: 2px; transform: skewX(-19deg);"></div>
+        <span style="flex: none; font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Player</span>
+        <div style="flex: none; width: 9px; height: 52px; background: #F0EA6E; border-radius: 2px; transform: skewX(-19deg);"></div>
+        <span style="flex: none; font-family: 'Almarai', sans-serif; font-weight: 400; font-size: 20px; line-height: 22px; color: #303131; white-space: nowrap;">Board size</span>
+        <a id="start-btn" href="#" style="flex: none; display: flex; flex-direction: row; align-items: center; padding: 14px 20px; gap: 8px; width: 126px; height: 53px; box-sizing: border-box; background: #D9D9D9; text-decoration: none; cursor: not-allowed; transition: transform 0.25s ease, background 0.2s ease; transform: scale(1);">
+          <svg id="start-icon" width="24" height="24" viewBox="1147 729.5 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none; display: block; transition: transform 0.25s ease; transform: rotate(0deg);" aria-hidden="true"><path id="start-icon-path" d="M1157.28 745.5L1162.85 741.925C1163 741.825 1163.07 741.683 1163.07 741.5C1163.07 741.317 1163 741.175 1162.85 741.075L1157.28 737.5C1157.11 737.383 1156.94 737.375 1156.76 737.475C1156.59 737.575 1156.5 737.725 1156.5 737.925V745.075C1156.5 745.275 1156.59 745.425 1156.76 745.525C1156.94 745.625 1157.11 745.617 1157.28 745.5ZM1151 749.5C1150.45 749.5 1149.98 749.304 1149.59 748.913C1149.2 748.521 1149 748.05 1149 747.5V735.5C1149 734.95 1149.2 734.479 1149.59 734.088C1149.98 733.696 1150.45 733.5 1151 733.5H1167C1167.55 733.5 1168.02 733.696 1168.41 734.088C1168.8 734.479 1169 734.95 1169 735.5V747.5C1169 748.05 1168.8 748.521 1168.41 748.913C1168.02 749.304 1167.55 749.5 1167 749.5H1151ZM1151 747.5H1167V735.5H1151V747.5Z" fill="#AFAFAF"></path></svg>
+          <span id="start-label" style="font-family: 'Red Rose', sans-serif; font-weight: 700; font-size: 20px; line-height: 25px; color: #AFAFAF;">Start</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script src="./js/settings.js"></script>
 </body>
 </html>
