@@ -1,60 +1,126 @@
 /**
- * Memory – Settings (Code vibes)
- * Portierte Logik der Claude-Design-Komponente "Memory Settings Code Vibes.dc.html".
- * Zustand: gewaehlter Spieler + gewaehlte Board-Groesse. Der Start-Button ist erst
- * aktiv (gelb, klickbar, Hover-Animation), wenn beides gesetzt ist.
+ * Settings screen: theme, player and board size selection.
+ * Every change writes to `state` and immediately refreshes the preview,
+ * the summary bar and the start button.
  */
 
-// Zielseiten der drei Board-Groessen. Die Board-Screens gehoeren nicht zu diesem
-// Repo, deshalb bleibt der Link inert.
-const BOARDS = ['#', '#', '#'];
+const ARROW_SVG = '<svg class="option__arrow" viewBox="395 330 50 18" xmlns="http://www.w3.org/2000/svg"'
+  + ' aria-hidden="true"><path d="M444.66 339L436 330.34L427.34 339L436 347.66L444.66 339ZM395 339V340.5H436V339V337.5'
+  + 'H395V339Z" fill="var(--accent)"></path></svg>';
 
-const state = { player: null, size: null, startHover: false };
-
-const el = {
-  dotBlue: document.getElementById('dot-blue'),
-  dotOrange: document.getElementById('dot-orange'),
-  dot16: document.getElementById('dot-16'),
-  dot24: document.getElementById('dot-24'),
-  dot36: document.getElementById('dot-36'),
-  startBtn: document.getElementById('start-btn'),
-  startIcon: document.getElementById('start-icon'),
-  startIconPath: document.getElementById('start-icon-path'),
-  startLabel: document.getElementById('start-label')
-};
-
-function render() {
-  const { player, size, startHover } = state;
-  const ready = player !== null && size !== null;
-
-  el.dotBlue.setAttribute('fill', player === 0 ? '#097FC5' : 'transparent');
-  el.dotOrange.setAttribute('fill', player === 1 ? '#EA6900' : 'transparent');
-  el.dot16.setAttribute('fill', size === 0 ? '#303131' : 'transparent');
-  el.dot24.setAttribute('fill', size === 1 ? '#303131' : 'transparent');
-  el.dot36.setAttribute('fill', size === 2 ? '#303131' : 'transparent');
-
-  const fg = ready ? '#303131' : '#AFAFAF';
-  el.startBtn.style.background = ready ? '#F0EA6E' : '#D9D9D9';
-  el.startBtn.style.cursor = ready ? 'pointer' : 'not-allowed';
-  el.startBtn.style.transform = 'scale(' + (ready && startHover ? '1.06' : '1') + ')';
-  el.startBtn.setAttribute('href', ready ? encodeURI(BOARDS[size]) : '#');
-  el.startIcon.style.transform = 'rotate(' + (ready && startHover ? '-10deg' : '0deg') + ')';
-  el.startIconPath.setAttribute('fill', fg);
-  el.startLabel.style.color = fg;
+/**
+ * Renders all three option lists once on start-up.
+ * @returns {void}
+ */
+function renderSettings() {
+  fillOptions('options-theme', THEMES.map((theme) => ({ value: theme.id, label: theme.label })), true);
+  fillOptions('options-player', PLAYERS.map((player) => ({ value: player.id, label: player.label })), false);
+  fillOptions('options-size', BOARD_SIZES.map((size) => ({ value: size.cards, label: size.label })), false);
+  updateSettings();
 }
 
-function setState(patch) {
-  Object.assign(state, patch);
-  render();
+/**
+ * Builds the list items of one option group.
+ * @param {string} listId - Id of the <ul> element.
+ * @param {{value: (string|number), label: string}[]} items - Options to render.
+ * @param {boolean} withArrow - True to append the pointer arrow (themes only).
+ * @returns {void}
+ */
+function fillOptions(listId, items, withArrow) {
+  const list = document.getElementById(listId);
+  list.innerHTML = '';
+  items.forEach((item) => list.appendChild(createOption(listId, item, withArrow)));
 }
 
-document.getElementById('pick-blue').addEventListener('click', () => setState({ player: 0 }));
-document.getElementById('pick-orange').addEventListener('click', () => setState({ player: 1 }));
-document.getElementById('pick-16').addEventListener('click', () => setState({ size: 0 }));
-document.getElementById('pick-24').addEventListener('click', () => setState({ size: 1 }));
-document.getElementById('pick-36').addEventListener('click', () => setState({ size: 2 }));
+/**
+ * Creates a single selectable option row.
+ * @param {string} listId - Id of the owning list, used to derive the group.
+ * @param {{value: (string|number), label: string}} item - Option data.
+ * @param {boolean} withArrow - True to append the pointer arrow.
+ * @returns {HTMLLIElement} The ready-to-insert list item.
+ */
+function createOption(listId, item, withArrow) {
+  const group = listId.replace('options-', '');
+  const li = document.createElement('li');
+  li.innerHTML = '<button class="option" type="button"><span class="option__dot"></span>'
+    + '<span class="option__label">' + item.label + '</span>' + (withArrow ? ARROW_SVG : '') + '</button>';
+  const button = li.firstChild;
+  button.dataset.group = group;
+  button.dataset.value = String(item.value);
+  button.addEventListener('click', () => selectOption(group, item.value));
+  return li;
+}
 
-el.startBtn.addEventListener('mouseenter', () => setState({ startHover: true }));
-el.startBtn.addEventListener('mouseleave', () => setState({ startHover: false }));
+/**
+ * Stores a chosen option in the state and refreshes the screen.
+ * @param {string} group - 'theme', 'player' or 'size'.
+ * @param {(string|number)} value - The chosen value.
+ * @returns {void}
+ */
+function selectOption(group, value) {
+  if (group === 'theme') state.theme = String(value);
+  if (group === 'player') state.player = String(value);
+  if (group === 'size') state.size = Number(value);
+  updateSettings();
+}
 
-render();
+/**
+ * Applies the current selection to theme, options, preview and summary.
+ * @returns {void}
+ */
+function updateSettings() {
+  document.body.dataset.theme = state.theme;
+  markActiveOptions();
+  updatePreview();
+  updateSummary();
+  document.getElementById('btn-start').disabled = !isReadyToStart();
+}
+
+/**
+ * Highlights the selected row inside every option group.
+ * @returns {void}
+ */
+function markActiveOptions() {
+  const chosen = { theme: state.theme, player: state.player, size: state.size };
+  document.querySelectorAll('.option').forEach((option) => {
+    const active = String(chosen[option.dataset.group]) === option.dataset.value;
+    option.classList.toggle('option--active', active);
+    option.style.setProperty('--option-dot', getDotColor(option.dataset.value));
+  });
+}
+
+/**
+ * Picks the marker colour of an option dot.
+ * @param {string} value - The option value.
+ * @returns {string} A CSS colour value.
+ */
+function getDotColor(value) {
+  if (value === 'blue') return 'var(--blue)';
+  if (value === 'orange') return 'var(--orange)';
+  return 'var(--settings-ink)';
+}
+
+/**
+ * Shows a sample card of the selected theme inside the preview panel.
+ * @returns {void}
+ */
+function updatePreview() {
+  const theme = getTheme(state.theme);
+  const image = document.getElementById('preview-front');
+  const card = image.parentNode;
+  card.classList.remove('is-fallback');
+  document.getElementById('preview-glyph').textContent = getFaceGlyph(theme, theme.faces[0]);
+  image.onerror = () => card.classList.add('is-fallback');
+  image.src = getFacePath(theme, theme.faces[0]);
+}
+
+/**
+ * Marks the summary steps that are already completed.
+ * @returns {void}
+ */
+function updateSummary() {
+  const done = { theme: true, player: state.player !== null, size: state.size !== null };
+  Object.keys(done).forEach((key) => {
+    document.getElementById('summary-' + key).classList.toggle('summary__step--done', done[key]);
+  });
+}
