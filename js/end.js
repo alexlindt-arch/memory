@@ -47,13 +47,14 @@ function showEndScreen() {
 function renderWinner(winner) {
   const isDraw = winner === 'draw';
   const name = winner.charAt(0).toUpperCase() + winner.slice(1);
-  document.getElementById('end-lead').textContent = isDraw ? 'No winner this time' : 'The winner is';
-  document.getElementById('end-winner').textContent = isDraw ? "It's a draw" : name + ' Player';
-  document.getElementById('end-figure').hidden = isDraw;
+  document.getElementById('end-lead').textContent = isDraw ? "It's a" : 'The winner is';
+  document.getElementById('end-winner').textContent = isDraw ? 'Draw' : name + ' Player';
   document.getElementById('btn-home').textContent =
     state.theme === 'codevibes' ? 'Back to start' : 'Home';
-  const color = isDraw ? 'var(--accent)' : 'var(--' + winner + ')';
-  document.getElementById('screen-end').style.setProperty('--winner-color', color);
+  const screen = document.getElementById('screen-end');
+  screen.classList.toggle('is-draw', isDraw);
+  const color = isDraw ? 'var(--win-draw-ink)' : 'var(--' + winner + ')';
+  screen.style.setProperty('--winner-color', color);
 }
 
 /**
