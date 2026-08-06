@@ -513,6 +513,8 @@ body[data-theme='daprojects'] .preview {
   --preview-ink: #1e7594;
   --preview-rot-back: 0deg;
   --preview-rot-front: 0deg;
+  --preview-img-fit: contain;
+  --preview-img-scale: 90%;
   --preview-front-x: 152px;
   --preview-front-y: 62px;
   --preview-back-x: 0px;
@@ -677,7 +679,7 @@ body:not([data-theme='codevibes']) .preview__person--turn {
   left: var(--preview-img-shift, 0px);
   width: var(--preview-img-scale, 100%);
   height: var(--preview-img-scale, 100%);
-  object-fit: cover;
+  object-fit: var(--preview-img-fit, cover);
   display: block;
 }
 
