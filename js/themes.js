@@ -78,6 +78,15 @@ const BOARD_SIZES = [
 /** Viewport width from which the widescreen layout takes over. */
 const BREAKPOINT = 1440;
 
+/**
+ * Size the design really fills inside the 1440x1024 canvas. The canvas keeps
+ * empty margins around it, so scaling to these values instead makes
+ * everything noticeably larger on a laptop – only the margins run past the
+ * edge. Measured from the widest and the tallest screen.
+ */
+const CONTENT_WIDTH = 1260;
+const CONTENT_HEIGHT = 950;
+
 /** Milliseconds two unmatched cards stay visible before they flip back. */
 const HIDE_DELAY = 1400;
 

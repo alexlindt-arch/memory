@@ -254,7 +254,7 @@ body[data-screen='settings'] {
 .home__watermark {
   position: absolute;
   left: calc(50% - 720px);
-  top: 600px;
+  top: 571px;
   width: 427px;
   height: 412px;
 }
@@ -1552,6 +1552,18 @@ body[data-theme='foods'] {
   --over-bar-bg: #ffffff;
   --over-bar-radius: 10px;
   --over-bar-gap: 24px;
+}
+
+/* =========================================================================
+   Laptop range: the canvas is scaled to the width the design fills, so its
+   empty side margins run past the screen edge. The watermark is the only
+   element sitting on that edge and moves inward to stay fully visible.
+   ========================================================================= */
+
+@media (min-width: 769px) and (max-width: 1439px) {
+  .home__watermark {
+    left: calc(50% - 626px);
+  }
 }
 
 /* =========================================================================

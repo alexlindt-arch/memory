@@ -44,13 +44,14 @@ function quitToHome() {
 }
 
 /**
- * Fits the 1440x1024 design canvas to the viewport. Below the breakpoint the
- * canvas is scaled down; from 1440px up it keeps its size and only the stage
+ * Fits the 1440x1024 design canvas to the viewport. It is scaled to the width
+ * the design actually fills, not to the canvas, so only the empty side margins
+ * run past the edge; from 1440px up it keeps its size and only the stage
  * widens, so the content stays centred while the background runs edge to edge.
  * @returns {void}
  */
 function fitStage() {
-  const scale = Math.min(1, window.innerWidth / BREAKPOINT, window.innerHeight / 1024);
+  const scale = Math.min(1, window.innerWidth / CONTENT_WIDTH, window.innerHeight / CONTENT_HEIGHT);
   const width = Math.max(BREAKPOINT, window.innerWidth / scale);
   const root = document.documentElement.style;
   root.setProperty('--stage-scale', String(scale));
