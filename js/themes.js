@@ -75,6 +75,9 @@ const BOARD_SIZES = [
   { cards: 36, label: '36 cards' }
 ];
 
+/** Viewport width from which the widescreen layout takes over. */
+const BREAKPOINT = 1440;
+
 /** Milliseconds two unmatched cards stay visible before they flip back. */
 const HIDE_DELAY = 1400;
 

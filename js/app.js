@@ -44,12 +44,17 @@ function quitToHome() {
 }
 
 /**
- * Scales the fixed 1440x1024 stage so it always fits the viewport.
+ * Fits the 1440x1024 design canvas to the viewport. Below the breakpoint the
+ * canvas is scaled down; from 1440px up it keeps its size and only the stage
+ * widens, so the content stays centred while the background runs edge to edge.
  * @returns {void}
  */
 function fitStage() {
-  const scale = Math.min(window.innerWidth / 1440, window.innerHeight / 1024);
-  document.documentElement.style.setProperty('--stage-scale', String(scale));
+  const scale = Math.min(1, window.innerWidth / BREAKPOINT, window.innerHeight / 1024);
+  const width = Math.max(BREAKPOINT, window.innerWidth / scale);
+  const root = document.documentElement.style;
+  root.setProperty('--stage-scale', String(scale));
+  root.setProperty('--stage-width', width + 'px');
 }
 
 /**
@@ -64,7 +69,18 @@ function bindEvents() {
   document.getElementById('btn-quit').addEventListener('click', quitToHome);
   document.getElementById('btn-home').addEventListener('click', quitToHome);
   document.getElementById('screen-gameover').addEventListener('click', showEndScreen);
-  window.addEventListener('resize', fitStage);
+  window.addEventListener('resize', onResize);
+}
+
+/**
+ * Refits the stage and rebuilds the confetti, which differs above and below
+ * the breakpoint.
+ * @returns {void}
+ */
+function onResize() {
+  fitStage();
+  const end = document.getElementById('screen-end');
+  if (!end.hidden) renderConfetti(!end.classList.contains('is-draw') && state.theme === 'codevibes');
 }
 
 /**
