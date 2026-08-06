@@ -22,7 +22,7 @@ body {
   top: 50%;
   width: var(--stage-width, 1440px);
   height: 1024px;
-  transform: translate(-50%, -50%) scale(var(--stage-scale, 1)) translateY(var(--stage-shift, 0px));
+  transform: translate(-50%, -50%) scale(var(--stage-scale, 1));
 }
 
 .screen {

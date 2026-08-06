@@ -82,7 +82,8 @@ const BREAKPOINT = 1440;
  * Size the design really fills inside the 1440x1024 canvas. The canvas keeps
  * empty margins around it, so scaling to these values instead makes
  * everything noticeably larger on a laptop – only the margins run past the
- * edge. Measured from the widest and the tallest screen.
+ * edge. Both values are measured from the widest and the tallest screen, so
+ * the crop is symmetric and no content ever moves.
  */
 const CONTENT_WIDTH = 1260;
 const CONTENT_HEIGHT = 950;
