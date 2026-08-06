@@ -490,15 +490,15 @@ body[data-screen='settings'] {
 }
 
 body[data-theme='gaming'] .preview {
-  --preview-bg: linear-gradient(223.71deg, #294f60 43.86%, #0a2835 122.2%);
+  --preview-bg: linear-gradient(200deg, #1d4557 20%, #2f7f9b 120%);
 }
 
 body[data-theme='daprojects'] .preview {
-  --preview-bg: linear-gradient(223.71deg, #1e7594 43.86%, #294f60 122.2%);
+  --preview-bg: linear-gradient(200deg, #1e7594 20%, #17505f 120%);
 }
 
 body[data-theme='foods'] .preview {
-  --preview-bg: linear-gradient(223.71deg, #a45212 43.86%, #f3832d 122.2%);
+  --preview-bg: linear-gradient(200deg, #a45212 20%, #f3832d 120%);
 }
 
 .preview__bar {
@@ -546,6 +546,51 @@ body[data-theme='foods'] .preview {
   fill: currentColor;
 }
 
+.preview__person {
+  display: none;
+  width: 13px;
+  height: 16px;
+  flex: none;
+  fill: currentColor;
+}
+
+body:not([data-theme='codevibes']) .preview__flag {
+  display: none;
+}
+
+body:not([data-theme='codevibes']) .preview__person {
+  display: block;
+}
+
+body:not([data-theme='codevibes']) .preview__name {
+  display: none;
+}
+
+body:not([data-theme='codevibes']) .preview__scores {
+  background: #ffffff;
+  border-radius: 8px;
+  gap: 18px;
+}
+
+.preview__chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body:not([data-theme='codevibes']) .preview__chip {
+  width: 24px;
+  height: 23px;
+  border-radius: 5px;
+  background: var(--blue);
+}
+
+body:not([data-theme='codevibes']) .preview__person--turn {
+  width: 12px;
+  height: 15px;
+  fill: #ffffff;
+}
+
 .preview__turn {
   flex: 1;
   display: flex;
@@ -585,9 +630,9 @@ body[data-theme='foods'] .preview {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 196px;
-  height: 196px;
-  border-radius: var(--card-radius);
+  width: calc(var(--card-w) * 1.63);
+  height: calc(var(--card-h) * 1.63);
+  border-radius: calc(var(--card-radius) * 1.63);
   box-shadow: 6px 8px 18px rgba(0, 0, 0, 0.28);
   overflow: hidden;
 }
