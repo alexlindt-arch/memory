@@ -105,6 +105,7 @@ body[data-theme='codevibes'] {
   --card-front-matched-bg: #ffffff;
   --card-border: #4dd5bc;
   --img-scale: 124%;
+  --card-img-y: -48%;
   --exit-bg: rgba(134, 233, 214, 0.2);
   --exit-border: 2px solid #58dbc4;
   --exit-ink: #ffffff;
@@ -135,6 +136,8 @@ body[data-theme='gaming'] {
   --card-front-matched-bg: #f6f1f3;
   --card-border: #ed1b76;
   --img-scale: 148%;
+  --card-img-x: -46%;
+  --card-img-y: -46%;
   --exit-bg: rgba(237, 27, 118, 0.08);
   --exit-border: 2px solid #e71c4f;
   --exit-ink: #ffffff;
@@ -1051,7 +1054,7 @@ body[data-size='36'] .board {
   height: var(--img-scale);
   object-fit: contain;
   display: block;
-  transform: translate(-50%, -50%);
+  transform: translate(var(--card-img-x, -50%), var(--card-img-y, -50%));
 }
 
 .card__fallback {
