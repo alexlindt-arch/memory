@@ -1989,7 +1989,7 @@ body[data-theme='foods'] {
   .topbar__scores,
   .turn,
   .exit {
-    border-radius: 14px;
+    border-radius: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
   }
 
@@ -2103,7 +2103,6 @@ body[data-theme='foods'] {
   .topbar__scores,
   .turn,
   .exit {
-    border-radius: 11px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.16);
   }
 
