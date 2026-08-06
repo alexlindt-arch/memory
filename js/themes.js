@@ -78,8 +78,11 @@ const BOARD_SIZES = [
 /** Milliseconds two unmatched cards stay visible before they flip back. */
 const HIDE_DELAY = 1400;
 
-/** Milliseconds between the last match and the end screen. */
+/** Milliseconds between the last match and the game over screen. */
 const END_DELAY = 1200;
+
+/** Milliseconds the game over screen stays before the winner is revealed. */
+const OVER_DELAY = 2600;
 
 /**
  * Looks up a theme by its id.

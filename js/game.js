@@ -62,7 +62,7 @@ function scorePair(firstIndex, secondIndex) {
   state.scores[state.turn] += 1;
   updateScoreboard();
   if (state.cards.every((card) => card.matched)) {
-    state.timer = window.setTimeout(showEndScreen, END_DELAY);
+    state.timer = window.setTimeout(showGameOver, END_DELAY);
   }
 }
 

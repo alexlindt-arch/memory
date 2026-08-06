@@ -16,10 +16,23 @@ const CONFETTI = [
 ];
 
 /**
- * Fills and shows the end screen for the finished round.
+ * Shows the game over screen with the final score. After a short pause it
+ * hands over to the winner screen; a click skips the wait.
+ * @returns {void}
+ */
+function showGameOver() {
+  document.getElementById('over-score-blue').textContent = String(state.scores.blue);
+  document.getElementById('over-score-orange').textContent = String(state.scores.orange);
+  showScreen('gameover');
+  state.timer = window.setTimeout(showEndScreen, OVER_DELAY);
+}
+
+/**
+ * Fills and shows the winner screen for the finished round.
  * @returns {void}
  */
 function showEndScreen() {
+  window.clearTimeout(state.timer);
   const winner = getWinner();
   renderConfetti(winner !== 'draw');
   renderWinner(winner);

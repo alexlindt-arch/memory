@@ -3,7 +3,7 @@
  */
 
 /** Ids of all screens, used to hide the inactive ones. */
-const SCREENS = ['home', 'settings', 'game', 'end'];
+const SCREENS = ['home', 'settings', 'game', 'gameover', 'end'];
 
 /**
  * Shows one screen and hides all others.
@@ -64,6 +64,7 @@ function bindEvents() {
   document.getElementById('btn-quit').addEventListener('click', quitToHome);
   document.getElementById('btn-again').addEventListener('click', startGame);
   document.getElementById('btn-home').addEventListener('click', quitToHome);
+  document.getElementById('screen-gameover').addEventListener('click', showEndScreen);
   window.addEventListener('resize', fitStage);
 }
 

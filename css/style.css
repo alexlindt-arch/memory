@@ -220,8 +220,13 @@ body[data-theme='foods'] {
 }
 
 body[data-screen='home'],
-body[data-screen='settings'] {
+body[data-screen='settings'],
+body[data-screen='gameover'] {
   background: var(--screen-bg, #303131);
+}
+
+body[data-screen='gameover'] {
+  --screen-bg: var(--over-bg);
 }
 
 body[data-screen='home'] {
@@ -1289,4 +1294,155 @@ body[data-theme='foods'] .card--matched .card__frame {
   display: flex;
   justify-content: center;
   gap: 24px;
+}
+
+/* =========================================================================
+   Game over screen
+   ========================================================================= */
+
+.screen--over {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--over-bg);
+  font-family: var(--font-head);
+}
+
+.over__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 96px;
+  margin-top: -80px;
+}
+
+.over__headline {
+  position: relative;
+  font-weight: 700;
+  font-size: 150px;
+  line-height: 150px;
+  letter-spacing: var(--over-spacing, -0.01em);
+  text-transform: var(--over-transform, none);
+  white-space: nowrap;
+}
+
+.over__headline-shadow {
+  position: absolute;
+  left: -7px;
+  top: -4px;
+  color: var(--over-shadow, transparent);
+}
+
+.over__headline-main {
+  position: relative;
+  color: var(--over-ink);
+}
+
+.over__score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.over__score-title {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 32px;
+  color: var(--over-title-ink, #ffffff);
+}
+
+.over__score-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--over-bar-gap, 32px);
+  height: 62px;
+  padding: 17px 20px;
+  border-radius: var(--over-bar-radius, 0px);
+  background: var(--over-bar-bg);
+}
+
+.over__player {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  white-space: nowrap;
+}
+
+.over__player--blue {
+  color: var(--blue);
+}
+
+.over__player--orange {
+  color: var(--orange);
+}
+
+.over__flag {
+  width: 24px;
+  height: 20px;
+  flex: none;
+  fill: currentColor;
+}
+
+.over__person {
+  display: none;
+  width: 19px;
+  height: 24px;
+  flex: none;
+  fill: currentColor;
+}
+
+/* Code vibes keeps the flag and the player name; the other themes show a
+   person icon and the plain number, and lead with Orange. */
+body:not([data-theme='codevibes']) .over__flag,
+body:not([data-theme='codevibes']) .over__name {
+  display: none;
+}
+
+body:not([data-theme='codevibes']) .over__person {
+  display: block;
+}
+
+body:not([data-theme='codevibes']) .over__player--orange {
+  order: -1;
+}
+
+body[data-theme='codevibes'] {
+  --over-bg: #303131;
+  --over-ink: #4dd5bc;
+  --over-shadow: #ffffff;
+  --over-bar-bg: rgba(134, 233, 214, 0.2);
+}
+
+body[data-theme='gaming'] {
+  --over-bg: #294f60;
+  --over-ink: #ed1b76;
+  --over-transform: uppercase;
+  --over-spacing: 0.04em;
+  --over-bar-bg: #ffffff;
+  --over-bar-radius: 10px;
+  --over-bar-gap: 24px;
+}
+
+body[data-theme='daprojects'] {
+  --over-bg: #1e7594;
+  --over-ink: #fd6b5a;
+  --over-transform: uppercase;
+  --over-bar-bg: #ffffff;
+  --over-bar-radius: 10px;
+  --over-bar-gap: 24px;
+}
+
+body[data-theme='foods'] {
+  --over-bg: #f3832d;
+  --over-ink: #ffffff;
+  --over-transform: uppercase;
+  --over-spacing: 0.02em;
+  --over-bar-bg: #ffffff;
+  --over-bar-radius: 10px;
+  --over-bar-gap: 24px;
 }
