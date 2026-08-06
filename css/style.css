@@ -1915,6 +1915,52 @@ body[data-theme='foods'] {
   }
 }
 
+/* Phone and tablet: the topbar stops being one wide strip that wraps into
+   loose fragments. Exit sits on top left, score and current player follow as
+   own rows – each one a self-contained, button-like card. */
+@media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    padding: 0;
+    gap: 10px;
+    background: transparent;
+  }
+
+  .topbar__scores,
+  .turn,
+  .exit {
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+  }
+
+  .topbar__scores,
+  .turn {
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    padding: 12px 16px;
+    border: 2px solid var(--accent);
+    background: var(--score-bg, var(--accent-soft));
+  }
+
+  .turn {
+    gap: 12px;
+  }
+
+  .score,
+  .turn {
+    font-size: clamp(15px, 4.4vw, 22px);
+  }
+
+  .exit {
+    order: -1;
+    align-self: flex-start;
+    padding: 10px 16px;
+  }
+}
+
 /* Very small phones: give the board every pixel it can get. */
 @media (max-width: 400px) {
   .screen {

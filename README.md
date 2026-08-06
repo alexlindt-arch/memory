@@ -29,6 +29,7 @@ Drei Bereiche greifen ineinander:
 
 | Bereich | Verhalten |
 |---|---|
+| **bis 768 px** | zusätzlich zum Flow-Layout wird die Spielleiste aufgelöst: „Exit game" steht oben links, Punktestand und aktueller Spieler folgen als eigene, button-artige Karten mit Radius, Rahmen in der Theme-Farbe und Schatten. |
 | **bis 1023 px** | echtes Flow-Layout: die Bühne wird statisch, jeder Screen ist ein Flex-Container über `min-height: 100vh`. Schriftgrößen und Abstände skalieren über `clamp()`, das Spielfeld läuft als `repeat(var(--cols), 1fr)` mit `aspect-ratio`-Karten, die Topbar und die Button-Reihen brechen um. Unter 400 px greifen zusätzlich engere Abstände. |
 | **1024 – 1439 px** | die feste Design-Bühne 1440 × 1024 wird per `transform: scale()` heruntergerechnet – alle Abstände bleiben pixelgenau wie im Design. |
 | **ab 1440 px** | Widescreen-Breakpoint: die Inhaltsfläche behält ihre Breite und wird zentriert, der Hintergrund läuft über die gesamte Bildschirmbreite – in jedem Theme mit seiner eigenen Farbe. Der Gewinner-Screen verwendet ab hier den langen Konfettistreifen (3216 px, 22 Elemente) statt der Desktop-Variante. |
