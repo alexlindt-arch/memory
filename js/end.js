@@ -34,10 +34,8 @@ function showGameOver() {
 function showEndScreen() {
   window.clearTimeout(state.timer);
   const winner = getWinner();
-  renderConfetti(winner !== 'draw');
+  renderConfetti(winner !== 'draw' && state.theme === 'codevibes');
   renderWinner(winner);
-  document.getElementById('end-score-blue').textContent = String(state.scores.blue);
-  document.getElementById('end-score-orange').textContent = String(state.scores.orange);
   showScreen('end');
 }
 
@@ -47,11 +45,13 @@ function showEndScreen() {
  * @returns {void}
  */
 function renderWinner(winner) {
-  const stack = document.getElementById('end-winner');
   const isDraw = winner === 'draw';
+  const name = winner.charAt(0).toUpperCase() + winner.slice(1);
   document.getElementById('end-lead').textContent = isDraw ? 'No winner this time' : 'The winner is';
-  stack.textContent = isDraw ? "IT'S A DRAW" : winner.toUpperCase() + ' PLAYER';
-  document.getElementById('end-trophy').hidden = isDraw;
+  document.getElementById('end-winner').textContent = isDraw ? "It's a draw" : name + ' Player';
+  document.getElementById('end-figure').hidden = isDraw;
+  document.getElementById('btn-home').textContent =
+    state.theme === 'codevibes' ? 'Back to start' : 'Home';
   const color = isDraw ? 'var(--accent)' : 'var(--' + winner + ')';
   document.getElementById('screen-end').style.setProperty('--winner-color', color);
 }

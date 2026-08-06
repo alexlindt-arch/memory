@@ -62,7 +62,6 @@ function bindEvents() {
   document.getElementById('btn-exit').addEventListener('click', openQuitDialog);
   document.getElementById('btn-resume').addEventListener('click', closeQuitDialog);
   document.getElementById('btn-quit').addEventListener('click', quitToHome);
-  document.getElementById('btn-again').addEventListener('click', startGame);
   document.getElementById('btn-home').addEventListener('click', quitToHome);
   document.getElementById('screen-gameover').addEventListener('click', showEndScreen);
   window.addEventListener('resize', fitStage);

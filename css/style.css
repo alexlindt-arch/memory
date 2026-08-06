@@ -221,7 +221,8 @@ body[data-theme='foods'] {
 
 body[data-screen='home'],
 body[data-screen='settings'],
-body[data-screen='gameover'] {
+body[data-screen='gameover'],
+body[data-screen='end'] {
   background: var(--screen-bg, #303131);
 }
 
@@ -1096,13 +1097,15 @@ body[data-theme='foods'] .card--matched .card__frame {
 }
 
 /* =========================================================================
-   End screen
+   Winner screen
    ========================================================================= */
 
 .screen--end {
-  background: var(--game-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--win-bg);
   font-family: var(--font-head);
-  color: var(--ink);
 }
 
 .confetti {
@@ -1119,98 +1122,139 @@ body[data-theme='foods'] .card--matched .card__frame {
 }
 
 .end__stack {
-  position: absolute;
-  left: 0;
-  top: 150px;
-  width: 1440px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 36px;
-}
-
-.end__headline {
-  position: relative;
-  width: 100%;
-  height: 130px;
-}
-
-.end__headline-shadow,
-.end__headline-main {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -22px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 120px;
-  line-height: 130px;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-}
-
-.end__headline-shadow {
-  color: var(--ink);
-}
-
-.end__headline-main {
-  left: 8px;
-  top: -20px;
-  color: var(--accent);
-  filter: drop-shadow(-7px 0 8px rgba(0, 0, 0, 0.35));
-}
-
-.end__result {
-  text-align: center;
+  gap: var(--win-gap, 40px);
+  margin-top: var(--win-offset, 40px);
 }
 
 .end__lead {
-  font-weight: 400;
+  font-family: var(--font-body);
+  font-weight: var(--win-lead-weight, 400);
   font-size: 34px;
   line-height: 44px;
-  color: var(--ink);
+  color: var(--win-lead-ink, #ffffff);
 }
 
 .end__winner {
   font-weight: 700;
-  font-size: 52px;
-  line-height: 66px;
-  color: var(--winner-color, var(--accent));
+  font-size: var(--win-name-size, 52px);
+  line-height: 1.25;
+  text-transform: var(--win-transform, none);
+  letter-spacing: var(--win-spacing, normal);
+  color: var(--win-name-ink, var(--winner-color));
+  text-shadow: var(--win-name-shadow, none);
+}
+
+.end__figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--win-figure-w, auto);
+  height: var(--win-figure-h, auto);
+  padding: var(--win-figure-pad, 0);
+  background: var(--win-figure-bg, transparent);
+}
+
+.end__pawn {
+  width: 152px;
+  height: 187px;
+  fill: var(--winner-color);
+  stroke: var(--win-pawn-stroke, transparent);
+  stroke-width: var(--win-pawn-stroke-w, 0);
+  paint-order: stroke fill;
 }
 
 .end__trophy {
-  width: 120px;
-  height: 150px;
-  fill: var(--winner-color, var(--accent));
+  display: none;
+  width: 218px;
+  height: 278px;
+  object-fit: contain;
 }
 
-.end__score {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
+body[data-theme='gaming'] .end__pawn {
+  display: none;
 }
 
-.end__score-title {
-  font-weight: 400;
-  font-size: 26px;
-  line-height: 32px;
-  color: var(--ink);
+body[data-theme='gaming'] .end__trophy {
+  display: block;
 }
 
-.end__score-bar {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  height: 62px;
-  padding: 17px 20px;
-  border-radius: var(--topbar-radius);
-  background: var(--accent-soft);
+.end__home {
+  padding: var(--win-btn-pad, 14px 22px);
+  border: var(--win-btn-border, 1px solid var(--accent));
+  border-radius: var(--win-btn-radius, 0px);
+  background: var(--win-btn-bg, transparent);
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: var(--win-btn-size, 20px);
+  color: var(--win-btn-ink, #ffffff);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-.end__actions {
-  display: flex;
-  gap: 24px;
+.end__home:hover,
+.end__home:focus-visible {
+  transform: scale(1.05);
+}
+
+body[data-theme='codevibes'] {
+  --win-bg: #303131;
+  --win-transform: uppercase;
+  --win-name-size: 46px;
+  --win-btn-bg: rgba(134, 233, 214, 0.2);
+  --win-btn-border: 1px solid #4dd5bc;
+  --win-gap: 34px;
+  --win-offset: 120px;
+}
+
+body[data-theme='gaming'] {
+  --win-bg: #294f60;
+  --win-name-size: 46px;
+  --win-spacing: 0.04em;
+  --win-lead-weight: 700;
+  --win-name-shadow: 0 0 22px rgba(43, 177, 255, 0.55);
+  --win-btn-bg: transparent;
+  --win-btn-border: 1.5px solid #ed1b76;
+  --win-btn-radius: 6px;
+  --win-btn-size: 16px;
+  --win-btn-pad: 8px 18px;
+  --win-gap: 30px;
+}
+
+body[data-theme='daprojects'] {
+  --win-bg: #1e7594;
+  --win-name-ink: #ffffff;
+  --win-name-size: 48px;
+  --win-pawn-stroke: #ffffff;
+  --win-pawn-stroke-w: 1.6;
+  --win-btn-bg: #bfe5f2;
+  --win-btn-border: none;
+  --win-btn-radius: 8px;
+  --win-btn-ink: #1e7594;
+  --win-btn-size: 16px;
+  --win-btn-pad: 10px 20px;
+  --win-gap: 30px;
+}
+
+body[data-theme='foods'] {
+  --win-bg: #f5f5f5;
+  --win-lead-ink: #a45212;
+  --win-name-ink: #a45212;
+  --win-name-size: 48px;
+  --win-figure-bg: #f7e6d5;
+  --win-figure-pad: 26px 34px;
+  --win-btn-bg: #f3832d;
+  --win-btn-border: none;
+  --win-btn-radius: 6px;
+  --win-btn-ink: #ffffff;
+  --win-btn-size: 16px;
+  --win-btn-pad: 8px 20px;
+  --win-gap: 30px;
+}
+
+body[data-screen='end'] {
+  --screen-bg: var(--win-bg);
 }
 
 /* =========================================================================

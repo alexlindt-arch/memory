@@ -17,7 +17,7 @@ js/state.js         Zentraler Spielzustand
 js/settings.js      Settings-Screen: Auswahl, Vorschau, Summary, Start-Button
 js/board.js         Deck-Erzeugung (Fisher-Yates) und Karten-DOM
 js/game.js          Aufdecken, Paarprüfung, Punkte, Spielerwechsel
-js/end.js           Gewinner-Anzeige, Endpunktestand, Konfetti
+js/end.js           Game-over-Screen, Gewinner-Anzeige, Konfetti
 js/app.js           Screen-Routing, Stage-Skalierung, Event-Bindung
 assets/             74 Originalgrafiken aus dem Design-Projekt
 ```
@@ -42,8 +42,8 @@ Bildschirm.
 | 4 | Spielfeld in gewählter Größe | Grid über `--cols` / `--fit` |
 | 4 | Punktestand, aktueller Spieler, Exit-Button über dem Feld | `.topbar` |
 | 4 | Flüssige Umdreh-Animation | 3D-Flip, 0,55 s `cubic-bezier(.2,.8,.2,1)` |
-| 5 | „Game over" mit Punktestand | End-Screen mit Endpunktestand |
-| 5 | Spieler mit den meisten Punkten als Gewinner | Pokal + Name in Spielerfarbe, Unentschieden abgefangen |
+| 5 | „Game over" mit Punktestand | eigener Game-over-Screen mit Endstand |
+| 5 | Spieler mit den meisten Punkten als Gewinner | anschließender Gewinner-Screen, Name + Figur in Spielerfarbe, Unentschieden abgefangen |
 
 ## Spielregeln
 
@@ -56,8 +56,9 @@ andere Spieler ist dran. Sind alle Paare gefunden, erscheint der End-Screen.
 - **4 Themes** statt der geforderten 2 – je eigene Schrift, Farbschema,
   Kartenrückseite und Motiv-Set.
 - **Quit-Dialog**: „Exit game" fragt vor dem Verlassen nach.
-- **Konfetti** auf dem End-Screen; Unentschieden wird eigens behandelt.
-- **„Play again"** startet direkt eine neue Runde mit denselben Einstellungen.
+- **Zweistufiges Ende**: erst „Game over" mit Endstand, dann der Gewinner-Screen –
+  jeweils im eigenen Design pro Theme. Ein Klick überspringt die Wartezeit.
+- **Konfetti** auf dem Gewinner-Screen; Unentschieden wird eigens behandelt.
 - **Live-Vorschau** im Settings-Screen zeigt Karten und Farben des Themes.
 - **Summary-Leiste** spiegelt die Auswahl wider („Code vibes / Orange / 36 cards").
 - **Stage-Skalierung** hält das Design auf jeder Auflösung pixelgenau.
