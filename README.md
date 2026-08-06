@@ -49,6 +49,7 @@ Gewinner-Screen verwendet ab dieser Breite den langen Konfettistreifen
 | 4 | Flüssige Umdreh-Animation | 3D-Flip, 0,55 s `cubic-bezier(.2,.8,.2,1)` |
 | 5 | „Game over" mit Punktestand | eigener Game-over-Screen mit Endstand |
 | 5 | Spieler mit den meisten Punkten als Gewinner | anschließender Gewinner-Screen, Name + Figur in Spielerfarbe, Unentschieden abgefangen |
+| 5 | Möglichkeit, eine neue Runde zu beginnen | „Play again" startet sofort neu, „Back to start" führt zum Homescreen |
 
 ## Spielregeln
 
@@ -61,6 +62,7 @@ andere Spieler ist dran. Sind alle Paare gefunden, erscheint der End-Screen.
 - **4 Themes** statt der geforderten 2 – je eigene Schrift, Farbschema,
   Kartenrückseite und Motiv-Set.
 - **Quit-Dialog**: „Exit game" fragt vor dem Verlassen nach.
+- **„Play again"** startet sofort eine neue Runde mit denselben Einstellungen.
 - **Zweistufiges Ende**: erst „Game over" mit Endstand, dann der Gewinner-Screen –
   jeweils im eigenen Design pro Theme. Ein Klick überspringt die Wartezeit.
 - **Konfetti** auf dem Gewinner-Screen; Unentschieden wird eigens behandelt.
