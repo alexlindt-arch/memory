@@ -1386,12 +1386,16 @@ body[data-screen='end'] {
   z-index: 10;
 }
 
+/* 539px is the design width. Themes set their own headline font, and the
+   widest of them needs more room for the two buttons than that leaves, so the
+   box is allowed to grow rather than let the buttons spill over its edge. */
 .dialog__box {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
   width: 539px;
+  min-width: max-content;
   padding: 40px;
   border-radius: var(--dialog-radius);
   background: var(--dialog-bg);
@@ -1984,6 +1988,7 @@ body[data-theme='foods'] {
 
   .dialog__box {
     width: 100%;
+    min-width: 0;
     max-width: 420px;
     padding: 24px 20px;
     gap: 24px;
@@ -2000,12 +2005,15 @@ body[data-theme='foods'] {
     gap: 12px;
   }
 
+  /* The buttons shrink below their label here, so the label has to be allowed
+     to break – with nowrap it would simply be cut off at the button edge. */
   .btn {
     flex: 1 1 130px;
     min-width: 0;
     height: auto;
     padding: 12px 16px;
     font-size: clamp(13px, 3.6vw, 20px);
+    white-space: normal;
   }
 }
 
