@@ -16,6 +16,38 @@ function showScreen(name) {
   });
   document.body.dataset.screen = name;
   closeQuitDialog();
+  centreContent();
+}
+
+/**
+ * Vertical bounds of everything meaningful on the current screen, measured in
+ * canvas pixels from the top of the canvas. Purely decorative parts – the
+ * watermark, the confetti – are left out so they cannot drag the centring.
+ * @returns {{top: number, bottom: number}} Upper and lower edge of the content.
+ */
+function getContentBounds() {
+  const stage = document.getElementById('stage').getBoundingClientRect();
+  const scale = Number(getComputedStyle(document.documentElement).getPropertyValue('--stage-scale')) || 1;
+  const bounds = { top: Infinity, bottom: -Infinity };
+  document.getElementById('screen-' + document.body.dataset.screen).querySelectorAll('*').forEach((el) => {
+    const box = el.getBoundingClientRect();
+    if (!box.height || el.closest('[aria-hidden="true"]')) return;
+    bounds.top = Math.min(bounds.top, (box.top - stage.top) / scale);
+    bounds.bottom = Math.max(bounds.bottom, (box.bottom - stage.top) / scale);
+  });
+  return bounds;
+}
+
+/**
+ * Moves the canvas so the content sits in the middle of the window instead of
+ * the middle of the 1024px tall canvas, which every screen fills differently.
+ * @returns {void}
+ */
+function centreContent() {
+  const bounds = getContentBounds();
+  if (!Number.isFinite(bounds.top)) return;
+  const shift = 512 - (bounds.top + bounds.bottom) / 2;
+  document.documentElement.style.setProperty('--stage-shift', shift.toFixed(1) + 'px');
 }
 
 /**
@@ -81,6 +113,7 @@ function bindEvents() {
  */
 function onResize() {
   fitStage();
+  centreContent();
   const end = document.getElementById('screen-end');
   if (!end.hidden) renderConfetti(!end.classList.contains('is-draw') && state.theme === 'codevibes');
 }
