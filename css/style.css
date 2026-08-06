@@ -104,7 +104,7 @@ body[data-theme='codevibes'] {
   --card-front-bg: #e8f3f0;
   --card-front-matched-bg: #ffffff;
   --card-border: #4dd5bc;
-  --img-scale: 124%;
+  --img-scale: 110%;
   --exit-bg: rgba(134, 233, 214, 0.2);
   --exit-border: 2px solid #58dbc4;
   --exit-ink: #ffffff;
@@ -134,7 +134,7 @@ body[data-theme='gaming'] {
   --card-front-bg: #f6f1f3;
   --card-front-matched-bg: #f6f1f3;
   --card-border: #ed1b76;
-  --img-scale: 148%;
+  --img-scale: 110%;
   --exit-bg: rgba(237, 27, 118, 0.08);
   --exit-border: 2px solid #e71c4f;
   --exit-ink: #ffffff;
@@ -168,7 +168,7 @@ body[data-theme='daprojects'] {
   --card-front-bg: #eaf1f3;
   --card-front-matched-bg: #ffffff;
   --card-border: #1e7594;
-  --img-scale: 104%;
+  --img-scale: 110%;
   --exit-bg: #bfe5f2;
   --exit-border: none;
   --exit-ink: #1e7594;
@@ -200,7 +200,7 @@ body[data-theme='foods'] {
   --card-front-bg: #f7e6d5;
   --card-front-matched-bg: #f7e6d5;
   --card-border: transparent;
-  --img-scale: 104%;
+  --img-scale: 110%;
   --exit-bg: #fff9f2;
   --exit-border: 3px solid #f3832d;
   --exit-ink: #f3832d;
@@ -917,13 +917,15 @@ body[data-size='36'] .board {
   opacity: 0.35;
 }
 
+/* The motif images carry the card surface itself, so they are scaled to
+   cover the face; the small overscan hides the export's outer edge. */
 .card__img {
   position: absolute;
   left: 50%;
   top: 50%;
   width: var(--img-scale);
   height: var(--img-scale);
-  object-fit: contain;
+  object-fit: cover;
   display: block;
   transform: translate(-50%, -50%);
 }
