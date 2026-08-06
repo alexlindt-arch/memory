@@ -51,7 +51,7 @@ const THEMES = [
     id: 'foods',
     label: 'Foods theme',
     prefix: 'food',
-    preview: 'pizza',
+    preview: 'fries',
     frame: './assets/card-frame-foods.png',
     faces: ['fries', 'pizza', 'sandwich', 'donut', 'sushi', 'corndog', 'burger', 'pretzel',
       'cupcake', 'flan', 'pudding', 'chocolate', 'nuggets', 'wrap', 'taco', 'icecream',
