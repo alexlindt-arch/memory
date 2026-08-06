@@ -1966,13 +1966,24 @@ body[data-theme='foods'] {
    loose fragments. Exit sits on top left, score and current player follow as
    own rows – each one a self-contained, button-like card. */
 @media (max-width: 768px) {
+  /* The bar is exactly as wide as the board, so Exit lands flush with the
+     right edge of the cards. Score and current player share the next line
+     and only break apart when they genuinely no longer fit side by side. */
   .topbar {
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    flex-wrap: nowrap;
+    width: min(100%, 520px);
     padding: 0;
     gap: 10px;
     background: transparent;
+  }
+
+  .topbar::after {
+    content: '';
+    order: -1;
+    flex-basis: 100%;
+    height: 0;
   }
 
   .topbar__scores,
@@ -1990,36 +2001,42 @@ body[data-theme='foods'] {
     width: auto;
     max-width: 100%;
     height: auto;
-    padding: 10px 16px;
+    padding: clamp(6px, 1.6vw, 8px) clamp(7px, 2.4vw, 12px);
     border: 2px solid var(--accent);
     background: var(--score-bg, var(--accent-soft));
   }
 
-  /* Blue, Orange and the current player read as one column, the scores
-     right-aligned underneath each other. */
   .topbar__scores {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 6px;
-  }
-
-  .score__value {
-    margin-left: auto;
-    padding-left: 12px;
-  }
-
-  .turn {
-    gap: 12px;
+    gap: clamp(6px, 2.2vw, 12px);
   }
 
   .score,
   .turn {
-    font-size: clamp(15px, 4.4vw, 22px);
+    gap: clamp(3px, 1.4vw, 8px);
+  }
+
+  .score__flag,
+  .turn__flag {
+    width: clamp(12px, 3vw, 16px);
+    height: clamp(10px, 2.5vw, 13px);
+  }
+
+  .turn__chip {
+    width: clamp(22px, 5.4vw, 30px);
+    height: clamp(20px, 5vw, 28px);
+  }
+
+  /* The type grows slower than the screen on purpose: the two cards need
+     about 23 px of extra width per point of font size, so anything faster
+     would push the current player onto a second line again. */
+  .score,
+  .turn {
+    font-size: clamp(13px, 4vw - 4px, 18px);
   }
 
   .exit {
     order: -1;
-    align-self: center;
+    margin-left: auto;
     padding: 10px 16px;
   }
 }
@@ -2071,5 +2088,33 @@ body[data-theme='foods'] {
 
   .settings__body {
     gap: 20px;
+  }
+
+  /* The board is what matters here, so the bar above it stays tight. */
+  .screen--game {
+    padding-top: 6px;
+    gap: 12px;
+  }
+
+  .topbar {
+    gap: 6px;
+  }
+
+  .topbar__scores,
+  .turn,
+  .exit {
+    border-radius: 11px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.16);
+  }
+
+  .exit {
+    padding: 6px 12px;
+    font-size: 14px;
+    gap: 5px;
+  }
+
+  .exit__icon {
+    width: 17px;
+    height: 17px;
   }
 }

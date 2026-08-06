@@ -29,7 +29,7 @@ Drei Bereiche greifen ineinander:
 
 | Bereich | Verhalten |
 |---|---|
-| **bis 768 px** | zusätzlich zum Flow-Layout wird die Spielleiste aufgelöst: „Exit game", Punktestand und aktueller Spieler stehen zentriert untereinander in einer Spalte – jedes als eigene, button-artige Karte mit Radius, Rahmen in der Theme-Farbe und Schatten. Die Karten sind nur so breit wie ihr Inhalt und wachsen nicht mit dem Bildschirm mit; Blue und Orange stehen untereinander, die Punkte rechtsbündig. |
+| **bis 768 px** | zusätzlich zum Flow-Layout wird die Spielleiste aufgelöst: „Exit game" sitzt oben rechts, bündig mit dem rechten Rand des Spielfelds. Punktestand und aktueller Spieler folgen darunter als eigene, button-artige Karten mit Radius, Rahmen in der Theme-Farbe und Schatten – nur so breit wie ihr Inhalt und zentriert. Sie teilen sich eine Zeile, sobald der Platz reicht (ab ca. 380 px), darunter rutscht der aktuelle Spieler in die nächste Zeile. Schrift und Innenabstände wachsen bewusst langsamer als der Bildschirm, damit die gemeinsame Zeile so früh wie möglich hält. |
 | **bis 560 px** | die Summary-Leiste im Settings-Screen passt nicht mehr auf eine Zeile: Theme, Spieler und Größe behalten ihre Zeile, „Start" rückt darunter und wird zentriert. |
 | **bis 1023 px** | echtes Flow-Layout: die Bühne wird statisch, jeder Screen ist ein Flex-Container über `min-height: 100vh`. Schriftgrößen und Abstände skalieren über `clamp()`, das Spielfeld läuft als `repeat(var(--cols), 1fr)` mit `aspect-ratio`-Karten, die Topbar und die Button-Reihen brechen um. Unter 400 px greifen zusätzlich engere Abstände. |
 | **1024 – 1439 px** | die feste Design-Bühne 1440 × 1024 wird per `transform: scale()` heruntergerechnet – alle Abstände bleiben pixelgenau wie im Design. |
