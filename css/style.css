@@ -1158,8 +1158,8 @@ body[data-theme='foods'] .card--matched .card__frame {
 }
 
 .end__pawn {
-  width: 152px;
-  height: 187px;
+  width: 175px;
+  height: 210px;
   fill: var(--winner-color);
   stroke: var(--win-pawn-stroke, transparent);
   stroke-width: var(--win-pawn-stroke-w, 0);
@@ -1185,8 +1185,8 @@ body[data-theme='gaming'] .end__trophy {
 
 .end__scales {
   display: none;
-  width: 190px;
-  height: 160px;
+  width: 201px;
+  height: 171px;
   fill: var(--winner-color);
   stroke: var(--win-pawn-stroke, transparent);
   stroke-width: var(--win-pawn-stroke-w, 0);
@@ -1267,7 +1267,7 @@ body[data-theme='daprojects'] {
   --win-name-ink: #ffffff;
   --win-name-size: 48px;
   --win-pawn-stroke: #ffffff;
-  --win-pawn-stroke-w: 1.6;
+  --win-pawn-stroke-w: 1.5;
   --win-btn-bg: #bfe5f2;
   --win-btn-border: none;
   --win-btn-radius: 8px;
