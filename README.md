@@ -1,8 +1,8 @@
 # Memory
 
-Memory-Kartenspiel für zwei Spieler, umgesetzt nach den Claude-Design-Screens
-(Home, Settings, Board, Quit-Dialog, Game over). Vanilla HTML/CSS/JavaScript –
-kein Build-Schritt, keine Abhängigkeiten.
+Memory-Kartenspiel für zwei Spieler mit vier Themes, drei Spielfeldgrößen und
+eigenem Gewinner-Screen. Vanilla HTML/CSS/JavaScript – kein Build-Schritt,
+keine Abhängigkeiten, kein Framework.
 
 **Spielen:** https://alexlindt-arch.github.io/memory/
 Oder `index.html` lokal im Browser öffnen.
@@ -10,7 +10,7 @@ Oder `index.html` lokal im Browser öffnen.
 ## Aufbau
 
 ```
-index.html          Alle vier Screens + Quit-Dialog
+index.html          Alle fünf Screens + Quit-Dialog
 css/style.css       Layout und Theme-Tokens (CSS Custom Properties)
 js/themes.js        Konfiguration: 4 Themes, Spieler, Spielfeldgrößen
 js/state.js         Zentraler Spielzustand
@@ -19,31 +19,18 @@ js/board.js         Deck-Erzeugung (Fisher-Yates) und Karten-DOM
 js/game.js          Aufdecken, Paarprüfung, Punkte, Spielerwechsel
 js/end.js           Game-over-Screen, Gewinner-Anzeige, Konfetti
 js/app.js           Screen-Routing, Stage-Skalierung, Event-Bindung
-assets/             74 Originalgrafiken aus dem Design-Projekt
+assets/             75 Grafiken (73 Kartenmotive, Konfetti, Pokal)
 ```
 
-## Responsives Verhalten (320 px – 2560 px)
-
-Das Spiel ist auf jeder Breite von 320 px bis 2560 px vollständig bedienbar.
-Drei Bereiche greifen ineinander:
-
-| Bereich | Verhalten |
-|---|---|
-| **bis 768 px** | zusätzlich zum Flow-Layout wird die Spielleiste aufgelöst: „Exit game" sitzt oben rechts, bündig mit dem rechten Rand des Spielfelds. Punktestand und aktueller Spieler folgen darunter als eigene, button-artige Karten mit Radius, Rahmen in der Theme-Farbe und Schatten – nur so breit wie ihr Inhalt und zentriert. Sie teilen sich eine Zeile, sobald der Platz reicht (ab ca. 380 px), darunter rutscht der aktuelle Spieler in die nächste Zeile. Schrift und Innenabstände wachsen bewusst langsamer als der Bildschirm, damit die gemeinsame Zeile so früh wie möglich hält. |
-| **bis 560 px** | die Summary-Leiste im Settings-Screen passt nicht mehr auf eine Zeile: Theme, Spieler und Größe behalten ihre Zeile, „Start" rückt darunter und wird zentriert. |
-| **bis 1023 px** | echtes Flow-Layout: die Bühne wird statisch, jeder Screen ist ein Flex-Container über `min-height: 100vh`. Schriftgrößen und Abstände skalieren über `clamp()`, das Spielfeld läuft als `repeat(var(--cols), 1fr)` mit `aspect-ratio`-Karten, die Topbar und die Button-Reihen brechen um. Unter 400 px greifen zusätzlich engere Abstände. |
-| **1024 – 1439 px** | die feste Design-Bühne 1440 × 1024 wird per `transform: scale()` heruntergerechnet – alle Abstände bleiben pixelgenau wie im Design. |
-| **ab 1440 px** | Widescreen-Breakpoint: die Inhaltsfläche behält ihre Breite und wird zentriert, der Hintergrund läuft über die gesamte Bildschirmbreite – in jedem Theme mit seiner eigenen Farbe. Der Gewinner-Screen verwendet ab hier den langen Konfettistreifen (3216 px, 22 Elemente) statt der Desktop-Variante. |
-
-Geprüft wurde jeder Screen (Home, Settings, Spielfeld in allen drei Größen,
-Quit-Dialog, Game over, Gewinner, Unentschieden) bei 320, 375, 480, 768, 1024,
-1440, 2560 und 3440 px.
+Die fünf Screens sind Startseite, Settings, Spielfeld, „Game over" und
+Gewinner-Screen. Sie liegen alle im selben Dokument und werden über
+`hidden` ein- und ausgeblendet – ein Reload gibt es nie.
 
 ## User Stories
 
 | # | Anforderung | Umsetzung |
 |---|---|---|
-| 1 | Startseite nach Vorgabe | `screen--home` mit Watermark und Typo aus dem Design |
+| 1 | Startseite nach Vorgabe | `screen--home` mit Watermark und Typo aus dem Entwurf |
 | 1 | Button leitet zu den Settings weiter | „Play" |
 | 1 | Controller-Icon mit Animation | Icon rotiert beim Hover um −14°, Button skaliert auf 1.08 |
 | 2 | Zwei Spieler | Blue / Orange – bestimmt den Startspieler |
@@ -75,9 +62,8 @@ andere Spieler ist dran. Sind alle Paare gefunden, erscheint der End-Screen.
 - **Konfetti** auf dem Gewinner-Screen; Unentschieden wird eigens behandelt.
 - **Live-Vorschau** im Settings-Screen zeigt Karten und Farben des Themes.
 - **Summary-Leiste** spiegelt die Auswahl wider („Code vibes / Orange / 36 cards").
-- **Vollständig responsiv von 320 px bis 2560 px**: Flow-Layout für Handys,
-  pixelgenaue Stage-Skalierung für Desktop, eigenes Widescreen-Layout ab 1440 px.
 - **Tastatur-/Fokus-Bedienung**: alle Interaktionen sind echte `<button>`-Elemente.
+- **Vollständig responsiv von 320 px bis 2560 px** – siehe unten.
 
 ## Code Conventions
 
@@ -88,7 +74,25 @@ UPPER_SNAKE_CASE, semantische Elemente und `alt`-Attribute durchgängig.
 
 ## Grafiken
 
-Alle 74 Bilder stammen unverändert aus dem Claude-Design-Projekt
-(`card-<theme>-<motiv>.png`, `card-frame-foods.png`, `confetti.png`).
-Fehlt eine Datei, zeigt die Karte automatisch ein passendes Symbol als
-Fallback – das Spiel bleibt in jedem Fall spielbar.
+Alle 75 Bilder liegen unverändert im Repo (`card-<theme>-<motiv>.png`,
+`card-frame-foods.png`, `confetti.png`, `trophy-gaming.png`). Fehlt eine Datei,
+zeigt die Karte automatisch ein passendes Symbol als Fallback – das Spiel
+bleibt in jedem Fall spielbar.
+
+## Responsives Verhalten (320 px – 2560 px)
+
+Das Spiel ist auf jeder Breite von 320 px bis 2560 px vollständig bedienbar.
+Von unten nach oben greifen diese Bereiche ineinander:
+
+| Bereich | Verhalten |
+|---|---|
+| **bis 400 px** | engere Abstände überall, und die Spielleiste rückt dicht an den oberen Rand, damit das Spielfeld so weit wie möglich nach oben wandert. |
+| **bis 560 px** | die Summary-Leiste im Settings-Screen passt nicht mehr auf eine Zeile: Theme, Spieler und Größe behalten ihre gemeinsame Zeile, „Start" rückt zentriert darunter. |
+| **bis 768 px** | die Spielleiste wird aufgelöst. „Exit game" sitzt oben rechts, bündig mit dem rechten Rand des Spielfelds; Punktestand und aktueller Spieler folgen darunter als eigene Flächen mit Rahmen in der Theme-Farbe – nur so breit wie ihr Inhalt und zentriert. Sie teilen sich eine Zeile, sobald der Platz reicht (ab ca. 380 px). Schrift und Innenabstände wachsen bewusst langsamer als der Bildschirm, damit diese gemeinsame Zeile so früh wie möglich hält. |
+| **bis 1023 px** | echtes Flow-Layout: die Bühne wird statisch, jeder Screen ist ein Flex-Container über `min-height: 100vh`. Schriftgrößen und Abstände skalieren über `clamp()`, das Spielfeld läuft als `repeat(var(--cols), 1fr)` mit `aspect-ratio`-Karten, Leisten und Button-Reihen brechen um. |
+| **1024 – 1439 px** | die feste Design-Bühne 1440 × 1024 wird per `transform: scale()` heruntergerechnet – alle Abstände bleiben pixelgenau wie im Entwurf. |
+| **ab 1440 px** | Widescreen-Breakpoint: die Inhaltsfläche behält ihre Breite und wird zentriert, der Hintergrund läuft über die gesamte Bildschirmbreite – in jedem Theme mit seiner eigenen Farbe. Der Gewinner-Screen verwendet ab hier den langen Konfettistreifen (3216 px, 22 Elemente) statt der Desktop-Variante. |
+
+Geprüft wurde jeder Screen (Startseite, Settings, Spielfeld in allen drei
+Größen, Quit-Dialog, Game over, Gewinner, Unentschieden) in allen vier Themes
+bei 320, 375, 480, 560, 768, 1024, 1440, 2560 und 3440 px.
