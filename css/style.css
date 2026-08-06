@@ -2073,29 +2073,20 @@ body[data-theme='foods'] {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    gap: 8px;
-    padding: 0 0 8px;
-    border: 2px solid var(--accent);
+    gap: 10px;
+    padding: 10px;
+    border: 0;
     background: var(--accent-soft);
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.16);
+    box-shadow: none;
   }
 
   .topbar::after {
     display: none;
   }
 
-  .topbar__scores {
-    grid-column: 1 / -1;
-    justify-content: space-between;
-    width: 100%;
-    padding: 7px 10px;
-    border: 0;
-    border-bottom: 2px solid var(--accent);
-    box-shadow: none;
-  }
-
   .turn {
-    margin-left: 10px;
+    grid-row: 1;
+    grid-column: 1;
     padding: 0;
     border: 0;
     background: transparent;
@@ -2103,8 +2094,26 @@ body[data-theme='foods'] {
   }
 
   .exit {
+    grid-row: 1;
+    grid-column: 2;
     order: 0;
-    margin: 0 10px 0 0;
+    margin: 0;
+  }
+
+  .topbar__scores {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    justify-self: start;
+    width: auto;
+    padding: 4px 8px;
+    border: 0;
+    box-shadow: none;
+  }
+
+  /* Code vibes has no extra surface behind the score, so it must not be
+     indented against the line above it either. */
+  body[data-theme='codevibes'] .topbar__scores {
+    padding: 0;
   }
 
   .summary {
