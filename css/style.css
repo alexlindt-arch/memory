@@ -613,6 +613,16 @@ body[data-theme='foods'] .preview {
   transform: rotate(-6deg);
 }
 
+.preview__glyph {
+  width: 88px;
+  height: 70px;
+  flex: none;
+}
+
+body[data-theme='gaming'] .preview__glyph {
+  display: none;
+}
+
 /* --- summary bar & start ------------------------------------------------ */
 
 .summary {
