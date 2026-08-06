@@ -1985,82 +1985,77 @@ body[data-theme='foods'] {
   }
 }
 
-/* Phone and tablet: the topbar stops being one wide strip that wraps into
-   loose fragments. Exit sits on top left, score and current player follow as
-   own rows – each one a self-contained, button-like card. */
+/* Phone and tablet: the wide strip does not fit on one line, so it becomes a
+   two-line panel – aktueller Spieler and Exit on top, the score below. It
+   stays one tinted surface like on the desktop and is exactly as wide as the
+   board, so Exit lands flush with the right edge of the cards. */
 @media (max-width: 768px) {
-  /* The bar is exactly as wide as the board, so Exit lands flush with the
-     right edge of the cards. Score and current player share the next line
-     and only break apart when they genuinely no longer fit side by side. */
   .topbar {
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr auto;
     align-items: center;
     width: min(100%, 520px);
-    padding: 0;
-    gap: 10px;
-    background: transparent;
-  }
-
-  .topbar::after {
-    content: '';
-    order: -1;
-    flex-basis: 100%;
-    height: 0;
-  }
-
-  .topbar__scores,
-  .turn,
-  .exit {
-    border-radius: 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
-  }
-
-  /* Both bars stay as wide as their content needs, they do not stretch with
-     the screen. Exit keeps to the right. */
-  .topbar__scores,
-  .turn {
-    justify-content: flex-start;
-    width: auto;
-    max-width: 100%;
     height: auto;
-    padding: clamp(6px, 1.6vw, 8px) clamp(7px, 2.4vw, 12px);
-    border: 2px solid var(--accent);
-    background: var(--score-bg, var(--accent-soft));
+    padding: 10px;
+    gap: 10px;
+    border-radius: 0;
+    background: var(--accent-soft);
+  }
+
+  .turn {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  /* Exit is the least important thing on this bar, so it gives room back to
+     the score and the current player. */
+  .exit {
+    grid-row: 1;
+    grid-column: 2;
+    height: auto;
+    padding: 7px 11px;
+    gap: 5px;
+    border-radius: 0;
+    font-size: clamp(12px, 1.6vw + 7px, 16px);
+  }
+
+  .exit__icon {
+    width: clamp(16px, 2vw + 10px, 22px);
+    height: clamp(16px, 2vw + 10px, 22px);
   }
 
   .topbar__scores {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    justify-self: start;
+    width: auto;
+    height: auto;
+    padding: 4px 8px;
+    border-radius: 0;
     gap: clamp(6px, 2.2vw, 12px);
+  }
+
+  /* Code vibes has no extra surface behind the score, so it must not be
+     indented against the line above it either. */
+  body[data-theme='codevibes'] .topbar__scores {
+    padding: 0;
   }
 
   .score,
   .turn {
-    gap: clamp(3px, 1.4vw, 8px);
+    gap: clamp(4px, 1.4vw, 8px);
+    font-size: clamp(15px, 3.4vw + 4px, 24px);
   }
 
   .score__flag,
   .turn__flag {
-    width: clamp(12px, 3vw, 16px);
-    height: clamp(10px, 2.5vw, 13px);
+    width: clamp(14px, 2vw + 8px, 22px);
+    height: clamp(12px, 1.7vw + 6px, 18px);
   }
 
   .turn__chip {
-    width: clamp(22px, 5.4vw, 30px);
-    height: clamp(20px, 5vw, 28px);
-  }
-
-  /* The type grows slower than the screen on purpose: the two cards need
-     about 23 px of extra width per point of font size, so anything faster
-     would push the current player onto a second line again. */
-  .score,
-  .turn {
-    font-size: clamp(13px, 4vw - 4px, 18px);
-  }
-
-  .exit {
-    order: -1;
-    margin-left: auto;
-    padding: 10px 16px;
+    width: clamp(26px, 3.4vw + 15px, 38px);
+    height: clamp(24px, 3vw + 14px, 34px);
   }
 }
 
@@ -2167,14 +2162,26 @@ body[data-theme='foods'] {
     gap: 12px;
   }
 
-  .exit {
-    padding: 6px 12px;
+  .topbar {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  /* The first line is right at its limit here – in Foods the wider display
+     font pushed Exit past the edge – so both parts give back a little. The
+     score below keeps its size, it has the line to itself. */
+  .turn {
     font-size: 14px;
-    gap: 5px;
+  }
+
+  .exit {
+    padding: 5px 8px;
+    gap: 4px;
+    font-size: 11px;
   }
 
   .exit__icon {
-    width: 17px;
-    height: 17px;
+    width: 15px;
+    height: 15px;
   }
 }
