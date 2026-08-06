@@ -1736,9 +1736,6 @@ body[data-theme='foods'] {
 
   .summary {
     order: 4;
-  }
-
-  .summary {
     position: static;
     flex-wrap: wrap;
     justify-content: center;
@@ -1746,6 +1743,12 @@ body[data-theme='foods'] {
     height: auto;
     padding: 16px;
     gap: 12px;
+  }
+
+  /* The fixed step widths only make sense on the wide design bar. */
+  .summary__step {
+    width: auto;
+    font-size: clamp(15px, 4.2vw, 20px);
   }
 
   .summary__sep {
@@ -1965,7 +1968,7 @@ body[data-theme='foods'] {
 @media (max-width: 768px) {
   .topbar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: nowrap;
     padding: 0;
     gap: 10px;
@@ -1992,8 +1995,17 @@ body[data-theme='foods'] {
     background: var(--score-bg, var(--accent-soft));
   }
 
+  /* Blue, Orange and the current player read as one column, the scores
+     right-aligned underneath each other. */
   .topbar__scores {
-    gap: 20px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .score__value {
+    margin-left: auto;
+    padding-left: 12px;
   }
 
   .turn {
@@ -2007,8 +2019,43 @@ body[data-theme='foods'] {
 
   .exit {
     order: -1;
-    align-self: flex-end;
+    align-self: center;
     padding: 10px 16px;
+  }
+}
+
+/* Below this width the summary bar no longer fits on one line. Instead of
+   letting it wrap into a ragged row with a dangling separator, the three
+   steps keep their own line and Start moves underneath. */
+@media (max-width: 560px) {
+  .summary {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    justify-content: center;
+    align-items: center;
+    gap: 0 6px;
+    padding: 16px 12px;
+  }
+
+  .summary__step {
+    font-size: clamp(14px, 4vw, 20px);
+  }
+
+  .summary__sep {
+    width: 7px;
+    height: 24px;
+  }
+
+  .start {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    justify-self: center;
+    justify-content: center;
+    width: auto;
+    min-width: 150px;
+    height: auto;
+    margin-top: 14px;
+    padding: 12px 20px;
   }
 }
 
