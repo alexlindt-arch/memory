@@ -1219,7 +1219,13 @@ body[data-theme='gaming'] .end__trophy {
   gap: var(--win-draw-gap, 26px);
 }
 
-.end__home {
+.end__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--win-btn-gap, 20px);
+}
+
+.end__btn {
   padding: var(--win-btn-pad, 14px 22px);
   border: var(--win-btn-border, 1px solid var(--accent));
   border-radius: var(--win-btn-radius, 0px);
@@ -1231,9 +1237,16 @@ body[data-theme='gaming'] .end__trophy {
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-.end__home:hover,
-.end__home:focus-visible {
+.end__btn:hover,
+.end__btn:focus-visible {
   transform: scale(1.05);
+}
+
+/* The main action carries each theme's filled button colours. */
+.end__btn--again {
+  border: 2px solid var(--dialog-yes);
+  background: var(--dialog-yes);
+  color: var(--dialog-yes-ink);
 }
 
 body[data-theme='codevibes'] {
