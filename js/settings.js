@@ -109,9 +109,9 @@ function updatePreview() {
   const image = document.getElementById('preview-front');
   const card = image.parentNode;
   card.classList.remove('is-fallback');
-  document.getElementById('preview-glyph').textContent = getFaceGlyph(theme, theme.faces[0]);
+  document.getElementById('preview-glyph').textContent = getFaceGlyph(theme, theme.preview);
   image.onerror = () => card.classList.add('is-fallback');
-  image.src = getFacePath(theme, theme.faces[0]);
+  image.src = getFacePath(theme, theme.preview);
 }
 
 /**

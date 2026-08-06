@@ -7,14 +7,16 @@
 /**
  * Every theme owns an ordered list of motifs. `glyphs` mirrors `faces` and is
  * used as a fallback whenever the matching PNG is not (yet) available.
- * @type {{id: string, label: string, prefix: string, frame: (string|null),
- *         faces: string[], glyphs: string[]}[]}
+ * `preview` names the motif shown on the settings preview card.
+ * @type {{id: string, label: string, prefix: string, preview: string,
+ *         frame: (string|null), faces: string[], glyphs: string[]}[]}
  */
 const THEMES = [
   {
     id: 'codevibes',
     label: 'Code vibes theme',
     prefix: 'code',
+    preview: 'git',
     frame: null,
     faces: ['git', 'ts', 'js', 'html', 'vscode', 'css', 'django', 'angular', 'terminal',
       'python', 'github', 'node', 'bootstrap', 'vue', 'react', 'sass', 'database', 'firebase'],
@@ -25,6 +27,7 @@ const THEMES = [
     id: 'gaming',
     label: 'Gaming theme',
     prefix: 'game',
+    preview: 'dice',
     frame: null,
     faces: ['controller', 'dice', 'pacman', 'pacman-ghost', 'mushroom', 'coin', 'creeper',
       'snake', 'levelup', 'banana', 'maze', 'circle', 'square', 'triangle', 'gameboy',
@@ -37,6 +40,7 @@ const THEMES = [
     id: 'daprojects',
     label: 'DA Projects theme',
     prefix: 'da',
+    preview: 'shark',
     frame: null,
     faces: ['logo', 'shark', 'chat', 'network', 'coins', 'tree', 'sombrero', 'chef', 'basket',
       'smiley', 'pokeball', 'tictactoe', 'join', 'arrow', 'ramen', 'soup', 'egg', 'sakura'],
@@ -47,6 +51,7 @@ const THEMES = [
     id: 'foods',
     label: 'Foods theme',
     prefix: 'food',
+    preview: 'pizza',
     frame: './assets/card-frame-foods.png',
     faces: ['fries', 'pizza', 'sandwich', 'donut', 'sushi', 'corndog', 'burger', 'pretzel',
       'cupcake', 'flan', 'pudding', 'chocolate', 'nuggets', 'wrap', 'taco', 'icecream',

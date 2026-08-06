@@ -491,14 +491,40 @@ body[data-screen='settings'] {
 
 body[data-theme='gaming'] .preview {
   --preview-bg: linear-gradient(200deg, #1d4557 20%, #2f7f9b 120%);
+  --preview-bar-bg: rgba(10, 40, 53, 0.45);
+  --preview-pill-bg: #ffffff;
+  --preview-exit-bg: transparent;
+  --preview-exit-border: 1.5px solid #ed1b76;
+  --preview-exit-ink: #ffffff;
+  --preview-ink: #ffffff;
+  --preview-rot-back: -5deg;
+  --preview-rot-front: 4deg;
 }
 
 body[data-theme='daprojects'] .preview {
-  --preview-bg: linear-gradient(200deg, #1e7594 20%, #17505f 120%);
+  --preview-bg: #bfe5f2;
+  --preview-bar-bg: #ffffff;
+  --preview-pill-bg: transparent;
+  --preview-exit-bg: #bfe5f2;
+  --preview-exit-border: none;
+  --preview-exit-ink: #1e7594;
+  --preview-ink: #1e7594;
+  --preview-rot-back: 0deg;
+  --preview-rot-front: 0deg;
+  --preview-front-x: 152px;
+  --preview-front-y: 62px;
+  --preview-back-x: 0px;
+  --preview-back-y: 0px;
 }
 
 body[data-theme='foods'] .preview {
-  --preview-bg: linear-gradient(200deg, #a45212 20%, #f3832d 120%);
+  --preview-bg: #f7e6d5;
+  --preview-bar-bg: #ffffff;
+  --preview-pill-bg: transparent;
+  --preview-exit-bg: #fff9f2;
+  --preview-exit-border: 1.5px solid #f3832d;
+  --preview-exit-ink: #f3832d;
+  --preview-ink: #a45212;
 }
 
 .preview__bar {
@@ -509,7 +535,7 @@ body[data-theme='foods'] .preview {
   height: 44px;
   padding: 8px 14px;
   border-radius: 10px;
-  background: var(--accent-soft);
+  background: var(--preview-bar-bg, var(--accent-soft));
   box-shadow: 3px 2px 10.1px rgba(0, 0, 0, 0.2);
 }
 
@@ -519,7 +545,7 @@ body[data-theme='foods'] .preview {
   gap: 10px;
   padding: 5px 10px;
   border-radius: 5px;
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--preview-pill-bg, rgba(255, 255, 255, 0.12));
 }
 
 .preview__score {
@@ -567,7 +593,6 @@ body:not([data-theme='codevibes']) .preview__name {
 }
 
 body:not([data-theme='codevibes']) .preview__scores {
-  background: #ffffff;
   border-radius: 8px;
   gap: 18px;
 }
@@ -599,7 +624,7 @@ body:not([data-theme='codevibes']) .preview__person--turn {
   gap: 6px;
   font-family: 'Red Rose', sans-serif;
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--preview-ink, rgba(255, 255, 255, 0.85));
 }
 
 .preview__flag--turn {
@@ -610,12 +635,13 @@ body:not([data-theme='codevibes']) .preview__person--turn {
 
 .preview__exit {
   padding: 5px 11px;
-  border: 1.5px solid var(--accent);
+  border: var(--preview-exit-border, 1.5px solid var(--accent));
   border-radius: 6px;
+  background: var(--preview-exit-bg, transparent);
   font-family: 'Red Rose', sans-serif;
   font-weight: 700;
   font-size: 10px;
-  color: #ffffff;
+  color: var(--preview-exit-ink, #ffffff);
   white-space: nowrap;
 }
 
@@ -638,10 +664,10 @@ body:not([data-theme='codevibes']) .preview__person--turn {
 }
 
 .preview__card--front {
-  left: 140px;
-  top: 20px;
+  left: var(--preview-front-x, 140px);
+  top: var(--preview-front-y, 20px);
   background: var(--card-front-bg);
-  transform: rotate(9deg);
+  transform: rotate(var(--preview-rot-front, 9deg));
 }
 
 .preview__card--front img {
@@ -652,10 +678,10 @@ body:not([data-theme='codevibes']) .preview__person--turn {
 }
 
 .preview__card--back {
-  left: -8px;
-  top: 8px;
+  left: var(--preview-back-x, -8px);
+  top: var(--preview-back-y, 8px);
   background: var(--card-back);
-  transform: rotate(-6deg);
+  transform: rotate(var(--preview-rot-back, -6deg));
 }
 
 .preview__glyph {
