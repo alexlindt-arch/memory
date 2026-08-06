@@ -79,14 +79,15 @@ const BOARD_SIZES = [
 const BREAKPOINT = 1440;
 
 /**
- * Size the design really fills inside the 1440x1024 canvas. The canvas keeps
- * empty margins around it, so scaling to these values instead makes
- * everything noticeably larger on a laptop – only the margins run past the
- * edge. Both values are measured from the widest and the tallest screen, so
- * the crop is symmetric and no content ever moves.
+ * Width the design really fills inside the 1440px wide canvas. The canvas
+ * keeps empty margins left and right, so scaling to this value instead makes
+ * everything larger – only those margins run past the edge.
+ *
+ * The height deliberately stays at the full 1024px. Cropping it would gain a
+ * little more size, but the top edge would then creep closer the shorter the
+ * window gets, and the content would appear to drift upwards.
  */
 const CONTENT_WIDTH = 1260;
-const CONTENT_HEIGHT = 950;
 
 /** Milliseconds two unmatched cards stay visible before they flip back. */
 const HIDE_DELAY = 1400;

@@ -16,11 +16,16 @@ body {
   transition: background 0.3s ease;
 }
 
+/* The canvas is always exactly as wide as the window once scaled down, so
+   its centre is the centre of the window and everything positioned with
+   `left: 50%` inside it lands centred – no matter what the scale is. The
+   width is derived here rather than set from JavaScript, so the very first
+   paint is already centred and no resize can move it sideways. */
 .stage {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: var(--stage-width, 1440px);
+  width: max(1440px, calc(100vw / var(--stage-scale, 1)));
   height: 1024px;
   transform: translate(-50%, -50%) scale(var(--stage-scale, 1));
 }
@@ -254,7 +259,7 @@ body[data-screen='settings'] {
 .home__watermark {
   position: absolute;
   left: calc(50% - 720px);
-  top: 571px;
+  top: 600px;
   width: 427px;
   height: 412px;
 }
@@ -336,10 +341,12 @@ body[data-screen='settings'] {
   font-family: var(--font-settings);
 }
 
+/* 44px lower than the raw design, so the block sits centred on the canvas
+   instead of leaving twice as much room below it as above. */
 .settings__head {
   position: absolute;
   left: calc(50% - 548.5px);
-  top: 114px;
+  top: 158px;
   width: 251px;
   text-align: center;
 }
@@ -373,7 +380,7 @@ body[data-screen='settings'] {
 .settings__body {
   position: absolute;
   left: calc(50% - 1103px / 2 + 1.5px);
-  top: 243px;
+  top: 287px;
   width: 1103px;
   height: 539px;
 }
@@ -837,12 +844,15 @@ body[data-theme='gaming'] .preview__glyph {
    Game screen – top bar
    ========================================================================= */
 
+/* Centred rather than hung from the top: the board is 128px shorter with 16
+   cards than with 36, and top alignment left all of that as a gap below. */
 .screen--game {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 54px;
-  padding-top: 41px;
+  padding: 41px 0;
   background: var(--game-bg);
   font-family: var(--font-body);
 }
