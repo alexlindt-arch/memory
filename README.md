@@ -22,15 +22,20 @@ js/app.js           Screen-Routing, Stage-Skalierung, Event-Bindung
 assets/             74 Originalgrafiken aus dem Design-Projekt
 ```
 
-Die Bühne ist auf die Design-Größe 1440 × 1024 fixiert. Unterhalb von 1440 px
-wird sie per `transform: scale()` heruntergerechnet, sodass alle Abstände exakt
-wie im Design bleiben.
+## Responsives Verhalten (320 px – 2560 px)
 
-**Ab 1440 px (Widescreen)** greift der Breakpoint: die Inhaltsfläche behält ihre
-Breite und wird zentriert, während der Hintergrund über die gesamte
-Bildschirmbreite läuft – in jedem Theme mit seiner eigenen Farbe. Der
-Gewinner-Screen verwendet ab dieser Breite den langen Konfettistreifen
-(3216 px, 22 Elemente) statt der Desktop-Variante.
+Das Spiel ist auf jeder Breite von 320 px bis 2560 px vollständig bedienbar.
+Drei Bereiche greifen ineinander:
+
+| Bereich | Verhalten |
+|---|---|
+| **bis 1023 px** | echtes Flow-Layout: die Bühne wird statisch, jeder Screen ist ein Flex-Container über `min-height: 100vh`. Schriftgrößen und Abstände skalieren über `clamp()`, das Spielfeld läuft als `repeat(var(--cols), 1fr)` mit `aspect-ratio`-Karten, die Topbar und die Button-Reihen brechen um. Unter 400 px greifen zusätzlich engere Abstände. |
+| **1024 – 1439 px** | die feste Design-Bühne 1440 × 1024 wird per `transform: scale()` heruntergerechnet – alle Abstände bleiben pixelgenau wie im Design. |
+| **ab 1440 px** | Widescreen-Breakpoint: die Inhaltsfläche behält ihre Breite und wird zentriert, der Hintergrund läuft über die gesamte Bildschirmbreite – in jedem Theme mit seiner eigenen Farbe. Der Gewinner-Screen verwendet ab hier den langen Konfettistreifen (3216 px, 22 Elemente) statt der Desktop-Variante. |
+
+Geprüft wurde jeder Screen (Home, Settings, Spielfeld in allen drei Größen,
+Quit-Dialog, Game over, Gewinner, Unentschieden) bei 320, 375, 480, 768, 1024,
+1440, 2560 und 3440 px.
 
 ## User Stories
 
@@ -68,8 +73,8 @@ andere Spieler ist dran. Sind alle Paare gefunden, erscheint der End-Screen.
 - **Konfetti** auf dem Gewinner-Screen; Unentschieden wird eigens behandelt.
 - **Live-Vorschau** im Settings-Screen zeigt Karten und Farben des Themes.
 - **Summary-Leiste** spiegelt die Auswahl wider („Code vibes / Orange / 36 cards").
-- **Stage-Skalierung** hält das Design auf jeder Auflösung pixelgenau,
-  mit eigenem Widescreen-Layout ab 1440 px.
+- **Vollständig responsiv von 320 px bis 2560 px**: Flow-Layout für Handys,
+  pixelgenaue Stage-Skalierung für Desktop, eigenes Widescreen-Layout ab 1440 px.
 - **Tastatur-/Fokus-Bedienung**: alle Interaktionen sind echte `<button>`-Elemente.
 
 ## Code Conventions
