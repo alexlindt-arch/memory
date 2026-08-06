@@ -529,6 +529,7 @@ body[data-theme='foods'] .preview {
   --preview-exit-border: 1.5px solid #f3832d;
   --preview-exit-ink: #f3832d;
   --preview-ink: #a45212;
+  --preview-img-shift: 10px;
 }
 
 .preview__bar {
@@ -704,24 +705,38 @@ body[data-theme='gaming'] .preview__glyph {
 
 .summary {
   position: absolute;
-  left: 539px;
+  right: 0;
   top: 458px;
   display: flex;
   align-items: center;
   gap: 20px;
-  width: 546px;
   height: 81px;
   padding: 14px 20px;
   background: #f6f6f6;
 }
 
 .summary__step {
+  flex: none;
+  text-align: center;
   font-size: 20px;
   line-height: 22px;
   color: var(--settings-ink);
   white-space: nowrap;
   opacity: 0.45;
-  transition: opacity 0.2s ease, font-weight 0.2s ease;
+  transition: opacity 0.2s ease;
+}
+
+/* Fixed widths keep the bar from shifting when a label changes. */
+.summary__step--theme {
+  width: 116px;
+}
+
+.summary__step--player {
+  width: 72px;
+}
+
+.summary__step--size {
+  width: 100px;
 }
 
 .summary__step--done {
