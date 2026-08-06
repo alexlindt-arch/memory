@@ -1664,9 +1664,53 @@ body[data-theme='foods'] {
     gap: 28px;
   }
 
+  /* A fieldset defaults to min-width: min-content and would grow past the
+     screen edge, so the option rows have to stay flexible as well. */
   .group {
     position: static;
-    width: min(280px, 100%);
+    width: min(340px, 100%);
+    min-width: 0;
+  }
+
+  .group__head {
+    min-width: 0;
+    height: auto;
+    margin-bottom: 12px;
+  }
+
+  .group__icon {
+    width: clamp(24px, 7vw, 32px);
+    height: clamp(24px, 7vw, 32px);
+  }
+
+  .group__title {
+    font-size: clamp(18px, 5.2vw, 24px);
+    line-height: 1.2;
+  }
+
+  .options {
+    padding-left: clamp(14px, 6vw, 44px);
+  }
+
+  .option {
+    height: auto;
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .option__dot {
+    width: clamp(19px, 5.6vw, 24px);
+    height: clamp(19px, 5.6vw, 24px);
+  }
+
+  .option__label {
+    font-size: clamp(15px, 4.6vw, 20px);
+    line-height: 1.25;
+    white-space: normal;
+  }
+
+  .option__arrow {
+    width: clamp(24px, 8vw, 50px);
   }
 
   .preview {
@@ -1921,7 +1965,7 @@ body[data-theme='foods'] {
 @media (max-width: 768px) {
   .topbar {
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
     flex-wrap: nowrap;
     padding: 0;
     gap: 10px;
@@ -1935,14 +1979,21 @@ body[data-theme='foods'] {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
   }
 
+  /* Both bars stay as wide as their content needs, they do not stretch with
+     the screen. Exit keeps to the right. */
   .topbar__scores,
   .turn {
-    justify-content: space-between;
-    width: 100%;
+    justify-content: flex-start;
+    width: auto;
+    max-width: 100%;
     height: auto;
-    padding: 12px 16px;
+    padding: 10px 16px;
     border: 2px solid var(--accent);
     background: var(--score-bg, var(--accent-soft));
+  }
+
+  .topbar__scores {
+    gap: 20px;
   }
 
   .turn {
@@ -1956,7 +2007,7 @@ body[data-theme='foods'] {
 
   .exit {
     order: -1;
-    align-self: flex-start;
+    align-self: flex-end;
     padding: 10px 16px;
   }
 }
