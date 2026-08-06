@@ -245,9 +245,8 @@ body[data-screen='settings'] {
   position: absolute;
   left: 0;
   top: 600px;
-  width: 363px;
-  height: 410px;
-  overflow: visible;
+  width: 427px;
+  height: 412px;
 }
 
 .home__intro {
