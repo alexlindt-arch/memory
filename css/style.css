@@ -1555,15 +1555,15 @@ body[data-theme='foods'] {
 }
 
 /* =========================================================================
-   Responsive layout below the design canvas (up to 767px)
+   Responsive layout below the design canvas (up to 768px)
 
-   The fixed 1440x1024 canvas would shrink to 22% on a 320px screen, so
-   below 768px the stage stops being a scaled canvas and the screens lay
-   themselves out in normal flow with fluid type and card sizes. From 768px
+   The fixed 1440x1024 canvas would shrink to 22% on a 320px screen, so up
+   to 768px the stage stops being a scaled canvas and the screens lay
+   themselves out in normal flow with fluid type and card sizes. From 769px
    up the scaled design canvas takes over – the laptop view.
    ========================================================================= */
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   html,
   body {
     height: auto;
@@ -1990,7 +1990,7 @@ body[data-theme='foods'] {
    two-line panel – aktueller Spieler and Exit on top, the score below. It
    stays one tinted surface like on the desktop and is exactly as wide as the
    board, so Exit lands flush with the right edge of the cards. */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .topbar {
     display: grid;
     grid-template-columns: 1fr auto;
