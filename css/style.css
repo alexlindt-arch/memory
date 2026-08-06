@@ -500,6 +500,7 @@ body[data-theme='gaming'] .preview {
   --preview-rot-back: -5deg;
   --preview-rot-front: 4deg;
   --preview-img-scale: 132%;
+  --preview-img-shift: 16px;
 }
 
 body[data-theme='daprojects'] .preview {
@@ -672,9 +673,11 @@ body:not([data-theme='codevibes']) .preview__person--turn {
 }
 
 .preview__card--front img {
+  position: relative;
+  left: var(--preview-img-shift, 0px);
   width: var(--preview-img-scale, 100%);
   height: var(--preview-img-scale, 100%);
-  object-fit: contain;
+  object-fit: cover;
   display: block;
 }
 
