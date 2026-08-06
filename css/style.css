@@ -1133,16 +1133,16 @@ body[data-theme='foods'] .card--matched .card__frame {
 .end__lead {
   font-family: var(--font-body);
   font-weight: var(--win-lead-weight, 400);
-  font-size: 34px;
-  line-height: 44px;
+  font-size: 28px;
+  line-height: 36px;
   color: var(--win-lead-ink, #ffffff);
 }
 
 .end__winner {
   font-weight: 700;
-  font-size: var(--win-name-size, 52px);
+  font-size: var(--win-name-size, 60px);
   line-height: 1.25;
-  text-transform: var(--win-transform, none);
+  text-transform: uppercase;
   letter-spacing: var(--win-spacing, normal);
   color: var(--win-name-ink, var(--winner-color));
   text-shadow: var(--win-name-shadow, none);
@@ -1239,7 +1239,7 @@ body[data-theme='gaming'] .end__trophy {
 body[data-theme='codevibes'] {
   --win-bg: #303131;
   --win-transform: uppercase;
-  --win-name-size: 46px;
+  --win-name-size: 60px;
   --win-btn-bg: rgba(134, 233, 214, 0.2);
   --win-btn-border: 1px solid #4dd5bc;
   --win-gap: 34px;
@@ -1250,7 +1250,7 @@ body[data-theme='codevibes'] {
 
 body[data-theme='gaming'] {
   --win-bg: #294f60;
-  --win-name-size: 46px;
+  --win-name-size: 60px;
   --win-spacing: 0.04em;
   --win-lead-weight: 700;
   --win-name-shadow: 0 0 22px rgba(43, 177, 255, 0.55);
@@ -1266,7 +1266,7 @@ body[data-theme='gaming'] {
 body[data-theme='daprojects'] {
   --win-bg: #1e7594;
   --win-name-ink: #ffffff;
-  --win-name-size: 48px;
+  --win-name-size: 60px;
   --win-pawn-stroke: #ffffff;
   --win-pawn-stroke-w: 1.5;
   --win-btn-bg: #bfe5f2;
@@ -1283,7 +1283,7 @@ body[data-theme='foods'] {
   --win-bg: #f5f5f5;
   --win-lead-ink: #a45212;
   --win-name-ink: #a45212;
-  --win-name-size: 48px;
+  --win-name-size: 60px;
   --win-figure-bg: #f7e6d5;
   --win-figure-pad: 26px 34px;
   --win-btn-bg: #f3832d;
