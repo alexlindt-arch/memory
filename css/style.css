@@ -975,16 +975,19 @@ body[data-theme='foods'] .topbar__scores {
 
 body[data-size='16'] .board {
   --cols: 4;
+  --rows: 4;
   --fit: 1;
 }
 
 body[data-size='24'] .board {
   --cols: 6;
+  --rows: 4;
   --fit: 0.92;
 }
 
 body[data-size='36'] .board {
   --cols: 6;
+  --rows: 6;
   --fit: 0.8;
 }
 
@@ -1757,9 +1760,13 @@ body[data-theme='foods'] {
 
   /* --- game board ------------------------------------------------------ */
 
+  /* The board cannot grow past the screen width, so any leftover height is
+     collected at the bottom instead of being split above and below. */
   .screen--game {
+    justify-content: flex-start;
     padding-top: 16px;
-    gap: 20px;
+    padding-bottom: 16px;
+    gap: 16px;
   }
 
   .topbar {
@@ -1807,11 +1814,27 @@ body[data-theme='foods'] {
     height: 20px;
   }
 
+  /* The board is capped twice: by the screen width and by the height that
+     is left below the bar. Without the second cap a tall board would run
+     off the bottom of a phone screen. */
   .board {
+    --gap: min(2.5vw, 14px);
+    --board-reserve: 170px;
     width: min(100%, 520px);
+    width: min(100%, 520px, calc(
+      (100svh - var(--board-reserve) - (var(--rows) - 1) * var(--gap))
+      * var(--card-ratio, 1) * var(--cols) / var(--rows)
+      + (var(--cols) - 1) * var(--gap)));
     grid-template-columns: repeat(var(--cols, 4), 1fr);
     grid-auto-rows: auto;
-    gap: min(2.5vw, 14px);
+    gap: var(--gap);
+  }
+
+  /* Upright screens suit the 24-card board far better as 4 x 6 than as
+     6 x 4 – the cards get half again as wide and fill the height. */
+  body[data-size='24'] .board {
+    --cols: 4;
+    --rows: 6;
   }
 
   .card {
