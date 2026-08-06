@@ -2064,10 +2064,49 @@ body[data-theme='foods'] {
   }
 }
 
-/* Below this width the summary bar no longer fits on one line. Instead of
-   letting it wrap into a ragged row with a dangling separator, the three
-   steps keep their own line and Start moves underneath. */
+/* Phone layout. Three separate boxes above the board look ragged on a narrow
+   screen, so the bar becomes one panel: a score band across the top, current
+   player and Exit in the row below it. The summary bar in the settings no
+   longer fits on one line either and gets its own two-row grid. */
 @media (max-width: 560px) {
+  .topbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 8px;
+    padding: 0 0 8px;
+    border: 2px solid var(--accent);
+    background: var(--accent-soft);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.16);
+  }
+
+  .topbar::after {
+    display: none;
+  }
+
+  .topbar__scores {
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    width: 100%;
+    padding: 7px 10px;
+    border: 0;
+    border-bottom: 2px solid var(--accent);
+    box-shadow: none;
+  }
+
+  .turn {
+    margin-left: 10px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .exit {
+    order: 0;
+    margin: 0 10px 0 0;
+  }
+
   .summary {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
@@ -2117,16 +2156,6 @@ body[data-theme='foods'] {
   .screen--game {
     padding-top: 6px;
     gap: 12px;
-  }
-
-  .topbar {
-    gap: 6px;
-  }
-
-  .topbar__scores,
-  .turn,
-  .exit {
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.16);
   }
 
   .exit {
