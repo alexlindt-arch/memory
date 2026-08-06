@@ -496,6 +496,7 @@ body[data-theme='gaming'] .preview {
   --preview-exit-bg: transparent;
   --preview-exit-border: 1.5px solid #ed1b76;
   --preview-exit-ink: #ffffff;
+  --preview-exit-radius: 12px;
   --preview-ink: #ffffff;
   --preview-rot-back: -5deg;
   --preview-rot-front: 4deg;
@@ -510,6 +511,7 @@ body[data-theme='daprojects'] .preview {
   --preview-exit-bg: #bfe5f2;
   --preview-exit-border: none;
   --preview-exit-ink: #1e7594;
+  --preview-exit-radius: 8px;
   --preview-ink: #1e7594;
   --preview-rot-back: 0deg;
   --preview-rot-front: 0deg;
@@ -528,6 +530,7 @@ body[data-theme='foods'] .preview {
   --preview-exit-bg: #fff9f2;
   --preview-exit-border: 1.5px solid #f3832d;
   --preview-exit-ink: #f3832d;
+  --preview-exit-radius: 12px;
   --preview-ink: #a45212;
   --preview-img-shift: 10px;
 }
@@ -564,6 +567,16 @@ body[data-theme='foods'] .preview {
 
 .preview__score--blue {
   color: var(--blue);
+}
+
+/* Code vibes lists Blue first; the other themes lead with Orange. */
+body[data-theme='codevibes'] .preview__score--blue {
+  order: -1;
+}
+
+body[data-theme='codevibes'] .preview__num--alt,
+body:not([data-theme='codevibes']) .preview__num--cv {
+  display: none;
 }
 
 .preview__score--orange {
@@ -639,9 +652,12 @@ body:not([data-theme='codevibes']) .preview__person--turn {
 }
 
 .preview__exit {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   padding: 5px 11px;
   border: var(--preview-exit-border, 1.5px solid var(--accent));
-  border-radius: 6px;
+  border-radius: var(--preview-exit-radius, 6px);
   background: var(--preview-exit-bg, transparent);
   font-family: 'Red Rose', sans-serif;
   font-weight: 700;
@@ -699,6 +715,12 @@ body:not([data-theme='codevibes']) .preview__person--turn {
 
 body[data-theme='gaming'] .preview__glyph {
   display: none;
+}
+
+.preview__exit-icon {
+  width: 11px;
+  height: 11px;
+  flex: none;
 }
 
 /* --- summary bar & start ------------------------------------------------ */
