@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use 'variables' as v;
 
 /* =========================================================================
@@ -112,21 +113,44 @@
   background: none;
   padding: 0;
 
-  /* Hervorgehoben wird allein die Schrift, und zwar über ihre Stärke – keine
-     Fläche, keine andere Farbe. Die gewählte Zeile steht ohnehin schon auf
-     700 und bleibt beim Überfahren deshalb unverändert. */
+  /* Beim Überfahren wird die Schrift kräftiger und der Auswahlpunkt zeigt
+     sich angedeutet – eine Vorschau darauf, was ein Klick bewirken würde.
+     Die gewählte Zeile steht ohnehin schon auf 700 und hat ihren Punkt voll
+     ausgefüllt, sie bleibt deshalb unverändert. */
   &:not(.option--active) {
     /* Nur für Geräte mit echtem Zeiger: auf dem Touchscreen bliebe der
        Hover-Zustand nach dem Antippen sonst kleben. */
     @media (hover: hover) {
-      &:hover .option__label {
-        font-weight: 600;
+      &:hover {
+        .option__label {
+          font-weight: 600;
+        }
+
+        .option__dot {
+          border-color: var(--option-preview, var(--option-dot, var(--settings-ink)));
+        }
+
+        .option__dot::after {
+          background: var(--option-preview, var(--option-dot, var(--settings-ink)));
+          opacity: 0.45;
+        }
       }
     }
 
-    /* Tastaturbedienung bekommt dieselbe Hervorhebung. */
-    &:focus-visible .option__label {
-      font-weight: 600;
+    /* Tastaturbedienung bekommt dieselbe Vorschau. */
+    &:focus-visible {
+      .option__label {
+        font-weight: 600;
+      }
+
+      .option__dot {
+        border-color: var(--option-preview, var(--option-dot, var(--settings-ink)));
+      }
+
+      .option__dot::after {
+        background: var(--option-preview, var(--option-dot, var(--settings-ink)));
+        opacity: 0.45;
+      }
     }
   }
 
@@ -162,6 +186,17 @@
 
 .option--active .option__dot::after {
   background: var(--option-dot, var(--settings-ink));
+  opacity: 1;
+}
+
+/* Jede Theme-Zeile trägt die Akzentfarbe ihres eigenen Themes – aus derselben
+   Map, aus der auch die Vorschau ihre Werte bekommt. Der Punkt zeigt beim
+   Überfahren dadurch die Farbe des Themes, über dem der Zeiger steht, und
+   nicht die des gerade eingestellten. */
+@each $theme, $tokens in v.$theme-preview {
+  .option[data-group='theme'][data-value='#{$theme}'] {
+    --option-preview: #{map.get($tokens, accent)};
+  }
 }
 
 .option__label {
@@ -184,6 +219,30 @@
 }
 
 .option--active .option__arrow {
+  opacity: 1;
+}
+
+/* Der gelbe Pfeil steht immer an der Zeile, auf die gezeigt wird: er wandert
+   zur überfahrenen Zeile und verlässt so lange die gewählte. `:has` sorgt
+   dafür, dass das nur passiert, wenn wirklich eine Zeile getroffen ist – im
+   Abstand zwischen zwei Zeilen bliebe der Pfeil sonst ganz verschwunden.
+   Die gewählte Zeile behält ihn, wenn sie selbst überfahren wird. */
+@media (hover: hover) {
+  .options:has(.option:hover) .option--active:not(:hover) .option__arrow {
+    opacity: 0;
+  }
+
+  .option:hover .option__arrow {
+    opacity: 1;
+  }
+}
+
+/* Dasselbe für die Tastatur, damit Tabben sich wie Überfahren verhält. */
+.options:has(.option:focus-visible) .option--active:not(:focus-visible) .option__arrow {
+  opacity: 0;
+}
+
+.option:focus-visible .option__arrow {
   opacity: 1;
 }
 
