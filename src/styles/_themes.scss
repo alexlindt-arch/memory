@@ -6,6 +6,10 @@ body {
   --settings-bg: #ffffff;
   --settings-ink: #303131;
   --settings-rule: #f0ea6e;
+  /* Fläche, mit der eine Options-Zeile beim Überfahren hinterlegt wird.
+     Jedes Theme bringt sein eigenes --accent-soft mit, dadurch passt der
+     Ton automatisch zum gewählten Theme. */
+  --option-hover: var(--accent-soft);
   --icon-themes: #da1eba;
   --icon-player: #1ae5be;
   --icon-size: #0635c9;
