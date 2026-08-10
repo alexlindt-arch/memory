@@ -105,50 +105,33 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  height: 24px;
   cursor: pointer;
   background: none;
-  border-radius: 10px;
+  padding: 0;
 
-  /* Die Hover-Fläche ist größer als die Zeile selbst. Das negative Margin
-     nimmt genau das wieder aus dem Fluss heraus, damit die Abstände der
-     Liste unverändert die des Entwurfs bleiben. */
-  padding: 5px 14px 5px 5px;
-  margin: -5px -14px -5px -5px;
-  transition: background 0.18s ease;
-
-  /* Nur für Geräte mit echtem Zeiger: auf dem Touchscreen bliebe der
-     Hover-Zustand nach dem Antippen sonst kleben. */
-  @media (hover: hover) {
-    &:hover {
-      background: var(--option-hover);
-    }
-  }
-
-  /* Tastaturbedienung bekommt dieselbe Hervorhebung. */
-  &:focus-visible {
-    background: var(--option-hover);
-    outline: 2px solid var(--accent);
-    outline-offset: 1px;
-  }
-
-  /* Die bereits gewählte Zeile ist durch Punkt, Fettung und Pfeil schon
-     markiert – sie darf beim Überfahren nichts davon verlieren. */
+  /* Hervorgehoben wird allein die Schrift, und zwar über ihre Stärke – keine
+     Fläche, keine andere Farbe. Die gewählte Zeile steht ohnehin schon auf
+     700 und bleibt beim Überfahren deshalb unverändert. */
   &:not(.option--active) {
+    /* Nur für Geräte mit echtem Zeiger: auf dem Touchscreen bliebe der
+       Hover-Zustand nach dem Antippen sonst kleben. */
     @media (hover: hover) {
-      &:hover {
-        .option__dot {
-          border-color: var(--accent);
-        }
-
-        .option__arrow {
-          opacity: 0.4;
-        }
+      &:hover .option__label {
+        font-weight: 600;
       }
     }
 
-    &:focus-visible .option__dot {
-      border-color: var(--accent);
+    /* Tastaturbedienung bekommt dieselbe Hervorhebung. */
+    &:focus-visible .option__label {
+      font-weight: 600;
     }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
