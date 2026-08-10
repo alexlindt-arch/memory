@@ -1,0 +1,131 @@
+/* =========================================================================
+   Game screen – top bar
+   ========================================================================= */
+
+/* Centred rather than hung from the top: the board is 128px shorter with 16
+   cards than with 36, and top alignment left all of that as a gap below. */
+.screen--game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 54px;
+  padding: 41px 0;
+  background: var(--game-bg);
+  font-family: var(--font-body);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1219px;
+  height: 102px;
+  padding: 24px;
+  flex: none;
+  border-radius: var(--topbar-radius);
+  background: var(--accent-soft);
+}
+
+.topbar__scores {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  height: 54px;
+  padding: 0 16px;
+  border-radius: var(--topbar-radius);
+  background: var(--score-bg, transparent);
+}
+
+body[data-theme='gaming'] .topbar__scores,
+body[data-theme='daprojects'] .topbar__scores,
+body[data-theme='foods'] .topbar__scores {
+  --score-bg: #ffffff;
+}
+
+.score {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  white-space: nowrap;
+}
+
+.score--blue {
+  color: var(--blue);
+}
+
+.score--orange {
+  color: var(--orange);
+}
+
+.score__flag {
+  width: 22px;
+  height: 18px;
+  flex: none;
+  fill: currentColor;
+}
+
+.turn {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 34px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.turn__chip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 41px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--turn-color, var(--blue));
+  transition: background 0.25s ease;
+}
+
+.turn__flag {
+  width: 22px;
+  height: 18px;
+  fill: #ffffff;
+}
+
+.exit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 54px;
+  padding: 12px 20px;
+  border: var(--exit-border);
+  border-radius: var(--exit-radius);
+  background: var(--exit-bg);
+  color: var(--exit-ink);
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exit:hover,
+.exit:focus-visible {
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+}
+
+.exit__icon {
+  width: 30px;
+  height: 30px;
+  flex: none;
+}

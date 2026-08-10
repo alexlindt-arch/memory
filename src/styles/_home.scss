@@ -1,0 +1,83 @@
+/* =========================================================================
+   Home screen
+   ========================================================================= */
+
+.screen--home {
+  background: #303131;
+  font-family: 'Almarai', sans-serif;
+}
+
+.home__watermark {
+  position: absolute;
+  left: calc(50% - 720px);
+  top: 600px;
+  width: 427px;
+  height: 412px;
+}
+
+.home__intro {
+  position: absolute;
+  left: calc(50% - 991px / 2 + 0.5px);
+  top: calc(50% - 229px / 2 - 58.5px);
+  text-align: left;
+  width: 991px;
+}
+
+.home__eyebrow {
+  font-size: 48px;
+  line-height: 54px;
+  color: #ffffff;
+}
+
+.home__title {
+  font-family: 'Red Rose', sans-serif;
+  font-weight: 700;
+  font-size: 140px;
+  line-height: 175px;
+  color: #ffffff;
+}
+
+.play {
+  position: absolute;
+  left: calc(50% - 250px / 2);
+  top: 653px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 250px;
+  height: 98px;
+  padding: 24px;
+  background: #f0ea6e;
+  transition: transform 0.25s ease;
+}
+
+.play:hover,
+.play:focus-visible {
+  transform: scale(1.08);
+}
+
+.play__pad {
+  width: 44px;
+  height: 32px;
+  flex: none;
+  transition: transform 0.25s ease;
+}
+
+.play:hover .play__pad,
+.play:focus-visible .play__pad {
+  transform: rotate(-14deg);
+}
+
+.play__label {
+  font-family: 'Red Rose', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 50px;
+  color: #303131;
+}
+
+.play__arrow {
+  width: 33px;
+  height: 12px;
+  flex: none;
+}

@@ -1,0 +1,178 @@
+/* =========================================================================
+   Theme tokens
+   ========================================================================= */
+
+body {
+  --settings-bg: #ffffff;
+  --settings-ink: #303131;
+  --settings-rule: #f0ea6e;
+  --icon-themes: #da1eba;
+  --icon-player: #1ae5be;
+  --icon-size: #0635c9;
+  --start-on: #f0ea6e;
+  --start-off: #d9d9d9;
+  --start-ink-on: #303131;
+  --start-ink-off: #afafaf;
+  --card-radius: 0px;
+  --card-gap: 16px;
+  --card-border-w: 6px;
+  --card-back-shadow: none;
+  --card-matched-shadow: none;
+  --dialog-radius: 0px;
+  --topbar-radius: 0px;
+  --exit-radius: 0px;
+}
+
+body[data-theme='codevibes'] {
+  --game-bg: #303131;
+  --font-body: 'Red Rose', sans-serif;
+  --font-head: 'Red Rose', sans-serif;
+  --font-settings: 'Almarai', sans-serif;
+  --ink: #ffffff;
+  --accent: #4dd5bc;
+  --accent-soft: rgba(134, 233, 214, 0.2);
+  --blue: #2bb1ff;
+  --orange: #f58e39;
+  --card-w: 120px;
+  --card-h: 120px;
+  --card-ratio: 1;
+  --card-back: linear-gradient(212.26deg, #4dd5bc 29.42%, #286f62 123.94%);
+  --card-front-bg: #e8f3f0;
+  --card-front-matched-bg: #ffffff;
+  --card-border: #4dd5bc;
+  --img-scale: 124%;
+  --card-img-y: -48%;
+  --exit-bg: rgba(134, 233, 214, 0.2);
+  --exit-border: 2px solid #58dbc4;
+  --exit-ink: #ffffff;
+  --dialog-bg: #ffffff;
+  --dialog-ink: #303131;
+  --dialog-yes: #66cfbc;
+  --dialog-yes-ink: #ffffff;
+}
+
+body[data-theme='gaming'] {
+  --game-bg: #294f60;
+  --font-body: 'Orbitron', sans-serif;
+  --font-head: 'Orbitron', sans-serif;
+  --font-settings: 'Orbitron', sans-serif;
+  --ink: #ffffff;
+  --accent: #ed1b76;
+  --accent-soft: rgba(253, 150, 201, 0.2);
+  --blue: #097fc5;
+  --orange: #ea6900;
+  --card-w: 105px;
+  --card-h: 120px;
+  --card-ratio: 0.875;
+  --card-radius: 12px;
+  --card-border-w: 4px;
+  --card-back: linear-gradient(147.13deg, #ed1b76 1.28%, #0a2835 142.53%);
+  --card-back-shadow: 6px 6px 12px rgba(0, 0, 0, 0.25);
+  --card-matched-shadow: 0 0 18px rgba(237, 27, 118, 0.55);
+  --card-front-bg: #f6f1f3;
+  --card-front-matched-bg: #f6f1f3;
+  --card-border: #ed1b76;
+  --img-scale: 148%;
+  --card-img-x: -46%;
+  --card-img-y: -46%;
+  --exit-bg: rgba(237, 27, 118, 0.08);
+  --exit-border: 2px solid #e71c4f;
+  --exit-ink: #ffffff;
+  --exit-radius: 10px;
+  --topbar-radius: 10px;
+  --dialog-bg: #f0f6f9;
+  --dialog-ink: #294f60;
+  --dialog-radius: 20px;
+  --dialog-yes: #ed1b76;
+  --dialog-yes-ink: #ffffff;
+  --icon-themes: #ed1b76;
+  --icon-player: #1faafc;
+  --icon-size: #294f60;
+}
+
+body[data-theme='daprojects'] {
+  --game-bg: #ffffff;
+  --font-body: 'Figtree', sans-serif;
+  --font-head: 'Figtree', sans-serif;
+  --font-settings: 'Figtree', sans-serif;
+  --ink: #294f60;
+  --accent: #1e7594;
+  --accent-soft: #f0f3f4;
+  --blue: #097fc5;
+  --orange: #ea6900;
+  --card-w: 120px;
+  --card-h: 100px;
+  --card-ratio: 1.2;
+  --card-radius: 13px;
+  --card-border-w: 5px;
+  --card-back: #1e7594;
+  --card-front-bg: #eaf1f3;
+  --card-front-matched-bg: #ffffff;
+  --card-border: #1e7594;
+  --img-scale: 104%;
+  --exit-bg: #bfe5f2;
+  --exit-border: none;
+  --exit-ink: #1e7594;
+  --exit-radius: 10px;
+  --topbar-radius: 10px;
+  --dialog-bg: #ffffff;
+  --dialog-ink: #294f60;
+  --dialog-radius: 10px;
+  --dialog-yes: #bfe5f2;
+  --dialog-yes-ink: #1e7594;
+  --icon-themes: #1e7594;
+  --icon-player: #097fc5;
+  --icon-size: #ea6900;
+}
+
+body[data-theme='foods'] {
+  --game-bg: #ffffff;
+  --font-body: 'Klee One', cursive;
+  --font-head: 'Delius Unicase', cursive;
+  --font-settings: 'Klee One', cursive;
+  --ink: #a45212;
+  --accent: #f3832d;
+  --accent-soft: #f0e5d9;
+  --blue: #097fc5;
+  --orange: #ea6900;
+  --card-w: 122px;
+  --card-h: 122px;
+  --card-ratio: 1;
+  --card-back: #f3832d;
+  --card-front-bg: #f7e6d5;
+  --card-front-matched-bg: #f7e6d5;
+  --card-border: transparent;
+  --img-scale: 104%;
+  --exit-bg: #fff9f2;
+  --exit-border: 3px solid #f3832d;
+  --exit-ink: #f3832d;
+  --exit-radius: 10px;
+  --topbar-radius: 10px;
+  --dialog-bg: #ffffff;
+  --dialog-ink: #a45212;
+  --dialog-radius: 10px;
+  --dialog-yes: #ffab3e;
+  --dialog-yes-ink: #ffffff;
+  --icon-themes: #f3832d;
+  --icon-player: #ea6900;
+  --icon-size: #a45212;
+}
+
+body[data-screen='home'],
+body[data-screen='settings'],
+body[data-screen='gameover'],
+body[data-screen='end'] {
+  background: var(--screen-bg, #303131);
+}
+
+body[data-screen='gameover'] {
+  --screen-bg: var(--over-bg);
+}
+
+body[data-screen='home'] {
+  --screen-bg: #303131;
+}
+
+body[data-screen='settings'] {
+  --screen-bg: var(--settings-bg);
+}

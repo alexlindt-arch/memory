@@ -1,0 +1,86 @@
+/* =========================================================================
+   Buttons & quit dialog
+   ========================================================================= */
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 182px;
+  height: 57px;
+  padding: 16px 24px;
+  border-radius: var(--exit-radius);
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25px;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn--primary {
+  background: var(--dialog-yes);
+  color: var(--dialog-yes-ink);
+  border: 3px solid var(--dialog-yes);
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.dialog {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 20, 25, 0.55);
+  z-index: 10;
+}
+
+/* 539px is the design width. Themes set their own headline font, and the
+   widest of them needs more room for the two buttons than that leaves, so the
+   box is allowed to grow rather than let the buttons spill over its edge. */
+.dialog__box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 539px;
+  min-width: max-content;
+  padding: 40px;
+  border-radius: var(--dialog-radius);
+  background: var(--dialog-bg);
+  font-family: var(--font-head);
+}
+
+.dialog__text {
+  width: 459px;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+  color: var(--dialog-ink);
+}
+
+.dialog__actions {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}

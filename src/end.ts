@@ -2,8 +2,14 @@
  * End screen: winner announcement, final score and confetti.
  */
 
+import { BREAKPOINT, OVER_DELAY, publicUrl } from './config';
+import { byId } from './dom';
+import { showScreen } from './screens';
+import { getWinner, state } from './state';
+import type { ConfettiPiece, Winner } from './types';
+
 /** Placement of the nine confetti images, taken from the design. */
-const CONFETTI = [
+const CONFETTI: readonly ConfettiPiece[] = [
   { w: 140, h: 92.43, x: 0, y: 0, t: 'rotate(-50.03deg)' },
   { w: 155.26, h: 202.37, x: 1, y: 121, t: 'matrix(-0.96, 0.28, 0.28, 0.96, 0, 0)' },
   { w: 243.4, h: 190.28, x: 114, y: 32, t: 'rotate(17.69deg)' },
@@ -15,51 +21,8 @@ const CONFETTI = [
   { w: 155.26, h: 202.37, x: 1028, y: 46, t: 'rotate(16.34deg)' }
 ];
 
-/**
- * Shows the game over screen with the final score. After a short pause it
- * hands over to the winner screen; a click skips the wait.
- * @returns {void}
- */
-function showGameOver() {
-  document.getElementById('over-score-blue').textContent = String(state.scores.blue);
-  document.getElementById('over-score-orange').textContent = String(state.scores.orange);
-  showScreen('gameover');
-  state.timer = window.setTimeout(showEndScreen, OVER_DELAY);
-}
-
-/**
- * Fills and shows the winner screen for the finished round.
- * @returns {void}
- */
-function showEndScreen() {
-  window.clearTimeout(state.timer);
-  const winner = getWinner();
-  renderWinner(winner);
-  showScreen('end');
-  renderConfetti(winner !== 'draw' && state.theme === 'codevibes');
-}
-
-/**
- * Writes the winner headline and colours trophy and name accordingly.
- * @param {string} winner - 'blue', 'orange' or 'draw'.
- * @returns {void}
- */
-function renderWinner(winner) {
-  const isDraw = winner === 'draw';
-  const name = winner.charAt(0).toUpperCase() + winner.slice(1);
-  document.getElementById('end-lead').textContent = isDraw ? "It's a" : 'The winner is';
-  document.getElementById('end-winner').textContent = isDraw ? 'Draw' : name + ' Player';
-  document.getElementById('btn-home').textContent =
-    state.theme === 'codevibes' ? 'Back to start' : 'Home';
-  const screen = document.getElementById('screen-end');
-  screen.classList.toggle('is-draw', isDraw);
-  const color = isDraw ? 'var(--win-draw-ink)' : 'var(--' + winner + ')';
-  screen.style.setProperty('--winner-color', color);
-}
-
-
 /** The long confetti strip used from the widescreen breakpoint up. */
-const CONFETTI_WIDE = [
+const CONFETTI_WIDE: readonly ConfettiPiece[] = [
   { w: 243.4, h: 190.28, x: 1105, y: 32, t: 'rotate(17.69deg)' },
   { w: 243.4, h: 190.28, x: 106, y: 13, t: 'rotate(17.69deg)' },
   { w: 243.4, h: 190.28, x: 2307, y: 9, t: 'rotate(17.69deg)' },
@@ -89,13 +52,53 @@ const CONFETTI_WIDTH = 1234;
 const CONFETTI_WIDE_WIDTH = 3216;
 
 /**
- * Builds or clears the confetti strip above the headline. From the widescreen
- * breakpoint up the longer strip from the design is used; both are centred.
- * @param {boolean} visible - True to show confetti, false to clear it.
+ * Shows the game over screen with the final score. After a short pause it
+ * hands over to the winner screen; a click skips the wait.
  * @returns {void}
  */
-function renderConfetti(visible) {
-  const strip = document.getElementById('confetti');
+export function showGameOver(): void {
+  byId('over-score-blue').textContent = String(state.scores.blue);
+  byId('over-score-orange').textContent = String(state.scores.orange);
+  showScreen('gameover');
+  state.timer = window.setTimeout(showEndScreen, OVER_DELAY);
+}
+
+/**
+ * Fills and shows the winner screen for the finished round.
+ * @returns {void}
+ */
+export function showEndScreen(): void {
+  if (state.timer !== null) window.clearTimeout(state.timer);
+  const winner = getWinner();
+  renderWinner(winner);
+  showScreen('end');
+  renderConfetti(winner !== 'draw' && state.theme === 'codevibes');
+}
+
+/**
+ * Writes the winner headline and colours trophy and name accordingly.
+ * @param winner - The winning player, or 'draw'.
+ * @returns {void}
+ */
+function renderWinner(winner: Winner): void {
+  const isDraw = winner === 'draw';
+  const name = winner.charAt(0).toUpperCase() + winner.slice(1);
+  byId('end-lead').textContent = isDraw ? "It's a" : 'The winner is';
+  byId('end-winner').textContent = isDraw ? 'Draw' : `${name} Player`;
+  byId('btn-home').textContent = state.theme === 'codevibes' ? 'Back to start' : 'Home';
+  const screen = byId('screen-end');
+  screen.classList.toggle('is-draw', isDraw);
+  screen.style.setProperty('--winner-color', isDraw ? 'var(--win-draw-ink)' : `var(--${winner})`);
+}
+
+/**
+ * Builds or clears the confetti strip above the headline. From the widescreen
+ * breakpoint up the longer strip from the design is used; both are centred.
+ * @param visible - True to show confetti, false to clear it.
+ * @returns {void}
+ */
+export function renderConfetti(visible: boolean): void {
+  const strip = byId('confetti');
   strip.innerHTML = '';
   if (!visible) return;
   const wide = strip.offsetWidth > BREAKPOINT;
@@ -107,18 +110,18 @@ function renderConfetti(visible) {
 
 /**
  * Creates one positioned confetti image.
- * @param {{w: number, h: number, x: number, y: number, t: string}} piece - Placement data.
- * @param {number} shift - Horizontal offset of the tile this piece belongs to.
- * @returns {HTMLImageElement} The positioned image element.
+ * @param piece - Placement data from the design.
+ * @param shift - Horizontal offset that centres the strip.
+ * @returns The positioned image element.
  */
-function createConfetti(piece, shift) {
+function createConfetti(piece: ConfettiPiece, shift: number): HTMLImageElement {
   const image = document.createElement('img');
-  image.src = './assets/confetti.png';
+  image.src = publicUrl('assets/confetti.png');
   image.alt = '';
-  image.style.width = piece.w + 'px';
-  image.style.height = piece.h + 'px';
-  image.style.left = (piece.x + shift) + 'px';
-  image.style.top = piece.y + 'px';
+  image.style.width = `${piece.w}px`;
+  image.style.height = `${piece.h}px`;
+  image.style.left = `${piece.x + shift}px`;
+  image.style.top = `${piece.y}px`;
   image.style.transform = piece.t;
   image.addEventListener('error', () => image.remove());
   return image;

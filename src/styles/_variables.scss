@@ -1,0 +1,21 @@
+// =========================================================================
+//  Shared values
+//
+//  The design canvas is a fixed 1440x1024 stage that gets scaled to the
+//  window, so these few numbers decide the whole layout. They live here so a
+//  breakpoint is written once instead of in nine media queries.
+// =========================================================================
+
+/// Width and height of the design canvas.
+$canvas-width: 1440px;
+$canvas-height: 1024px;
+
+/// Above this width the design keeps its size and only the stage widens.
+$breakpoint-wide: $canvas-width;
+
+/// Up to this width the screens lay themselves out in normal flow instead of
+/// being a scaled canvas – the phone and tablet layout.
+$breakpoint-flow: 768px;
+
+/// First width at which the scaled canvas takes over.
+$breakpoint-canvas: $breakpoint-flow + 1px;

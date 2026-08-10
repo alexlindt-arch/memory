@@ -1,0 +1,141 @@
+/* =========================================================================
+   Game screen – board & cards
+   ========================================================================= */
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), calc(var(--card-w) * var(--fit, 1)));
+  grid-auto-rows: calc(var(--card-h) * var(--fit, 1));
+  gap: var(--card-gap);
+}
+
+body[data-size='16'] .board {
+  --cols: 4;
+  --rows: 4;
+  --fit: 1;
+}
+
+body[data-size='24'] .board {
+  --cols: 6;
+  --rows: 4;
+  --fit: 0.92;
+}
+
+body[data-size='36'] .board {
+  --cols: 6;
+  --rows: 6;
+  --fit: 0.8;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  perspective: 900px;
+  cursor: pointer;
+}
+
+.card--open,
+.card--matched {
+  cursor: default;
+}
+
+.card__inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card--open .card__inner,
+.card--matched .card__inner {
+  transform: rotateY(180deg);
+}
+
+.card__face {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card__face--back {
+  background: var(--card-back);
+  box-shadow: var(--card-back-shadow);
+}
+
+.card__face--front {
+  background: var(--card-front-bg);
+  border: var(--card-border-w) solid transparent;
+  transform: rotateY(180deg);
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card--matched .card__face--front {
+  background: var(--card-front-matched-bg);
+  border-color: var(--card-border);
+  box-shadow: var(--card-matched-shadow);
+}
+
+.card__glyph {
+  width: 50%;
+  height: 40%;
+  opacity: 0.35;
+}
+
+/* Each theme's artwork carries a different amount of padding around the
+   motif, so the zoom factor is part of the theme tokens. */
+.card__img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--img-scale);
+  height: var(--img-scale);
+  object-fit: contain;
+  display: block;
+  transform: translate(var(--card-img-x, -50%), var(--card-img-y, -50%));
+}
+
+.card__fallback {
+  display: none;
+  font-size: calc(var(--card-w) * var(--fit, 1) * 0.55);
+  line-height: 1;
+  user-select: none;
+}
+
+.is-fallback .card__img,
+.is-fallback .preview__img {
+  display: none;
+}
+
+.is-fallback .card__fallback {
+  display: block;
+}
+
+.preview__card--front .card__fallback {
+  font-size: 110px;
+}
+
+.card__frame {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  pointer-events: none;
+}
+
+body[data-theme='foods'] .card--matched .card__frame {
+  display: block;
+}

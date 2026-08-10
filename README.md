@@ -1,25 +1,43 @@
 # Memory
 
 Memory-Kartenspiel für zwei Spieler mit vier Themes, drei Spielfeldgrößen und
-eigenem Gewinner-Screen. Vanilla HTML/CSS/JavaScript – kein Build-Schritt,
-keine Abhängigkeiten, kein Framework.
+eigenem Gewinner-Screen. **TypeScript + SCSS, gebaut mit Vite.**
 
-**Spielen:** https://alexlindt-arch.github.io/memory/
-Oder `index.html` lokal im Browser öffnen.
+**Spielen:** https://alexander-lindt.developerakademie.net/Memory/
+
+## Entwickeln
+
+```bash
+npm install      # einmalig
+npm run dev      # Dev-Server mit Hot Reload
+npm run build    # Typprüfung + Produktionsbuild nach dist/
+npm run preview  # den fertigen Build lokal ansehen
+```
+
+`npm run build` führt zuerst `tsc --noEmit` aus: Findet die Typprüfung einen
+Fehler, entsteht gar kein Build. Das Ergebnis liegt in `dist/` und wird
+unverändert auf den Server geladen.
 
 ## Aufbau
 
 ```
-index.html          Alle fünf Screens + Quit-Dialog
-css/style.css       Layout und Theme-Tokens (CSS Custom Properties)
-js/themes.js        Konfiguration: 4 Themes, Spieler, Spielfeldgrößen
-js/state.js         Zentraler Spielzustand
-js/settings.js      Settings-Screen: Auswahl, Vorschau, Summary, Start-Button
-js/board.js         Deck-Erzeugung (Fisher-Yates) und Karten-DOM
-js/game.js          Aufdecken, Paarprüfung, Punkte, Spielerwechsel
-js/end.js           Game-over-Screen, Gewinner-Anzeige, Konfetti
-js/app.js           Screen-Routing, Stage-Skalierung, Event-Bindung
-assets/             75 Grafiken (73 Kartenmotive, Konfetti, Pokal)
+index.html              Alle fünf Screens + Quit-Dialog, bindet src/main.ts ein
+src/main.ts             Einstiegspunkt: Styles, Event-Bindung, Start
+src/config.ts           4 Themes, Spieler, Spielfeldgrößen, Timings
+src/types.ts            Gemeinsame Typen (Theme, Card, GameState …)
+src/state.ts            Zentraler Spielzustand
+src/dom.ts              Typsichere DOM-Zugriffe
+src/screens.ts          Screen-Routing und Quit-Dialog
+src/stage.ts            Skalierung der Design-Bühne
+src/settings.ts         Settings-Screen: Auswahl, Vorschau, Summary, Start
+src/board.ts            Deck-Erzeugung (Fisher-Yates) und Karten-DOM
+src/game.ts             Aufdecken, Paarprüfung, Punkte, Spielerwechsel
+src/end.ts              Game-over-Screen, Gewinner-Anzeige, Konfetti
+src/styles/style.scss   Haupt-Stylesheet, bindet die Partials ein
+src/styles/_*.scss      Ein Partial je Screen + Variablen und Theme-Tokens
+public/                 75 Grafiken und Favicon, werden 1:1 übernommen
+vite.config.ts          base: '/Memory/' – das Projekt liegt im Unterordner
+tsconfig.json           strict: true
 ```
 
 Die fünf Screens sind Startseite, Settings, Spielfeld, „Game over" und
@@ -67,17 +85,43 @@ andere Spieler ist dran. Sind alle Paare gefunden, erscheint der End-Screen.
 
 ## Code Conventions
 
-HTML, CSS und JavaScript liegen in getrennten Dateien. Keine Inline-Styles,
+HTML, SCSS und TypeScript liegen in getrennten Dateien. Keine Inline-Styles,
 keine Inline-Event-Handler. Jede Funktion hat einen JSDoc-Block, bleibt unter
 15 Zeilen und hat genau eine Aufgabe. Namen in camelCase, Konstanten in
 UPPER_SNAKE_CASE, semantische Elemente und `alt`-Attribute durchgängig.
 
+### TypeScript
+
+`strict: true`, und der Build bricht bei jedem Typfehler ab. Statt loser
+Strings beschreiben eigene Typen, was erlaubt ist – `PlayerId` ist
+`'blue' | 'orange'`, `BoardSize` ist `16 | 24 | 36`. Ein Tippfehler in einer
+Theme-Id fällt dadurch beim Bauen auf und nicht erst im Browser.
+
+Die Module teilen ihren Code über `export` / `import`. Zwei Stellen brauchten
+dafür eine eigene Lösung, weil sie sich sonst gegenseitig importiert hätten:
+Das Spielfeld reicht Klicks über einen Callback (`FlipHandler`) nach oben
+weiter, statt die Rundenlogik zu importieren, und das Screen-Routing liegt in
+`screens.ts` statt im Einstiegspunkt.
+
+`document.getElementById` liefert `HTMLElement | null`. Unter `strict` bräuchte
+jeder einzelne Zugriff eine Null-Prüfung, deshalb übernimmt `byId()` aus
+`dom.ts` das einmal zentral und wirft bei einer fehlenden Id einen Fehler – ein
+Tippfehler im Markup soll auffallen, nicht stillschweigend übergangen werden.
+
+### SCSS
+
+`style.scss` bindet je ein Partial pro Screen ein (`_home`, `_settings`,
+`_board` …), dazu `_themes` mit den Farb-Tokens und `_responsive` mit den
+Media Queries. Maße und Breakpoints stehen einmal in `_variables.scss`, so
+steht die Breakpoint-Zahl nicht mehr in neun Media Queries verstreut.
+
 ## Grafiken
 
-Alle 75 Bilder liegen unverändert im Repo (`card-<theme>-<motiv>.png`,
-`card-frame-foods.png`, `confetti.png`, `trophy-gaming.png`). Fehlt eine Datei,
-zeigt die Karte automatisch ein passendes Symbol als Fallback – das Spiel
-bleibt in jedem Fall spielbar.
+Alle 75 Bilder liegen unverändert in `public/` (`card-<theme>-<motiv>.png`,
+`card-frame-foods.png`, `confetti.png`, `trophy-gaming.png`). Vite übernimmt
+diesen Ordner beim Build unverändert nach `dist/`. Fehlt eine Datei, zeigt die
+Karte automatisch ein passendes Symbol als Fallback – das Spiel bleibt in jedem
+Fall spielbar.
 
 ## Responsives Verhalten (320 px – 2560 px)
 

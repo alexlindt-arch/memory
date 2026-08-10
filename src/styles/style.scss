@@ -1,0 +1,18 @@
+// =========================================================================
+//  Memory – main stylesheet
+//
+//  Imported once from src/main.ts; Vite compiles the SCSS and injects the
+//  result. The partials follow the screens of the game, so a rule is looked
+//  up where the screen it belongs to is.
+// =========================================================================
+
+@use 'base';
+@use 'themes';
+@use 'home';
+@use 'settings';
+@use 'topbar';
+@use 'board';
+@use 'winner';
+@use 'dialog';
+@use 'gameover';
+@use 'responsive';

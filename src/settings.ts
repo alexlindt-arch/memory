@@ -4,15 +4,26 @@
  * the summary bar and the start button.
  */
 
+import { BOARD_SIZES, PLAYERS, THEMES, getFaceGlyph, getFacePath, getTheme } from './config';
+import { byId } from './dom';
+import { isReadyToStart, state } from './state';
+import type { BoardSize, OptionGroup, PlayerId, ThemeId } from './types';
+
 const ARROW_SVG = '<svg class="option__arrow" viewBox="395 330 50 18" xmlns="http://www.w3.org/2000/svg"'
   + ' aria-hidden="true"><path d="M444.66 339L436 330.34L427.34 339L436 347.66L444.66 339ZM395 339V340.5H436V339V337.5'
   + 'H395V339Z" fill="var(--settings-rule)"></path></svg>';
+
+/** One selectable row of an option group. */
+interface OptionItem {
+  readonly value: string | number;
+  readonly label: string;
+}
 
 /**
  * Renders all three option lists once on start-up.
  * @returns {void}
  */
-function renderSettings() {
+export function renderSettings(): void {
   fillOptions('options-theme', THEMES.map((theme) => ({ value: theme.id, label: theme.label })), true);
   fillOptions('options-player', PLAYERS.map((player) => ({ value: player.id, label: player.label })), false);
   fillOptions('options-size', BOARD_SIZES.map((size) => ({ value: size.cards, label: size.label })), false);
@@ -21,46 +32,49 @@ function renderSettings() {
 
 /**
  * Builds the list items of one option group.
- * @param {string} listId - Id of the <ul> element.
- * @param {{value: (string|number), label: string}[]} items - Options to render.
- * @param {boolean} withArrow - True to append the pointer arrow (themes only).
+ * @param listId - Id of the <ul> element.
+ * @param items - Options to render.
+ * @param withArrow - True to append the pointer arrow (themes only).
  * @returns {void}
  */
-function fillOptions(listId, items, withArrow) {
-  const list = document.getElementById(listId);
+function fillOptions(listId: string, items: OptionItem[], withArrow: boolean): void {
+  const list = byId(listId);
   list.innerHTML = '';
   items.forEach((item) => list.appendChild(createOption(listId, item, withArrow)));
 }
 
 /**
  * Creates a single selectable option row.
- * @param {string} listId - Id of the owning list, used to derive the group.
- * @param {{value: (string|number), label: string}} item - Option data.
- * @param {boolean} withArrow - True to append the pointer arrow.
- * @returns {HTMLLIElement} The ready-to-insert list item.
+ * @param listId - Id of the owning list, used to derive the group.
+ * @param item - Option data.
+ * @param withArrow - True to append the pointer arrow.
+ * @returns The ready-to-insert list item.
  */
-function createOption(listId, item, withArrow) {
-  const group = listId.replace('options-', '');
+function createOption(listId: string, item: OptionItem, withArrow: boolean): HTMLLIElement {
+  const group = listId.replace('options-', '') as OptionGroup;
   const li = document.createElement('li');
-  li.innerHTML = '<button class="option" type="button"><span class="option__dot"></span>'
-    + '<span class="option__label">' + item.label + '</span>' + (withArrow ? ARROW_SVG : '') + '</button>';
-  const button = li.firstChild;
+  const button = document.createElement('button');
+  button.className = 'option';
+  button.type = 'button';
+  button.innerHTML = '<span class="option__dot"></span>'
+    + `<span class="option__label">${item.label}</span>${withArrow ? ARROW_SVG : ''}`;
   button.dataset.group = group;
   button.dataset.value = String(item.value);
   button.addEventListener('click', () => selectOption(group, item.value));
+  li.appendChild(button);
   return li;
 }
 
 /**
  * Stores a chosen option in the state and refreshes the screen.
- * @param {string} group - 'theme', 'player' or 'size'.
- * @param {(string|number)} value - The chosen value.
+ * @param group - Which setting was changed.
+ * @param value - The chosen value.
  * @returns {void}
  */
-function selectOption(group, value) {
-  if (group === 'theme') state.theme = String(value);
-  if (group === 'player') state.player = String(value);
-  if (group === 'size') state.size = Number(value);
+function selectOption(group: OptionGroup, value: string | number): void {
+  if (group === 'theme') state.theme = String(value) as ThemeId;
+  if (group === 'player') state.player = String(value) as PlayerId;
+  if (group === 'size') state.size = Number(value) as BoardSize;
   updateSettings();
 }
 
@@ -68,33 +82,38 @@ function selectOption(group, value) {
  * Applies the current selection to theme, options, preview and summary.
  * @returns {void}
  */
-function updateSettings() {
+export function updateSettings(): void {
   document.body.dataset.theme = state.theme;
   markActiveOptions();
   updatePreview();
   updateSummary();
-  document.getElementById('btn-start').disabled = !isReadyToStart();
+  byId<HTMLButtonElement>('btn-start').disabled = !isReadyToStart();
 }
 
 /**
  * Highlights the selected row inside every option group.
  * @returns {void}
  */
-function markActiveOptions() {
-  const chosen = { theme: state.theme, player: state.player, size: state.size };
-  document.querySelectorAll('.option').forEach((option) => {
-    const active = String(chosen[option.dataset.group]) === option.dataset.value;
-    option.classList.toggle('option--active', active);
+function markActiveOptions(): void {
+  const chosen: Record<OptionGroup, string | number | null> = {
+    theme: state.theme,
+    player: state.player,
+    size: state.size
+  };
+  document.querySelectorAll<HTMLButtonElement>('.option').forEach((option) => {
+    const group = option.dataset.group as OptionGroup | undefined;
+    if (!group) return;
+    option.classList.toggle('option--active', String(chosen[group]) === option.dataset.value);
     option.style.setProperty('--option-dot', getDotColor(option.dataset.value));
   });
 }
 
 /**
  * Picks the marker colour of an option dot.
- * @param {string} value - The option value.
- * @returns {string} A CSS colour value.
+ * @param value - The option value.
+ * @returns A CSS colour value.
  */
-function getDotColor(value) {
+function getDotColor(value: string | undefined): string {
   if (value === 'blue') return 'var(--blue)';
   if (value === 'orange') return 'var(--orange)';
   return 'var(--settings-ink)';
@@ -104,13 +123,13 @@ function getDotColor(value) {
  * Shows a sample card of the selected theme inside the preview panel.
  * @returns {void}
  */
-function updatePreview() {
+function updatePreview(): void {
   const theme = getTheme(state.theme);
-  const image = document.getElementById('preview-front');
-  const card = image.parentNode;
-  card.classList.remove('is-fallback');
-  document.getElementById('preview-glyph').textContent = getFaceGlyph(theme, theme.preview);
-  image.onerror = () => card.classList.add('is-fallback');
+  const image = byId<HTMLImageElement>('preview-front');
+  const card = image.parentElement;
+  card?.classList.remove('is-fallback');
+  byId('preview-glyph').textContent = getFaceGlyph(theme, theme.preview);
+  image.onerror = () => card?.classList.add('is-fallback');
   image.src = getFacePath(theme, theme.preview);
 }
 
@@ -119,7 +138,7 @@ function updatePreview() {
  * chosen value once it is picked, and stays grey until then.
  * @returns {void}
  */
-function updateSummary() {
+function updateSummary(): void {
   const player = PLAYERS.find((entry) => entry.id === state.player);
   const size = BOARD_SIZES.find((entry) => entry.cards === state.size);
   setSummaryStep('theme', getTheme(state.theme).label.replace(' theme', ''), true);
@@ -129,13 +148,13 @@ function updateSummary() {
 
 /**
  * Writes one summary step and marks it as done or pending.
- * @param {string} key - 'theme', 'player' or 'size'.
- * @param {string} label - Text to display.
- * @param {boolean} done - True when the step has been chosen.
+ * @param key - Which step to write.
+ * @param label - Text to display.
+ * @param done - True when the step has been chosen.
  * @returns {void}
  */
-function setSummaryStep(key, label, done) {
-  const step = document.getElementById('summary-' + key);
+function setSummaryStep(key: OptionGroup, label: string, done: boolean): void {
+  const step = byId(`summary-${key}`);
   step.textContent = label;
   step.classList.toggle('summary__step--done', done);
 }

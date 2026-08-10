@@ -1,17 +1,24 @@
 /**
- * Static configuration: themes, players and board sizes.
+ * Static configuration: themes, players, board sizes and timings.
  * Every theme owns its own motif set, so choosing a theme changes both the
  * colour scheme (via CSS custom properties) and the topics of the cards.
  */
 
+import type { BoardSizeOption, Player, Theme, ThemeId } from './types';
+
 /**
- * Every theme owns an ordered list of motifs. `glyphs` mirrors `faces` and is
- * used as a fallback whenever the matching PNG is not (yet) available.
- * `preview` names the motif shown on the settings preview card.
- * @type {{id: string, label: string, prefix: string, preview: string,
- *         frame: (string|null), faces: string[], glyphs: string[]}[]}
+ * Builds the URL of a file in `public/`. Vite serves the app from a subfolder
+ * on the server, and `BASE_URL` carries that prefix – a bare '/assets/…' would
+ * point at the document root and 404.
+ * @param file - Path inside `public/`, e.g. 'assets/card-code-git.png'.
+ * @returns The URL the browser can load.
  */
-const THEMES = [
+export function publicUrl(file: string): string {
+  return import.meta.env.BASE_URL + file;
+}
+
+/** All four themes in the order they appear on the settings screen. */
+export const THEMES: readonly Theme[] = [
   {
     id: 'codevibes',
     label: 'Code vibes theme',
@@ -52,7 +59,7 @@ const THEMES = [
     label: 'Foods theme',
     prefix: 'food',
     preview: 'fries',
-    frame: './assets/card-frame-foods.png',
+    frame: publicUrl('assets/card-frame-foods.png'),
     faces: ['fries', 'pizza', 'sandwich', 'donut', 'sushi', 'corndog', 'burger', 'pretzel',
       'cupcake', 'flan', 'pudding', 'chocolate', 'nuggets', 'wrap', 'taco', 'icecream',
       'salad', 'macaron'],
@@ -62,21 +69,21 @@ const THEMES = [
   }
 ];
 
-/** @type {{id: string, label: string}[]} */
-const PLAYERS = [
+/** The two selectable players. */
+export const PLAYERS: readonly Player[] = [
   { id: 'blue', label: 'Blue' },
   { id: 'orange', label: 'Orange' }
 ];
 
-/** @type {{cards: number, label: string}[]} */
-const BOARD_SIZES = [
+/** The three selectable board sizes. */
+export const BOARD_SIZES: readonly BoardSizeOption[] = [
   { cards: 16, label: '16 cards' },
   { cards: 24, label: '24 cards' },
   { cards: 36, label: '36 cards' }
 ];
 
 /** Viewport width from which the widescreen layout takes over. */
-const BREAKPOINT = 1440;
+export const BREAKPOINT = 1440;
 
 /**
  * Width the design really fills inside the 1440px wide canvas. The canvas
@@ -87,42 +94,42 @@ const BREAKPOINT = 1440;
  * little more size, but the top edge would then creep closer the shorter the
  * window gets, and the content would appear to drift upwards.
  */
-const CONTENT_WIDTH = 1260;
+export const CONTENT_WIDTH = 1260;
 
 /** Milliseconds two unmatched cards stay visible before they flip back. */
-const HIDE_DELAY = 1400;
+export const HIDE_DELAY = 1400;
 
 /** Milliseconds between the last match and the game over screen. */
-const END_DELAY = 1200;
+export const END_DELAY = 1200;
 
 /** Milliseconds the game over screen stays before the winner is revealed. */
-const OVER_DELAY = 2600;
+export const OVER_DELAY = 2600;
 
 /**
  * Looks up a theme by its id.
- * @param {string} id - Theme id, e.g. 'codevibes'.
- * @returns {object} The matching theme, or the first theme as fallback.
+ * @param id - Theme id, e.g. 'codevibes'.
+ * @returns The matching theme, or the first theme as fallback.
  */
-function getTheme(id) {
-  return THEMES.find((theme) => theme.id === id) || THEMES[0];
+export function getTheme(id: ThemeId): Theme {
+  return THEMES.find((theme) => theme.id === id) ?? THEMES[0];
 }
 
 /**
  * Builds the image path of a single card motif.
- * @param {object} theme - Theme object from THEMES.
- * @param {string} face - Motif name, e.g. 'git'.
- * @returns {string} Relative path to the motif image.
+ * @param theme - Theme the motif belongs to.
+ * @param face - Motif name, e.g. 'git'.
+ * @returns URL of the motif image.
  */
-function getFacePath(theme, face) {
-  return './assets/card-' + theme.prefix + '-' + face + '.png';
+export function getFacePath(theme: Theme, face: string): string {
+  return publicUrl(`assets/card-${theme.prefix}-${face}.png`);
 }
 
 /**
  * Returns the fallback glyph of a motif, shown when its image is missing.
- * @param {object} theme - Theme object from THEMES.
- * @param {string} face - Motif name, e.g. 'git'.
- * @returns {string} A single emoji character.
+ * @param theme - Theme the motif belongs to.
+ * @param face - Motif name, e.g. 'git'.
+ * @returns A single emoji character.
  */
-function getFaceGlyph(theme, face) {
-  return theme.glyphs[theme.faces.indexOf(face)] || '?';
+export function getFaceGlyph(theme: Theme, face: string): string {
+  return theme.glyphs[theme.faces.indexOf(face)] ?? '?';
 }

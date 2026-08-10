@@ -1,0 +1,508 @@
+/* =========================================================================
+   Settings screen
+   ========================================================================= */
+
+.screen--settings {
+  background: var(--settings-bg);
+  color: var(--settings-ink);
+  font-family: var(--font-settings);
+}
+
+/* 44px lower than the raw design, so the block sits centred on the canvas
+   instead of leaving twice as much room below it as above. */
+.settings__head {
+  position: absolute;
+  left: calc(50% - 548.5px);
+  top: 158px;
+  width: 251px;
+  text-align: center;
+}
+
+.settings__title {
+  font-family: 'Red Rose', sans-serif;
+  font-weight: 700;
+  font-size: 54px;
+  line-height: 67px;
+  color: var(--settings-ink);
+}
+
+.settings__rule {
+  position: relative;
+  display: block;
+  width: 251px;
+  height: 8px;
+  background: var(--settings-rule);
+}
+
+.settings__rule-tip {
+  position: absolute;
+  left: -7px;
+  top: -3px;
+  width: 14px;
+  height: 14px;
+  background: var(--settings-rule);
+  transform: rotate(45deg);
+}
+
+.settings__body {
+  position: absolute;
+  left: calc(50% - 1103px / 2 + 1.5px);
+  top: 287px;
+  width: 1103px;
+  height: 539px;
+}
+
+.group {
+  position: absolute;
+  width: 255px;
+}
+
+.group--themes {
+  left: 0;
+  top: 0;
+}
+
+.group--player {
+  left: 0;
+  top: 233px;
+}
+
+.group--size {
+  left: 0;
+  top: 435px;
+}
+
+.group__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  height: 32px;
+  margin-bottom: 16px;
+}
+
+.group__icon {
+  width: 32px;
+  height: 32px;
+  flex: none;
+}
+
+.group__title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 27px;
+  color: var(--settings-ink);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 44px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 24px;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+}
+
+.option__dot {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex: none;
+  border: 2px solid var(--settings-ink);
+  border-radius: 50%;
+}
+
+.option__dot::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  transition: background 0.2s ease;
+}
+
+.option--active .option__dot::after {
+  background: var(--option-dot, var(--settings-ink));
+}
+
+.option__label {
+  font-size: 20px;
+  line-height: 22px;
+  color: var(--settings-ink);
+  white-space: nowrap;
+}
+
+.option--active .option__label {
+  font-weight: 700;
+}
+
+.option__arrow {
+  width: 50px;
+  height: 18px;
+  flex: none;
+  opacity: 0;
+}
+
+.option--active .option__arrow {
+  opacity: 1;
+}
+
+/* --- live preview card ------------------------------------------------- */
+
+.preview {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 53px;
+  width: 460px;
+  height: 412px;
+  padding: 17px 7px;
+  border-radius: 16px;
+  background: var(--preview-bg, linear-gradient(223.71deg, #303131 43.86%, #6d6d6d 122.2%));
+}
+
+body[data-theme='gaming'] .preview {
+  --preview-bg: linear-gradient(200deg, #1d4557 20%, #2f7f9b 120%);
+  --preview-bar-bg: rgba(10, 40, 53, 0.45);
+  --preview-pill-bg: #ffffff;
+  --preview-exit-bg: transparent;
+  --preview-exit-border: 1.5px solid #ed1b76;
+  --preview-exit-ink: #ffffff;
+  --preview-exit-radius: 12px;
+  --preview-ink: #ffffff;
+  --preview-rot-back: -5deg;
+  --preview-rot-front: 4deg;
+  --preview-img-scale: 132%;
+  --preview-img-shift: 16px;
+}
+
+body[data-theme='daprojects'] .preview {
+  --preview-bg: #bfe5f2;
+  --preview-bar-bg: #ffffff;
+  --preview-pill-bg: transparent;
+  --preview-exit-bg: #bfe5f2;
+  --preview-exit-border: none;
+  --preview-exit-ink: #1e7594;
+  --preview-exit-radius: 8px;
+  --preview-ink: #1e7594;
+  --preview-rot-back: 0deg;
+  --preview-rot-front: 0deg;
+  --preview-img-fit: contain;
+  --preview-img-scale: 90%;
+  --preview-front-x: 152px;
+  --preview-front-y: 62px;
+  --preview-back-x: 0px;
+  --preview-back-y: 0px;
+}
+
+body[data-theme='foods'] .preview {
+  --preview-bg: #f7e6d5;
+  --preview-bar-bg: #ffffff;
+  --preview-pill-bg: transparent;
+  --preview-exit-bg: #fff9f2;
+  --preview-exit-border: 1.5px solid #f3832d;
+  --preview-exit-ink: #f3832d;
+  --preview-exit-radius: 12px;
+  --preview-ink: #a45212;
+  --preview-img-shift: 10px;
+}
+
+.preview__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 430px;
+  height: 44px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: var(--preview-bar-bg, var(--accent-soft));
+  box-shadow: 3px 2px 10.1px rgba(0, 0, 0, 0.2);
+}
+
+.preview__scores {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: var(--preview-pill-bg, rgba(255, 255, 255, 0.12));
+}
+
+.preview__score {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Red Rose', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.preview__score--blue {
+  color: var(--blue);
+}
+
+/* Code vibes lists Blue first; the other themes lead with Orange. */
+body[data-theme='codevibes'] .preview__score--blue {
+  order: -1;
+}
+
+body[data-theme='codevibes'] .preview__num--alt,
+body:not([data-theme='codevibes']) .preview__num--cv {
+  display: none;
+}
+
+.preview__score--orange {
+  color: var(--orange);
+}
+
+.preview__flag {
+  width: 13px;
+  height: 11px;
+  flex: none;
+  fill: currentColor;
+}
+
+.preview__person {
+  display: none;
+  width: 13px;
+  height: 16px;
+  flex: none;
+  fill: currentColor;
+}
+
+body:not([data-theme='codevibes']) .preview__flag {
+  display: none;
+}
+
+body:not([data-theme='codevibes']) .preview__person {
+  display: block;
+}
+
+body:not([data-theme='codevibes']) .preview__name {
+  display: none;
+}
+
+body:not([data-theme='codevibes']) .preview__scores {
+  border-radius: 8px;
+  gap: 18px;
+}
+
+.preview__chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body:not([data-theme='codevibes']) .preview__chip {
+  width: 24px;
+  height: 23px;
+  border-radius: 5px;
+  background: var(--blue);
+}
+
+body:not([data-theme='codevibes']) .preview__person--turn {
+  width: 12px;
+  height: 15px;
+  fill: #ffffff;
+}
+
+.preview__turn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Red Rose', sans-serif;
+  font-size: 11px;
+  color: var(--preview-ink, rgba(255, 255, 255, 0.85));
+}
+
+.preview__flag--turn {
+  width: 15px;
+  height: 13px;
+  color: var(--blue);
+}
+
+.preview__exit {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border: var(--preview-exit-border, 1.5px solid var(--accent));
+  border-radius: var(--preview-exit-radius, 6px);
+  background: var(--preview-exit-bg, transparent);
+  font-family: 'Red Rose', sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  color: var(--preview-exit-ink, #ffffff);
+  white-space: nowrap;
+}
+
+.preview__cards {
+  position: relative;
+  width: 337px;
+  height: 250px;
+}
+
+.preview__card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--card-w) * 1.63);
+  height: calc(var(--card-h) * 1.63);
+  border-radius: calc(var(--card-radius) * 1.63);
+  box-shadow: 6px 8px 18px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+}
+
+.preview__card--front {
+  left: var(--preview-front-x, 140px);
+  top: var(--preview-front-y, 20px);
+  background: var(--card-front-bg);
+  transform: rotate(var(--preview-rot-front, 9deg));
+}
+
+.preview__card--front img {
+  position: relative;
+  left: var(--preview-img-shift, 0px);
+  width: var(--preview-img-scale, 100%);
+  height: var(--preview-img-scale, 100%);
+  object-fit: var(--preview-img-fit, cover);
+  display: block;
+}
+
+.preview__card--back {
+  left: var(--preview-back-x, -8px);
+  top: var(--preview-back-y, 8px);
+  background: var(--card-back);
+  transform: rotate(var(--preview-rot-back, -6deg));
+}
+
+.preview__glyph {
+  width: 88px;
+  height: 70px;
+  flex: none;
+}
+
+body[data-theme='gaming'] .preview__glyph {
+  display: none;
+}
+
+.preview__exit-icon {
+  width: 11px;
+  height: 11px;
+  flex: none;
+}
+
+/* --- summary bar & start ------------------------------------------------ */
+
+.summary {
+  position: absolute;
+  right: 0;
+  top: 458px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 81px;
+  padding: 14px 20px;
+  background: #f6f6f6;
+}
+
+.summary__step {
+  flex: none;
+  text-align: center;
+  font-size: 20px;
+  line-height: 22px;
+  color: var(--settings-ink);
+  white-space: nowrap;
+  opacity: 0.45;
+  transition: opacity 0.2s ease;
+}
+
+/* Fixed widths keep the bar from shifting when a label changes. */
+.summary__step--theme {
+  width: 116px;
+}
+
+.summary__step--player {
+  width: 72px;
+}
+
+.summary__step--size {
+  width: 100px;
+}
+
+.summary__step--done {
+  opacity: 1;
+  font-weight: 700;
+}
+
+.summary__sep {
+  width: 9px;
+  height: 52px;
+  flex: none;
+  border-radius: 2px;
+  background: var(--settings-rule);
+  transform: skewX(-19deg);
+}
+
+.start {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 126px;
+  height: 53px;
+  padding: 14px 20px;
+  flex: none;
+  background: var(--start-off);
+  color: var(--start-ink-off);
+  cursor: not-allowed;
+  transition: transform 0.25s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.start:not([disabled]) {
+  background: var(--start-on);
+  color: var(--start-ink-on);
+  cursor: pointer;
+}
+
+.start:not([disabled]):hover,
+.start:not([disabled]):focus-visible {
+  transform: scale(1.06);
+}
+
+.start__icon {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  fill: currentColor;
+  transition: transform 0.25s ease;
+}
+
+.start:not([disabled]):hover .start__icon,
+.start:not([disabled]):focus-visible .start__icon {
+  transform: rotate(-10deg);
+}
+
+.start__label {
+  font-family: 'Red Rose', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25px;
+}
