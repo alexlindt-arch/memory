@@ -19,3 +19,16 @@ $breakpoint-flow: 768px;
 
 /// First width at which the scaled canvas takes over.
 $breakpoint-canvas: $breakpoint-flow + 1px;
+
+/// Accent colour of each theme, mirroring `--accent` in _themes.scss.
+///
+/// Needed as a Sass value rather than a custom property, because the marker of
+/// a theme row has to show *that* theme's colour while the page is still
+/// showing another one – `var(--accent)` would always resolve to the theme
+/// currently selected.
+$theme-accent: (
+  'codevibes': #4dd5bc,
+  'gaming': #ed1b76,
+  'daprojects': #1e7594,
+  'foods': #f3832d
+);

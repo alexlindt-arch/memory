@@ -7,7 +7,7 @@
 import { BOARD_SIZES, PLAYERS, THEMES, getFaceGlyph, getFacePath, getTheme } from './config';
 import { byId } from './dom';
 import { isReadyToStart, state } from './state';
-import type { BoardSize, OptionGroup, PlayerId, ThemeId } from './types';
+import type { BoardSize, OptionGroup, PlayerId, Theme, ThemeId } from './types';
 
 const ARROW_SVG = '<svg class="option__arrow" viewBox="395 330 50 18" xmlns="http://www.w3.org/2000/svg"'
   + ' aria-hidden="true"><path d="M444.66 339L436 330.34L427.34 339L436 347.66L444.66 339ZM395 339V340.5H436V339V337.5'
@@ -61,8 +61,26 @@ function createOption(listId: string, item: OptionItem, withArrow: boolean): HTM
   button.dataset.group = group;
   button.dataset.value = String(item.value);
   button.addEventListener('click', () => selectOption(group, item.value));
+  if (group === 'theme') bindThemePeek(button, item.value as ThemeId);
   li.appendChild(button);
   return li;
+}
+
+/**
+ * Lets a theme row show its own motif on the preview card while the pointer
+ * rests on it, so the theme can be judged before it is chosen. Leaving the row
+ * puts the selected theme back.
+ * @param button - The theme row to watch.
+ * @param theme - Id of the theme this row stands for.
+ * @returns {void}
+ */
+function bindThemePeek(button: HTMLButtonElement, theme: ThemeId): void {
+  const peek = () => updatePreview(getTheme(theme));
+  const reset = () => updatePreview();
+  button.addEventListener('mouseenter', peek);
+  button.addEventListener('mouseleave', reset);
+  button.addEventListener('focus', peek);
+  button.addEventListener('blur', reset);
 }
 
 /**
@@ -120,11 +138,11 @@ function getDotColor(value: string | undefined): string {
 }
 
 /**
- * Shows a sample card of the selected theme inside the preview panel.
+ * Shows a sample card inside the preview panel.
+ * @param theme - Theme to display; defaults to the selected one.
  * @returns {void}
  */
-function updatePreview(): void {
-  const theme = getTheme(state.theme);
+function updatePreview(theme: Theme = getTheme(state.theme)): void {
   const image = byId<HTMLImageElement>('preview-front');
   const card = image.parentElement;
   card?.classList.remove('is-fallback');
