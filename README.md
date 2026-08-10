@@ -1,161 +1,158 @@
 # Memory
 
-Ein Memory-Kartenspiel für zwei Spieler am selben Rechner. Vier Themes, drei
-Spielfeldgrößen, Punktezählung mit Spielerwechsel und ein eigener
-Gewinner-Screen. Geschrieben in TypeScript und SCSS, gebaut mit Vite – ohne
-Framework und ohne Laufzeit-Abhängigkeiten.
+A memory card game for two players sharing one screen. Four themes, three board
+sizes, score keeping with alternating turns and a winner screen of its own.
+Written in TypeScript and SCSS, built with Vite – no framework, no runtime
+dependencies.
 
-**[▶ Jetzt spielen](https://alexander-lindt.developerakademie.net/Memory/)**
+**[▶ Play it](https://alexander-lindt.developerakademie.net/Memory/)**
 
-![Spielfeld im Theme „Code vibes“](docs/screenshot-game.png)
+![The board in the Code vibes theme](docs/screenshot-game.png)
 
-## Wie es sich spielt
+## How it plays
 
-Zwei Spieler decken abwechselnd je zwei Karten auf. Ein Paar gibt einen Punkt,
-und derselbe Spieler ist erneut am Zug. Passt es nicht, drehen sich die Karten
-nach 1,4 Sekunden wieder um und der andere Spieler kommt dran. Sind alle Paare
-gefunden, erscheint der Endstand und danach der Gewinner.
+Two players take turns flipping two cards each. A matching pair scores a point
+and the same player goes again. If the cards do not match they turn back over
+after 1.4 seconds and the other player takes over. Once every pair is found the
+final score appears, followed by the winner.
 
-## Vier Themes
+## Four themes
 
-Jedes Theme bringt seine eigene Schrift, sein Farbschema, seine
-Kartenrückseite und einen eigenen Satz von 18 Motiven mit – die Auswahl ändert
-also nicht nur das Aussehen, sondern auch, worum es auf den Karten geht.
+Each theme brings its own typeface, colour scheme, card back and a set of 18
+motifs – so the choice changes not just how the game looks, but what the cards
+are about.
 
-![Die vier Themes: Code vibes, Gaming, DA Projects, Foods](docs/screenshot-themes.png)
+![The four themes: Code vibes, Gaming, DA Projects, Foods](docs/screenshot-themes.png)
 
-Von oben links: **Code vibes** (Entwickler-Werkzeuge), **Gaming**
-(Spieleklassiker), **DA Projects** (Projekte der Developer Akademie), **Foods**
-(Essen).
+From top left: **Code vibes** (developer tools), **Gaming** (classic games),
+**DA Projects** (Developer Akademie projects), **Foods** (food).
 
-## Vor dem Start
+## Before the round
 
-Auf dem Einstellungs-Screen werden Theme, Spielerfarbe und Spielfeldgröße
-gewählt. Die Vorschau rechts zeigt dabei sofort, wie das gewählte Theme
-aussieht – wer mit der Maus über eine Theme-Zeile fährt, sieht dessen
-Gestaltung schon, bevor er klickt.
+The settings screen is where theme, player colour and board size are picked.
+The preview on the right shows the chosen theme right away – and hovering a
+theme row shows that theme's design before it is even clicked.
 
-![Startseite und Einstellungen](docs/screenshot-start.png)
+![Start screen and settings](docs/screenshot-start.png)
 
-## Am Ende
+## At the end
 
-![Gewinner-Screen mit Konfetti](docs/screenshot-winner.png)
+![Winner screen with confetti](docs/screenshot-winner.png)
 
-Erst der Endstand als eigener „Game over"-Screen, dann der Gewinner mit Namen
-und Spielfigur in seiner Farbe. Ein Klick überspringt die Wartezeit dazwischen.
-Ein Unentschieden wird eigens behandelt und bekommt statt der Spielfigur eine
-Waage.
+First the final score on its own "Game over" screen, then the winner by name
+with the playing piece in their colour. A click skips the pause in between. A
+draw is handled separately and gets a pair of scales instead of the piece.
 
-## Funktionen im Überblick
+## Features
 
 | | |
 |---|---|
-| **Spieler** | Zwei – Blau und Orange; die Wahl bestimmt, wer beginnt |
-| **Spielfeldgrößen** | 16 (4×4), 24 (6×4) und 36 (6×6) Karten |
-| **Themes** | Vier, je mit eigener Schrift, Farbwelt und Motivsatz |
-| **Kartenanimation** | 3D-Flip über 0,55 s |
-| **Rundenende** | Endstand, danach Gewinner-Screen mit Konfetti |
-| **Neue Runde** | „Play again" startet sofort neu, „Back to start" führt zurück |
-| **Abbrechen** | „Exit game" fragt in einem Dialog nach, bevor es die Runde verwirft |
-| **Bedienung** | Alles sind echte `<button>`-Elemente, also auch per Tastatur bedienbar |
-| **Bildschirmgrößen** | Von 320 px bis 2560 px vollständig bedienbar |
+| **Players** | Two – Blue and Orange; the choice decides who starts |
+| **Board sizes** | 16 (4×4), 24 (6×4) and 36 (6×6) cards |
+| **Themes** | Four, each with its own typeface, palette and set of motifs |
+| **Card animation** | 3D flip over 0.55 s |
+| **End of round** | Final score, then a winner screen with confetti |
+| **New round** | "Play again" starts over immediately, "Back to start" returns home |
+| **Leaving** | "Exit game" asks in a dialog before discarding the round |
+| **Input** | Everything is a real `<button>`, so the keyboard works throughout |
+| **Screen sizes** | Fully playable from 320 px to 2560 px |
 
-## Loslegen
+## Getting started
 
 ```bash
-npm install      # einmalig
-npm run dev      # Dev-Server mit Hot Reload
-npm run build    # Typprüfung + Produktionsbuild nach dist/
-npm run preview  # den fertigen Build lokal ansehen
+npm install      # once
+npm run dev      # dev server with hot reload
+npm run build    # type check + production build into dist/
+npm run preview  # serve the finished build locally
 ```
 
-`npm run build` führt zuerst `tsc --noEmit` aus: Findet die Typprüfung einen
-Fehler, entsteht gar kein Build. Das Ergebnis liegt in `dist/` und wird
-unverändert auf den Server geladen.
+`npm run build` runs `tsc --noEmit` first: if the type check finds an error, no
+build is produced at all. The result lands in `dist/` and is uploaded to the
+server unchanged.
 
-## Aufbau
+## Layout of the project
 
 ```
-index.html              Alle fünf Screens + Quit-Dialog, bindet src/main.ts ein
-src/main.ts             Einstiegspunkt: Styles, Event-Bindung, Start
-src/config.ts           4 Themes, Spieler, Spielfeldgrößen, Timings
-src/types.ts            Gemeinsame Typen (Theme, Card, GameState …)
-src/state.ts            Zentraler Spielzustand
-src/dom.ts              Typsichere DOM-Zugriffe
-src/screens.ts          Screen-Routing und Quit-Dialog
-src/stage.ts            Skalierung der Design-Bühne
-src/settings.ts         Einstellungen: Auswahl, Vorschau, Zusammenfassung
-src/board.ts            Deck-Erzeugung (Fisher-Yates) und Karten-DOM
-src/game.ts             Aufdecken, Paarprüfung, Punkte, Spielerwechsel
-src/end.ts              Game-over-Screen, Gewinner-Anzeige, Konfetti
-src/styles/style.scss   Haupt-Stylesheet, bindet die Partials ein
-src/styles/_*.scss      Ein Partial je Screen + Variablen und Theme-Tokens
-public/                 75 Grafiken und Favicon, werden 1:1 übernommen
-vite.config.ts          base: '/Memory/' – das Projekt liegt im Unterordner
+index.html              All five screens + quit dialog, loads src/main.ts
+src/main.ts             Entry point: styles, event wiring, start
+src/config.ts           4 themes, players, board sizes, timings
+src/types.ts            Shared types (Theme, Card, GameState …)
+src/state.ts            Central game state
+src/dom.ts              Typed DOM lookups
+src/screens.ts          Screen routing and quit dialog
+src/stage.ts            Scaling of the design canvas
+src/settings.ts         Settings: selection, preview, summary
+src/board.ts            Deck building (Fisher-Yates) and card DOM
+src/game.ts             Flipping, matching, scoring, turn changes
+src/end.ts              Game over screen, winner display, confetti
+src/styles/style.scss   Main stylesheet, pulls in the partials
+src/styles/_*.scss      One partial per screen + variables and theme tokens
+public/                 75 images and the favicon, copied as they are
+vite.config.ts          base: '/Memory/' – the project lives in a subfolder
 tsconfig.json           strict: true
 ```
 
-Die fünf Screens – Startseite, Einstellungen, Spielfeld, „Game over" und
-Gewinner – liegen alle im selben Dokument und werden über `hidden` ein- und
-ausgeblendet. Einen Reload gibt es nie.
+The five screens – home, settings, board, "Game over" and winner – all live in
+the same document and are shown and hidden through `hidden`. There is never a
+reload.
 
-## Technische Entscheidungen
+## Technical decisions
 
 ### TypeScript
 
-`strict: true`, und der Build bricht bei jedem Typfehler ab. Statt loser
-Strings beschreiben eigene Typen, was erlaubt ist – `PlayerId` ist
-`'blue' | 'orange'`, `BoardSize` ist `16 | 24 | 36`. Ein Tippfehler in einer
-Theme-Id fällt dadurch beim Bauen auf und nicht erst im Browser.
+`strict: true`, and the build stops at any type error. Instead of loose strings,
+dedicated types describe what is allowed – `PlayerId` is `'blue' | 'orange'`,
+`BoardSize` is `16 | 24 | 36`. A typo in a theme id therefore shows up at build
+time rather than in the browser.
 
-Zwei Stellen brauchten eine eigene Lösung, weil sich die Module sonst
-gegenseitig importiert hätten: Das Spielfeld reicht Klicks über einen Callback
-(`FlipHandler`) nach oben weiter, statt die Rundenlogik zu importieren, und das
-Screen-Routing liegt in `screens.ts` statt im Einstiegspunkt.
+Two places needed a solution of their own, because the modules would otherwise
+have imported each other in a circle: the board passes clicks upwards through a
+callback (`FlipHandler`) instead of importing the round logic, and the screen
+routing lives in `screens.ts` rather than in the entry point.
 
-`document.getElementById` liefert `HTMLElement | null`. Unter `strict` bräuchte
-jeder einzelne Zugriff eine Null-Prüfung, deshalb übernimmt `byId()` aus
-`dom.ts` das einmal zentral und wirft bei einer fehlenden Id einen Fehler – ein
-Tippfehler im Markup soll auffallen, nicht stillschweigend übergangen werden.
+`document.getElementById` returns `HTMLElement | null`. Under `strict` every
+single lookup would need its own null check, so `byId()` in `dom.ts` does that
+once centrally and throws on a missing id – a typo in the markup should surface,
+not be quietly passed over.
 
 ### SCSS
 
-`style.scss` bindet je ein Partial pro Screen ein (`_home`, `_settings`,
-`_board` …), dazu `_themes` mit den Farb-Tokens und `_responsive` mit den Media
-Queries. Maße und Breakpoints stehen einmal in `_variables.scss`, statt eine
-Breakpoint-Zahl über neun Media Queries zu verstreuen.
+`style.scss` pulls in one partial per screen (`_home`, `_settings`, `_board` …),
+plus `_themes` with the colour tokens and `_responsive` with the media queries.
+Measurements and breakpoints sit once in `_variables.scss` instead of scattering
+a breakpoint number across nine media queries.
 
-Die Themes sind reine CSS-Variablen an `body[data-theme]`. Ein Theme zu
-wechseln heißt also, ein Attribut zu setzen – kein Neuaufbau, kein Nachladen.
-Die Vorschau auf dem Einstellungs-Screen trägt ihr Theme aus demselben Grund
-selbst, damit sie ein Theme zeigen kann, das noch gar nicht gewählt ist.
+The themes are nothing but CSS variables on `body[data-theme]`. Switching a
+theme means setting an attribute – no rebuild, nothing reloaded. The preview on
+the settings screen carries its theme itself for the same reason, so it can show
+a theme that has not been chosen yet.
 
-### Grafiken
+### Images
 
-Alle 75 Bilder liegen unverändert in `public/` und werden beim Build 1:1 nach
-`dist/` übernommen. Fehlt eine Datei, zeigt die Karte automatisch ein passendes
-Symbol als Fallback – das Spiel bleibt in jedem Fall spielbar.
+All 75 images sit unchanged in `public/` and are copied into `dist/` as they are
+at build time. If a file is missing, the card falls back to a matching symbol –
+the game stays playable either way.
 
-## Verhalten auf verschiedenen Bildschirmen
+## Behaviour across screen sizes
 
-Das Spiel ist auf jeder Breite von 320 px bis 2560 px vollständig bedienbar.
-Von unten nach oben greifen diese Bereiche ineinander:
+The game is fully playable at any width from 320 px to 2560 px. From the bottom
+up, these ranges dovetail into one another:
 
-| Bereich | Verhalten |
+| Range | Behaviour |
 |---|---|
-| **bis 400 px** | Engere Abstände überall, und die Spielleiste rückt dicht an den oberen Rand, damit das Spielfeld so viel Platz wie möglich bekommt. |
-| **bis 560 px** | Die Zusammenfassung im Einstellungs-Screen passt nicht mehr auf eine Zeile: Theme, Spieler und Größe behalten ihre gemeinsame Zeile, „Start" rückt zentriert darunter. |
-| **bis 768 px** | Echtes Flow-Layout: Die Bühne wird statisch, jeder Screen ist ein Flex-Container über `min-height: 100vh`. Schriftgrößen und Abstände skalieren über `clamp()`, das Spielfeld läuft als `repeat(var(--cols), 1fr)` mit `aspect-ratio`-Karten. Das Spielfeld ist doppelt begrenzt – durch die Bildschirmbreite und durch die Höhe, die unter der Leiste übrig bleibt –, damit es nie unten aus dem Bild läuft; das 24er-Feld steht hochkant als 4 × 6 statt als 6 × 4. Die Spielleiste wird zweizeilig und läuft als Fläche über die volle Breite, ihr Inhalt bleibt auf der Breite des Spielfelds. |
-| **769 – 1439 px** | Die feste Design-Bühne 1440 × 1024 wird per `transform: scale()` heruntergerechnet – alle Abstände bleiben pixelgenau wie im Entwurf. Skaliert wird in der Breite auf 1260 px, also auf die Fläche, die das Design wirklich füllt; nur die leeren Seitenränder laufen über den Bildschirmrand hinaus. In der Höhe bleiben die vollen 1024 px stehen, sonst würde der obere Rand mit kürzer werdendem Fenster immer knapper und der Inhalt schiene nach oben zu wandern. |
-| **ab 1440 px** | Die Inhaltsfläche behält ihre Breite und wird zentriert, der Hintergrund läuft über die gesamte Bildschirmbreite – in jedem Theme mit seiner eigenen Farbe. Der Gewinner-Screen verwendet ab hier den langen Konfettistreifen (3216 px, 22 Elemente) statt der kürzeren Variante. |
+| **up to 400 px** | Tighter spacing throughout, and the game bar moves close to the top edge so the board gets as much room as possible. |
+| **up to 560 px** | The summary on the settings screen no longer fits on one line: theme, player and size keep their shared line, "Start" moves below it, centred. |
+| **up to 768 px** | Proper flow layout: the canvas turns static, every screen is a flex container over `min-height: 100vh`. Font sizes and spacing scale via `clamp()`, the board runs as `repeat(var(--cols), 1fr)` with `aspect-ratio` cards. The board is capped twice – by the screen width and by the height left below the bar – so it never runs off the bottom; the 24-card board stands upright as 4 × 6 instead of 6 × 4. The game bar becomes two lines and runs edge to edge as a surface, while its content stays as wide as the board. |
+| **769 – 1439 px** | The fixed 1440 × 1024 design canvas is scaled down via `transform: scale()` – every distance stays pixel-exact as drawn. It is scaled to 1260 px in width, the area the design actually fills; only the empty side margins run past the screen edge. In height the full 1024 px remain, otherwise the top edge would grow tighter the shorter the window gets and the content would appear to drift upwards. |
+| **1440 px and up** | The content area keeps its width and is centred while the background runs across the whole screen – in every theme with its own colour. From here on the winner screen uses the long confetti strip (3216 px, 22 pieces) instead of the shorter one. |
 
-Geprüft wurde jeder Screen (Startseite, Einstellungen, Spielfeld in allen drei
-Größen, Quit-Dialog, Game over, Gewinner, Unentschieden) in allen vier Themes
-bei 320, 375, 480, 560, 760, 768, 900, 1024, 1440, 2560 und 3440 px.
+Every screen (home, settings, the board in all three sizes, quit dialog, game
+over, winner, draw) was checked in all four themes at 320, 375, 480, 560, 760,
+768, 900, 1024, 1440, 2560 and 3440 px.
 
-## Code-Konventionen
+## Code conventions
 
-HTML, SCSS und TypeScript liegen in getrennten Dateien. Keine Inline-Styles,
-keine Inline-Event-Handler. Jede Funktion hat einen JSDoc-Block, bleibt unter
-15 Zeilen und hat genau eine Aufgabe. Namen in camelCase, Konstanten in
-UPPER_SNAKE_CASE, semantische Elemente und `alt`-Attribute durchgängig.
+HTML, SCSS and TypeScript live in separate files. No inline styles, no inline
+event handlers. Every function carries a JSDoc block, stays under 15 lines and
+does exactly one thing. Names in camelCase, constants in UPPER_SNAKE_CASE,
+semantic elements and `alt` attributes throughout.

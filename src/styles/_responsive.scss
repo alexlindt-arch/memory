@@ -229,10 +229,9 @@
     gap: 16px;
   }
 
-  /* Die Kopfzeile läuft auch hier durch. `100vw` zieht sie über die volle
-     Breite, unabhängig vom seitlichen Polster des Screens; das `overflow-x:
-     hidden` oben fängt die Haaresbreite ab, die eine sichtbare Scrollleiste
-     kosten würde. */
+  /* The header runs edge to edge here too. `100vw` pulls it across the full
+     width regardless of the screen's side padding; the `overflow-x: hidden`
+     further up absorbs the hair's breadth a visible scrollbar would cost. */
   .topbar {
     flex-wrap: wrap;
     justify-content: center;
@@ -283,10 +282,10 @@
      is left below the bar. Without the second cap a tall board would run
      off the bottom of a phone screen. */
   .board {
-    /* Auf der Bühne stellt sich das Brett per `margin: auto` senkrecht mittig
-       unter die Kopfzeile. Hier gilt das nicht: die Höhe ist ohnehin knapp,
-       der Rest wird unten gesammelt, und das Polster würde die Höhe, mit der
-       unten gerechnet wird, verfälschen. */
+    /* On the canvas the board centres itself below the header via
+       `margin: auto`. Not here: height is tight anyway, whatever is left is
+       collected at the bottom, and the padding would falsify the height the
+       calculation below works with. */
     margin: 0 auto;
     padding: 0;
     --gap: min(2.5vw, 14px);
@@ -461,10 +460,9 @@
 }
 
 /* Phone and tablet: the wide strip does not fit on one line, so it becomes a
-   two-line panel – aktueller Spieler and Exit on top, the score below. Die
-   Fläche läuft wie am Desktop über die volle Breite durch, ihr Inhalt bleibt
-   aber auf der Breite des Spielfelds, damit „Exit game“ weiterhin bündig mit
-   dem rechten Kartenrand sitzt. */
+   two-line panel – current player and Exit on top, the score below. As on the
+   desktop the surface runs edge to edge, while its content stays as wide as
+   the board so "Exit game" still sits flush with the right card edge. */
 @media (max-width: v.$breakpoint-flow) {
   .topbar {
     display: grid;

@@ -2,11 +2,11 @@
    Game screen – top bar
    ========================================================================= */
 
-/* Die Leiste sitzt als Kopfzeile oben am Rand, das Spielfeld bekommt den
-   ganzen Rest und wird darin ausmittig gestellt. Deshalb hier oben ausrichten
-   und die Mitte dem Brett per `margin: auto` überlassen – bei 16 Karten ist
-   es 128px kürzer als bei 36, und dieser Unterschied verteilt sich so von
-   selbst gleichmäßig über und unter dem Brett. */
+/* The bar sits at the very top as a header, the board gets all the room left
+   and is centred inside it. Hence aligning to the top here and leaving the
+   centring to the board's own `margin: auto` – with 16 cards it is 128px
+   shorter than with 36, and that difference then spreads evenly above and
+   below it by itself. */
 .screen--game {
   display: flex;
   flex-direction: column;
@@ -16,9 +16,8 @@
   font-family: var(--font-body);
 }
 
-/* Die Fläche läuft über die volle Breite durch, ihr Inhalt bleibt aber auf
-   dem Raster des Spielfelds stehen, damit Punktestand und „Exit game“ mit
-   den Kartenrändern fluchten. */
+/* The surface runs edge to edge, but its content stays on the grid of the
+   board so that the score and "Exit game" line up with the card edges. */
 .topbar {
   display: flex;
   justify-content: space-between;

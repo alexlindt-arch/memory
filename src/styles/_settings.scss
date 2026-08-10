@@ -113,13 +113,12 @@
   background: none;
   padding: 0;
 
-  /* Beim Überfahren wird die Schrift kräftiger und der Auswahlpunkt zeigt
-     sich angedeutet – eine Vorschau darauf, was ein Klick bewirken würde.
-     Die gewählte Zeile steht ohnehin schon auf 700 und hat ihren Punkt voll
-     ausgefüllt, sie bleibt deshalb unverändert. */
+  /* Hovering makes the label heavier and hints at the marker – a preview of
+     what a click would do. The selected row already sits at 700 and has its
+     marker filled in, so it stays as it is. */
   &:not(.option--active) {
-    /* Nur für Geräte mit echtem Zeiger: auf dem Touchscreen bliebe der
-       Hover-Zustand nach dem Antippen sonst kleben. */
+    /* Pointer devices only: on a touchscreen the hover state would stick
+       after tapping. */
     @media (hover: hover) {
       &:hover {
         .option__label {
@@ -137,7 +136,7 @@
       }
     }
 
-    /* Tastaturbedienung bekommt dieselbe Vorschau. */
+    /* Keyboard use gets the same preview. */
     &:focus-visible {
       .option__label {
         font-weight: 600;
@@ -189,10 +188,9 @@
   opacity: 1;
 }
 
-/* Jede Theme-Zeile trägt die Akzentfarbe ihres eigenen Themes – aus derselben
-   Map, aus der auch die Vorschau ihre Werte bekommt. Der Punkt zeigt beim
-   Überfahren dadurch die Farbe des Themes, über dem der Zeiger steht, und
-   nicht die des gerade eingestellten. */
+/* Every theme row carries the accent of its own theme – from the same map the
+   preview draws its values from. On hover the marker therefore shows the
+   colour of the theme under the pointer, not the one currently set. */
 @each $theme, $tokens in v.$theme-preview {
   .option[data-group='theme'][data-value='#{$theme}'] {
     --option-preview: #{map.get($tokens, accent)};
@@ -222,11 +220,11 @@
   opacity: 1;
 }
 
-/* Der gelbe Pfeil steht immer an der Zeile, auf die gezeigt wird: er wandert
-   zur überfahrenen Zeile und verlässt so lange die gewählte. `:has` sorgt
-   dafür, dass das nur passiert, wenn wirklich eine Zeile getroffen ist – im
-   Abstand zwischen zwei Zeilen bliebe der Pfeil sonst ganz verschwunden.
-   Die gewählte Zeile behält ihn, wenn sie selbst überfahren wird. */
+/* The yellow arrow always sits at the row being pointed at: it travels to the
+   hovered row and leaves the selected one for as long as that lasts. `:has`
+   makes sure this only happens when a row is actually hit – in the gap between
+   two rows the arrow would otherwise vanish altogether. The selected row keeps
+   it when it is the one being hovered. */
 @media (hover: hover) {
   .options:has(.option:hover) .option--active:not(:hover) .option__arrow {
     opacity: 0;
@@ -237,7 +235,7 @@
   }
 }
 
-/* Dasselbe für die Tastatur, damit Tabben sich wie Überfahren verhält. */
+/* The same for the keyboard, so tabbing behaves like hovering. */
 .options:has(.option:focus-visible) .option--active:not(:focus-visible) .option__arrow {
   opacity: 0;
 }
@@ -248,9 +246,9 @@
 
 /* --- live preview card ------------------------------------------------- */
 
-/* Die Vorschau traegt ihr Theme selbst (data-theme), damit sie beim
-   Ueberfahren einer Theme-Zeile bereits deren Gestaltung zeigen kann,
-   waehrend der Rest des Settings-Screens noch das gewaehlte Theme haelt. */
+/* The preview carries its theme itself (data-theme) so that hovering a theme
+   row can already show that theme's design, while the rest of the settings
+   screen still holds the selected one. */
 .preview {
   position: absolute;
   transition: background 0.25s ease;
@@ -313,10 +311,10 @@
   --preview-img-shift: 10px;
 }
 
-/* Kartenmaße und Spielerfarben zieht die Vorschau sonst vom body, also vom
-   gewählten Theme. Damit sie ein noch nicht gewähltes zeigen kann, setzt sie
-   diese Werte selbst – erzeugt aus der Map, damit sie nur an einer Stelle
-   gepflegt werden. */
+/* Card sizes and player colours would otherwise come from the body, meaning
+   from the selected theme. To be able to show one that is not selected yet,
+   the preview sets them itself – generated from the map, so they are kept in
+   one place only. */
 @each $theme, $tokens in v.$theme-preview {
   .preview[data-theme='#{$theme}'] {
     @each $name, $value in $tokens {

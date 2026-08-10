@@ -2,9 +2,9 @@
    Game screen – board & cards
    ========================================================================= */
 
-/* `margin: auto` stellt das Brett im Platz unter der Kopfzeile mittig – der
-   freie Raum verteilt sich dadurch gleichmäßig darüber und darunter,
-   unabhängig davon, wie viele Karten gerade liegen. */
+/* `margin: auto` centres the board in the space below the header – the free
+   room spreads evenly above and below it, no matter how many cards are on
+   the table. */
 .board {
   display: grid;
   grid-template-columns: repeat(var(--cols, 4), calc(var(--card-w) * var(--fit, 1)));
