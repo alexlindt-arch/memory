@@ -112,44 +112,21 @@
   background: none;
   padding: 0;
 
-  /* Beim Überfahren wird die Schrift kräftiger und der Auswahlpunkt zeigt
-     sich angedeutet – eine Vorschau darauf, was ein Klick bewirken würde.
-     Die gewählte Zeile steht ohnehin schon auf 700 und hat ihren Punkt
-     voll ausgefüllt, sie bleibt deshalb unverändert. */
+  /* Hervorgehoben wird allein die Schrift, und zwar über ihre Stärke – keine
+     Fläche, keine andere Farbe. Die gewählte Zeile steht ohnehin schon auf
+     700 und bleibt beim Überfahren deshalb unverändert. */
   &:not(.option--active) {
     /* Nur für Geräte mit echtem Zeiger: auf dem Touchscreen bliebe der
        Hover-Zustand nach dem Antippen sonst kleben. */
     @media (hover: hover) {
-      &:hover {
-        .option__label {
-          font-weight: 600;
-        }
-
-        .option__dot {
-          border-color: var(--option-preview, var(--option-dot, var(--settings-ink)));
-        }
-
-        .option__dot::after {
-          background: var(--option-preview, var(--option-dot, var(--settings-ink)));
-          opacity: 0.45;
-        }
+      &:hover .option__label {
+        font-weight: 600;
       }
     }
 
-    /* Tastaturbedienung bekommt dieselbe Vorschau. */
-    &:focus-visible {
-      .option__label {
-        font-weight: 600;
-      }
-
-      .option__dot {
-        border-color: var(--option-preview, var(--option-dot, var(--settings-ink)));
-      }
-
-      .option__dot::after {
-        background: var(--option-preview, var(--option-dot, var(--settings-ink)));
-        opacity: 0.45;
-      }
+    /* Tastaturbedienung bekommt dieselbe Hervorhebung. */
+    &:focus-visible .option__label {
+      font-weight: 600;
     }
   }
 
@@ -185,16 +162,6 @@
 
 .option--active .option__dot::after {
   background: var(--option-dot, var(--settings-ink));
-  opacity: 1;
-}
-
-/* Jede Theme-Zeile trägt die Akzentfarbe ihres eigenen Themes. Der Punkt zeigt
-   beim Überfahren dadurch die Farbe des Themes, über dem der Zeiger steht –
-   und nicht die des gerade eingestellten. */
-@each $theme, $accent in v.$theme-accent {
-  .option[data-group='theme'][data-value='#{$theme}'] {
-    --option-preview: #{$accent};
-  }
 }
 
 .option__label {
@@ -220,34 +187,14 @@
   opacity: 1;
 }
 
-/* Der gelbe Pfeil steht immer an der Zeile, auf die gezeigt wird: er wandert
-   zur überfahrenen Zeile und verlässt so lange die gewählte. `:has` sorgt
-   dafür, dass das nur passiert, wenn wirklich eine Zeile getroffen ist – im
-   Abstand zwischen zwei Zeilen bliebe der Pfeil sonst ganz verschwunden.
-   Die gewählte Zeile selbst behält ihn, wenn sie es ist, die überfahren wird. */
-@media (hover: hover) {
-  .options:has(.option:hover) .option--active:not(:hover) .option__arrow {
-    opacity: 0;
-  }
-
-  .option:hover .option__arrow {
-    opacity: 1;
-  }
-}
-
-/* Dasselbe für die Tastatur, damit Tabben sich wie Überfahren verhält. */
-.options:has(.option:focus-visible) .option--active:not(:focus-visible) .option__arrow {
-  opacity: 0;
-}
-
-.option:focus-visible .option__arrow {
-  opacity: 1;
-}
-
 /* --- live preview card ------------------------------------------------- */
 
+/* Die Vorschau traegt ihr Theme selbst (data-theme), damit sie beim
+   Ueberfahren einer Theme-Zeile bereits deren Gestaltung zeigen kann,
+   waehrend der Rest des Settings-Screens noch das gewaehlte Theme haelt. */
 .preview {
   position: absolute;
+  transition: background 0.25s ease;
   right: 0;
   top: 0;
   display: flex;
@@ -261,7 +208,7 @@
   background: var(--preview-bg, linear-gradient(223.71deg, #303131 43.86%, #6d6d6d 122.2%));
 }
 
-body[data-theme='gaming'] .preview {
+.preview[data-theme='gaming'] {
   --preview-bg: linear-gradient(200deg, #1d4557 20%, #2f7f9b 120%);
   --preview-bar-bg: rgba(10, 40, 53, 0.45);
   --preview-pill-bg: #ffffff;
@@ -276,7 +223,7 @@ body[data-theme='gaming'] .preview {
   --preview-img-shift: 16px;
 }
 
-body[data-theme='daprojects'] .preview {
+.preview[data-theme='daprojects'] {
   --preview-bg: #bfe5f2;
   --preview-bar-bg: #ffffff;
   --preview-pill-bg: transparent;
@@ -295,7 +242,7 @@ body[data-theme='daprojects'] .preview {
   --preview-back-y: 0px;
 }
 
-body[data-theme='foods'] .preview {
+.preview[data-theme='foods'] {
   --preview-bg: #f7e6d5;
   --preview-bar-bg: #ffffff;
   --preview-pill-bg: transparent;
@@ -305,6 +252,18 @@ body[data-theme='foods'] .preview {
   --preview-exit-radius: 12px;
   --preview-ink: #a45212;
   --preview-img-shift: 10px;
+}
+
+/* Kartenmaße und Spielerfarben zieht die Vorschau sonst vom body, also vom
+   gewählten Theme. Damit sie ein noch nicht gewähltes zeigen kann, setzt sie
+   diese Werte selbst – erzeugt aus der Map, damit sie nur an einer Stelle
+   gepflegt werden. */
+@each $theme, $tokens in v.$theme-preview {
+  .preview[data-theme='#{$theme}'] {
+    @each $name, $value in $tokens {
+      --#{$name}: #{$value};
+    }
+  }
 }
 
 .preview__bar {
@@ -342,12 +301,12 @@ body[data-theme='foods'] .preview {
 }
 
 /* Code vibes lists Blue first; the other themes lead with Orange. */
-body[data-theme='codevibes'] .preview__score--blue {
+.preview[data-theme='codevibes'] .preview__score--blue {
   order: -1;
 }
 
-body[data-theme='codevibes'] .preview__num--alt,
-body:not([data-theme='codevibes']) .preview__num--cv {
+.preview[data-theme='codevibes'] .preview__num--alt,
+.preview:not([data-theme='codevibes']) .preview__num--cv {
   display: none;
 }
 
@@ -370,19 +329,19 @@ body:not([data-theme='codevibes']) .preview__num--cv {
   fill: currentColor;
 }
 
-body:not([data-theme='codevibes']) .preview__flag {
+.preview:not([data-theme='codevibes']) .preview__flag {
   display: none;
 }
 
-body:not([data-theme='codevibes']) .preview__person {
+.preview:not([data-theme='codevibes']) .preview__person {
   display: block;
 }
 
-body:not([data-theme='codevibes']) .preview__name {
+.preview:not([data-theme='codevibes']) .preview__name {
   display: none;
 }
 
-body:not([data-theme='codevibes']) .preview__scores {
+.preview:not([data-theme='codevibes']) .preview__scores {
   border-radius: 8px;
   gap: 18px;
 }
@@ -393,14 +352,14 @@ body:not([data-theme='codevibes']) .preview__scores {
   justify-content: center;
 }
 
-body:not([data-theme='codevibes']) .preview__chip {
+.preview:not([data-theme='codevibes']) .preview__chip {
   width: 24px;
   height: 23px;
   border-radius: 5px;
   background: var(--blue);
 }
 
-body:not([data-theme='codevibes']) .preview__person--turn {
+.preview:not([data-theme='codevibes']) .preview__person--turn {
   width: 12px;
   height: 15px;
   fill: #ffffff;
@@ -485,7 +444,7 @@ body:not([data-theme='codevibes']) .preview__person--turn {
   flex: none;
 }
 
-body[data-theme='gaming'] .preview__glyph {
+.preview[data-theme='gaming'] .preview__glyph {
   display: none;
 }
 

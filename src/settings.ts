@@ -5,7 +5,7 @@
  */
 
 import { BOARD_SIZES, PLAYERS, THEMES, getFaceGlyph, getFacePath, getTheme } from './config';
-import { byId } from './dom';
+import { byId, query } from './dom';
 import { isReadyToStart, state } from './state';
 import type { BoardSize, OptionGroup, PlayerId, Theme, ThemeId } from './types';
 
@@ -67,9 +67,9 @@ function createOption(listId: string, item: OptionItem, withArrow: boolean): HTM
 }
 
 /**
- * Lets a theme row show its own motif on the preview card while the pointer
- * rests on it, so the theme can be judged before it is chosen. Leaving the row
- * puts the selected theme back.
+ * Lets a theme row show its whole theme on the preview panel while the pointer
+ * rests on it – colours, card shapes and motif – so a theme can be judged
+ * before it is chosen. Leaving the row puts the selected theme back.
  * @param button - The theme row to watch.
  * @param theme - Id of the theme this row stands for.
  * @returns {void}
@@ -138,13 +138,15 @@ function getDotColor(value: string | undefined): string {
 }
 
 /**
- * Shows a sample card inside the preview panel.
+ * Shows a whole theme inside the preview panel: its colours and card shapes
+ * come from the panel's own `data-theme`, the motif from the image below it.
  * @param theme - Theme to display; defaults to the selected one.
  * @returns {void}
  */
 function updatePreview(theme: Theme = getTheme(state.theme)): void {
   const image = byId<HTMLImageElement>('preview-front');
   const card = image.parentElement;
+  query('.preview').setAttribute('data-theme', theme.id);
   card?.classList.remove('is-fallback');
   byId('preview-glyph').textContent = getFaceGlyph(theme, theme.preview);
   image.onerror = () => card?.classList.add('is-fallback');

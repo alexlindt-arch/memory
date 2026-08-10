@@ -20,15 +20,59 @@ $breakpoint-flow: 768px;
 /// First width at which the scaled canvas takes over.
 $breakpoint-canvas: $breakpoint-flow + 1px;
 
-/// Accent colour of each theme, mirroring `--accent` in _themes.scss.
+/// Theme values the live preview needs beyond its own `--preview-*` tokens.
 ///
-/// Needed as a Sass value rather than a custom property, because the marker of
-/// a theme row has to show *that* theme's colour while the page is still
-/// showing another one – `var(--accent)` would always resolve to the theme
-/// currently selected.
-$theme-accent: (
-  'codevibes': #4dd5bc,
-  'gaming': #ed1b76,
-  'daprojects': #1e7594,
-  'foods': #f3832d
+/// The preview has to be able to show a theme that is not the selected one, so
+/// it cannot inherit these from `body[data-theme]` – that would always resolve
+/// to the current theme. Listing them here lets one `@each` write both the
+/// selected-theme rules and the preview's own, instead of keeping two copies
+/// of the same values in sync by hand.
+///
+/// The card values decide the size and the colours of the two sample cards,
+/// the player colours the little score chips in the bar above them.
+$theme-preview: (
+  'codevibes': (
+    accent: #4dd5bc,
+    accent-soft: rgba(134, 233, 214, 0.2),
+    blue: #2bb1ff,
+    orange: #f58e39,
+    card-w: 120px,
+    card-h: 120px,
+    card-radius: 0px,
+    card-back: linear-gradient(212.26deg, #4dd5bc 29.42%, #286f62 123.94%),
+    card-front-bg: #e8f3f0
+  ),
+  'gaming': (
+    accent: #ed1b76,
+    accent-soft: rgba(253, 150, 201, 0.2),
+    blue: #097fc5,
+    orange: #ea6900,
+    card-w: 105px,
+    card-h: 120px,
+    card-radius: 12px,
+    card-back: linear-gradient(147.13deg, #ed1b76 1.28%, #0a2835 142.53%),
+    card-front-bg: #f6f1f3
+  ),
+  'daprojects': (
+    accent: #1e7594,
+    accent-soft: #f0f3f4,
+    blue: #097fc5,
+    orange: #ea6900,
+    card-w: 120px,
+    card-h: 100px,
+    card-radius: 13px,
+    card-back: #1e7594,
+    card-front-bg: #eaf1f3
+  ),
+  'foods': (
+    accent: #f3832d,
+    accent-soft: #f0e5d9,
+    blue: #097fc5,
+    orange: #ea6900,
+    card-w: 122px,
+    card-h: 122px,
+    card-radius: 0px,
+    card-back: #f3832d,
+    card-front-bg: #f7e6d5
+  )
 );

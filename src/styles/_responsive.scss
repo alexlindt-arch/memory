@@ -224,18 +224,23 @@
      collected at the bottom instead of being split above and below. */
   .screen--game {
     justify-content: flex-start;
-    padding-top: 16px;
+    padding-top: 0;
     padding-bottom: 16px;
     gap: 16px;
   }
 
+  /* Die Kopfzeile läuft auch hier durch. `100vw` zieht sie über die volle
+     Breite, unabhängig vom seitlichen Polster des Screens; das `overflow-x:
+     hidden` oben fängt die Haaresbreite ab, die eine sichtbare Scrollleiste
+     kosten würde. */
   .topbar {
     flex-wrap: wrap;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
     height: auto;
     padding: 12px;
     gap: 10px 18px;
+    border-radius: 0;
   }
 
   .topbar__scores {
@@ -278,6 +283,12 @@
      is left below the bar. Without the second cap a tall board would run
      off the bottom of a phone screen. */
   .board {
+    /* Auf der Bühne stellt sich das Brett per `margin: auto` senkrecht mittig
+       unter die Kopfzeile. Hier gilt das nicht: die Höhe ist ohnehin knapp,
+       der Rest wird unten gesammelt, und das Polster würde die Höhe, mit der
+       unten gerechnet wird, verfälschen. */
+    margin: 0 auto;
+    padding: 0;
     --gap: min(2.5vw, 14px);
     --board-reserve: 170px;
     width: min(100%, 520px);
@@ -450,17 +461,18 @@
 }
 
 /* Phone and tablet: the wide strip does not fit on one line, so it becomes a
-   two-line panel – aktueller Spieler and Exit on top, the score below. It
-   stays one tinted surface like on the desktop and is exactly as wide as the
-   board, so Exit lands flush with the right edge of the cards. */
+   two-line panel – aktueller Spieler and Exit on top, the score below. Die
+   Fläche läuft wie am Desktop über die volle Breite durch, ihr Inhalt bleibt
+   aber auf der Breite des Spielfelds, damit „Exit game“ weiterhin bündig mit
+   dem rechten Kartenrand sitzt. */
 @media (max-width: v.$breakpoint-flow) {
   .topbar {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    width: min(100%, 520px);
+    width: 100vw;
     height: auto;
-    padding: 10px;
+    padding: 10px max(10px, calc((100vw - 520px) / 2));
     gap: 10px;
     border-radius: 0;
     background: var(--accent-soft);
@@ -573,12 +585,12 @@
 
   /* The board is what matters here, so the bar above it stays tight. */
   .screen--game {
-    padding-top: 6px;
+    padding-top: 0;
     gap: 12px;
   }
 
   .topbar {
-    padding: 8px;
+    padding: 8px max(8px, calc((100vw - 520px) / 2));
     gap: 8px;
   }
 
