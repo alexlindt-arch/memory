@@ -220,28 +220,62 @@
   opacity: 1;
 }
 
-/* The yellow arrow always sits at the row being pointed at: it travels to the
-   hovered row and leaves the selected one for as long as that lasts. `:has`
-   makes sure this only happens when a row is actually hit – in the gap between
-   two rows the arrow would otherwise vanish altogether. The selected row keeps
-   it when it is the one being hovered. */
-@media (hover: hover) {
-  .options:has(.option:hover) .option--active:not(:hover) .option__arrow {
-    opacity: 0;
+/* While a row is being pointed at, that row alone wears the selection: filled
+   marker, bold label and the arrow. The selected row lets go of all three for
+   as long as that lasts, so the mark follows the pointer instead of sitting
+   locked on one row.
+   `:has` limits this to the moment a row is really hit – in the gap between
+   two rows the mark would otherwise disappear from the list altogether. */
+@mixin marked {
+  .option__label {
+    font-weight: 700;
   }
 
-  .option:hover .option__arrow {
+  .option__dot::after {
+    background: var(--option-preview, var(--option-dot, var(--settings-ink)));
+    opacity: 1;
+  }
+
+  .option__arrow {
     opacity: 1;
   }
 }
 
-/* The same for the keyboard, so tabbing behaves like hovering. */
-.options:has(.option:focus-visible) .option--active:not(:focus-visible) .option__arrow {
-  opacity: 0;
+@mixin unmarked {
+  .option__label {
+    font-weight: 400;
+  }
+
+  .option__dot::after {
+    background: transparent;
+  }
+
+  .option__arrow {
+    opacity: 0;
+  }
 }
 
-.option:focus-visible .option__arrow {
-  opacity: 1;
+@media (hover: hover) {
+  .options:has(.option:hover) {
+    .option:hover {
+      @include marked;
+    }
+
+    .option--active:not(:hover) {
+      @include unmarked;
+    }
+  }
+}
+
+/* The same for the keyboard, so tabbing behaves like hovering. */
+.options:has(.option:focus-visible) {
+  .option:focus-visible {
+    @include marked;
+  }
+
+  .option--active:not(:focus-visible) {
+    @include unmarked;
+  }
 }
 
 /* --- live preview card ------------------------------------------------- */

@@ -24,9 +24,9 @@ interface OptionItem {
  * @returns {void}
  */
 export function renderSettings(): void {
-  fillOptions('options-theme', THEMES.map((theme) => ({ value: theme.id, label: theme.label })), true);
-  fillOptions('options-player', PLAYERS.map((player) => ({ value: player.id, label: player.label })), false);
-  fillOptions('options-size', BOARD_SIZES.map((size) => ({ value: size.cards, label: size.label })), false);
+  fillOptions('options-theme', THEMES.map((theme) => ({ value: theme.id, label: theme.label })));
+  fillOptions('options-player', PLAYERS.map((player) => ({ value: player.id, label: player.label })));
+  fillOptions('options-size', BOARD_SIZES.map((size) => ({ value: size.cards, label: size.label })));
   updateSettings();
 }
 
@@ -34,30 +34,29 @@ export function renderSettings(): void {
  * Builds the list items of one option group.
  * @param listId - Id of the <ul> element.
  * @param items - Options to render.
- * @param withArrow - True to append the pointer arrow (themes only).
  * @returns {void}
  */
-function fillOptions(listId: string, items: OptionItem[], withArrow: boolean): void {
+function fillOptions(listId: string, items: OptionItem[]): void {
   const list = byId(listId);
   list.innerHTML = '';
-  items.forEach((item) => list.appendChild(createOption(listId, item, withArrow)));
+  items.forEach((item) => list.appendChild(createOption(listId, item)));
 }
 
 /**
- * Creates a single selectable option row.
+ * Creates a single selectable option row. Every row carries the pointer arrow;
+ * it is invisible until the row is selected or pointed at.
  * @param listId - Id of the owning list, used to derive the group.
  * @param item - Option data.
- * @param withArrow - True to append the pointer arrow.
  * @returns The ready-to-insert list item.
  */
-function createOption(listId: string, item: OptionItem, withArrow: boolean): HTMLLIElement {
+function createOption(listId: string, item: OptionItem): HTMLLIElement {
   const group = listId.replace('options-', '') as OptionGroup;
   const li = document.createElement('li');
   const button = document.createElement('button');
   button.className = 'option';
   button.type = 'button';
   button.innerHTML = '<span class="option__dot"></span>'
-    + `<span class="option__label">${item.label}</span>${withArrow ? ARROW_SVG : ''}`;
+    + `<span class="option__label">${item.label}</span>${ARROW_SVG}`;
   button.dataset.group = group;
   button.dataset.value = String(item.value);
   button.addEventListener('click', () => selectOption(group, item.value));

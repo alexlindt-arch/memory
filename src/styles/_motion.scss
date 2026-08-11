@@ -1,0 +1,88 @@
+// =========================================================================
+//  Entrances
+//
+//  The two closing screens used to appear from one frame to the next. Both
+//  now drift in from above the way the prototype does it: the parts arrive
+//  one after another, top first, so the eye is led down to the buttons.
+//
+//  The animations are tied to the screens themselves rather than to a class
+//  set from JavaScript. A screen is hidden with `hidden`, so showing it takes
+//  the element from `display: none` back into the layout – and that restart
+//  is exactly when a CSS animation begins on its own.
+// =========================================================================
+
+/// Distance a part travels while dropping into place.
+$drop-distance: 42px;
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-#{$drop-distance});
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/// The confetti belongs to the top edge and slides in from off screen.
+@keyframes confetti-in {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/// Same easing as the card flip, so the whole game moves alike.
+$ease-drop: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+/// Applies the drop to a list of children, each one a little later than the
+/// one before it.
+/// @param {Number} $count - How many children to stagger.
+/// @param {Number} $step - Delay added per child.
+@mixin stagger-drop($count, $step: 90ms) {
+  @for $i from 1 through $count {
+    > :nth-child(#{$i}) {
+      animation: drop-in 520ms $ease-drop #{($i - 1) * $step} backwards;
+    }
+  }
+}
+
+.over__stack {
+  @include stagger-drop(2, 140ms);
+}
+
+.end__stack {
+  @include stagger-drop(4);
+}
+
+.confetti {
+  animation: confetti-in 700ms $ease-drop backwards;
+}
+
+// Anyone who has asked their system for less movement gets the screens
+// without the drift – they still fade in, so the change is not abrupt.
+@media (prefers-reduced-motion: reduce) {
+  .over__stack > *,
+  .end__stack > *,
+  .confetti {
+    animation-name: fade-in;
+    animation-duration: 200ms;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
