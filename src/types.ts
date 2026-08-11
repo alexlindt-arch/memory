@@ -69,7 +69,8 @@ export interface ConfettiPiece {
 
 /** The running round. Exactly one object of this shape exists. */
 export interface GameState {
-  theme: ThemeId;
+  /** Null until a theme has been picked – nothing is preselected. */
+  theme: ThemeId | null;
   player: PlayerId | null;
   size: BoardSize | null;
   cards: Card[];

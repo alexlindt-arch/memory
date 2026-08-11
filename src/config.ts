@@ -107,10 +107,11 @@ export const OVER_DELAY = 2600;
 
 /**
  * Looks up a theme by its id.
- * @param id - Theme id, e.g. 'codevibes'.
- * @returns The matching theme, or the first theme as fallback.
+ * @param id - Theme id, or null while none has been picked yet.
+ * @returns The matching theme, or the first one – which is what the settings
+ *   screen shows before a choice is made, without marking it as chosen.
  */
-export function getTheme(id: ThemeId): Theme {
+export function getTheme(id: ThemeId | null): Theme {
   return THEMES.find((theme) => theme.id === id) ?? THEMES[0];
 }
 

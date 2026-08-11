@@ -6,7 +6,7 @@
 import type { GameState, Winner } from './types';
 
 export const state: GameState = {
-  theme: 'codevibes',
+  theme: null,
   player: null,
   size: null,
   cards: [],
@@ -33,10 +33,10 @@ export function resetRound(): void {
 
 /**
  * Tells whether all settings needed to start a round have been chosen.
- * @returns True when player and board size are selected.
+ * @returns True when theme, player and board size are all selected.
  */
 export function isReadyToStart(): boolean {
-  return state.player !== null && state.size !== null;
+  return state.theme !== null && state.player !== null && state.size !== null;
 }
 
 /**

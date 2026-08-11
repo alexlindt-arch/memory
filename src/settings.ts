@@ -100,7 +100,9 @@ function selectOption(group: OptionGroup, value: string | number): void {
  * @returns {void}
  */
 export function updateSettings(): void {
-  document.body.dataset.theme = state.theme;
+  // Before a choice is made the screen still has to look like something, so it
+  // shows the first theme – without any row being marked as selected.
+  document.body.dataset.theme = getTheme(state.theme).id;
   markActiveOptions();
   updatePreview();
   updateSummary();
@@ -158,9 +160,10 @@ function updatePreview(theme: Theme = getTheme(state.theme)): void {
  * @returns {void}
  */
 function updateSummary(): void {
+  const theme = THEMES.find((entry) => entry.id === state.theme);
   const player = PLAYERS.find((entry) => entry.id === state.player);
   const size = BOARD_SIZES.find((entry) => entry.cards === state.size);
-  setSummaryStep('theme', getTheme(state.theme).label.replace(' theme', ''), true);
+  setSummaryStep('theme', theme ? theme.label.replace(' theme', '') : 'Game theme', theme !== undefined);
   setSummaryStep('player', player ? player.label : 'Player', player !== undefined);
   setSummaryStep('size', size ? size.label : 'Board size', size !== undefined);
 }

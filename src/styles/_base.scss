@@ -32,6 +32,22 @@ body {
   transform: translate(-50%, -50%) scale(var(--stage-scale, 1));
 }
 
+/* On the game screen the canvas fills the whole window height, so the header
+   sits at the top edge of the screen instead of at the top edge of a canvas
+   standing in the middle of it. On a tall display those would be hundreds of
+   pixels apart. The other screens keep the fixed height – their contents are
+   positioned against the 1024px of the design.
+   Only above the breakpoint: below it the canvas is not a canvas at all. */
+@media (min-width: v.$breakpoint-canvas) {
+  body[data-screen='game'] .stage {
+    height: max(v.$canvas-height, calc(100vh / var(--stage-scale, 1)));
+  }
+
+  body[data-screen='game'] .screen--game {
+    height: 100%;
+  }
+}
+
 .screen {
   position: absolute;
   left: 0;
