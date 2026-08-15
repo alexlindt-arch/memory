@@ -1,3 +1,5 @@
+@use 'variables' as v;
+
 /* =========================================================================
    Game screen – top bar
    ========================================================================= */
@@ -26,17 +28,21 @@
    two sides measure – and they measure differently in every theme, since each
    brings its own typeface.
 
-   The gap stays small on purpose. A `1fr` track cannot shrink below what it
-   holds, and the score is far wider than the Exit button – 381px against
-   211px in Foods with a two-digit score. A generous gap would leave the score
-   column too little room, it would grow past its share, and the middle would
-   drift off centre again. At 24px both outer tracks keep the same width in
-   every theme, which is what puts the middle in the middle. */
+   The two outer parts are pulled towards the middle, so the score and "Exit
+   game" sit the same distance from the current player – that distance is the
+   column gap itself, not whatever room happens to be left over.
+
+   40px is the widest that distance can be. A `1fr` track cannot shrink below
+   what it holds, and the score is far wider than the Exit button – 381px
+   against 211px in Foods at 18 points. Any wider a gap would leave the score
+   column less than the 381px it needs, it would claim more than its share,
+   the two outer tracks would end up different widths, and the middle would
+   drift off centre again. */
 .topbar {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  column-gap: 24px;
+  column-gap: 40px;
   width: 100%;
   height: 102px;
   padding: 24px max(24px, calc(50% - 1219px / 2 + 24px));
@@ -45,16 +51,20 @@
   background: var(--accent-soft);
 }
 
-.topbar__scores {
-  justify-self: start;
-}
+/* Only from the canvas breakpoint up. Below it the bar is a two-line panel
+   with a layout of its own, and these would pull its parts out of place. */
+@media (min-width: v.$breakpoint-canvas) {
+  .topbar__scores {
+    justify-self: end;
+  }
 
-.topbar .turn {
-  justify-self: center;
-}
+  .topbar .turn {
+    justify-self: center;
+  }
 
-.topbar .exit {
-  justify-self: end;
+  .topbar .exit {
+    justify-self: start;
+  }
 }
 
 .topbar__scores {
