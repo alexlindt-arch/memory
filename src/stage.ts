@@ -13,13 +13,21 @@ const CANVAS_HEIGHT = 1024;
  * margins run past the edge; from 1440px up it keeps its size. The canvas
  * width itself follows from this scale in the stylesheet, which keeps it
  * centred from the very first frame.
+ *
+ * The size is read from the document element, not from `window.innerWidth`.
+ * On a tablet the canvas deliberately reaches past the left and right edge,
+ * and `innerWidth` grows with content that sticks out – it reported 1130px on
+ * an 820px iPad. That fed straight back into the scale, which widened the
+ * canvas further, and the design ended up cut off on both sides.
+ * `clientWidth` is the layout viewport alone and stays put.
  * @returns {void}
  */
 export function fitStage(): void {
+  const view = document.documentElement;
   const scale = Math.min(
     1,
-    window.innerWidth / CONTENT_WIDTH,
-    window.innerHeight / CANVAS_HEIGHT
+    view.clientWidth / CONTENT_WIDTH,
+    view.clientHeight / CANVAS_HEIGHT
   );
-  document.documentElement.style.setProperty('--stage-scale', String(scale));
+  view.style.setProperty('--stage-scale', String(scale));
 }
